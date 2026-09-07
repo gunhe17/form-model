@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+# 재생성 가능한 대용량 산출물 (build_skeleton → render_skeleton로 재현)
+runs/final_dataset/
+runs/holdout_dataset/
+runs/skeletons_final/
+runs/skeletons_holdout/
