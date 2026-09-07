@@ -1,0 +1,1 @@
+{"id": "안내문_16703", "type": "안내문", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "글머리서술", "card": "ta_outline"}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 434161293}

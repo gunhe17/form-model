@@ -1,0 +1,1 @@
+{"id": "점검평가_05778", "type": "점검평가", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_multi"}, {"block": "격자", "card": "stub_input", "rows": 5, "cols": 9}, {"block": "서술", "card": "ta_below"}], "prefill": [{"target": 2, "kind": "pf_sample"}], "decoys": ["(단위:) 캡션"], "seed": 160267924}

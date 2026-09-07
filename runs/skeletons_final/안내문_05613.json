@@ -1,0 +1,1 @@
+{"id": "안내문_05613", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "글머리서술", "card": "text_prose"}], "prefill": [{"target": 3, "kind": "pf_filled"}], "decoys": [], "seed": 340579848}

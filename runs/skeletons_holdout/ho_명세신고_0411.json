@@ -1,0 +1,1 @@
+{"id": "ho_명세신고_0411", "type": "명세신고", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "grid_diag", "rows": 9, "cols": 8}, {"block": "격자", "card": "num_cell", "rows": 4, "cols": 8}, {"block": "격자", "card": "grid_diag", "rows": 7, "cols": 3}], "prefill": [], "decoys": [], "seed": 1306657432}

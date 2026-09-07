@@ -1,0 +1,1 @@
+{"id": "명세신고_03606", "type": "명세신고", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "grid_diag", "rows": 11, "cols": 8}, {"block": "격자", "card": "num_cell", "rows": 11, "cols": 9}], "prefill": [{"target": 0, "kind": "pf_example"}], "decoys": ["인쇄 수신처 열거"], "seed": 1664239509}

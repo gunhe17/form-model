@@ -1,0 +1,1 @@
+{"id": "ho_계획서_0906", "type": "계획서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "격자", "card": "num_cell", "rows": 6, "cols": 4}], "prefill": [], "decoys": [], "seed": 361623773}

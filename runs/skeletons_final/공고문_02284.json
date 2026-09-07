@@ -1,0 +1,1 @@
+{"id": "공고문_02284", "type": "공고문", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["처리절차 플로차트", "인쇄 상수 셀"], "seed": 669607298}

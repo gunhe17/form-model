@@ -1,0 +1,1 @@
+{"id": "보고서_12740", "type": "보고서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "num_cell", "rows": 6, "cols": 3}, {"block": "격자", "card": "date_cell", "rows": 4, "cols": 3}], "prefill": [], "decoys": ["인쇄 수신처 열거", "인쇄 상수 셀"], "seed": 757734527}

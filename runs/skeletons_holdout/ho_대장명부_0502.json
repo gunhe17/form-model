@@ -1,0 +1,1 @@
+{"id": "ho_대장명부_0502", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "grid_diag", "rows": 10, "cols": 3}], "prefill": [{"target": 1, "kind": "pf_sample"}], "decoys": ["(단위:) 캡션"], "seed": 646252965}

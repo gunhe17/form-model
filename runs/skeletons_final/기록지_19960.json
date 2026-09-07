@@ -1,0 +1,1 @@
+{"id": "기록지_19960", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "ph_cell"}, {"block": "격자", "card": "cal_grid", "rows": 5, "cols": 8}, {"block": "시각", "card": "time_cell"}, {"block": "서명줄", "card": "sig_stamp"}], "prefill": [], "decoys": [], "seed": 520358264}

@@ -1,0 +1,1 @@
+{"id": "ho_증서_0881", "type": "증서", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "split_hyphen"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_dots"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [{"target": 4, "kind": "pf_note"}], "decoys": [], "seed": 2068678273}

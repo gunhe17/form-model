@@ -1,0 +1,1 @@
+{"id": "명세신고_13249", "type": "명세신고", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "grid_diag", "rows": 7, "cols": 3}, {"block": "격자", "card": "num_cell", "rows": 9, "cols": 6}], "prefill": [], "decoys": [], "seed": 1211632558}

@@ -1,0 +1,1 @@
+{"id": "계획서_08052", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "격자", "card": "date_cell", "rows": 3, "cols": 7}], "prefill": [], "decoys": ["처리절차 플로차트", "인쇄 상수 셀", "인쇄 수신처 열거"], "seed": 431798666}

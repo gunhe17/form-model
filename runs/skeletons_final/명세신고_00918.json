@@ -1,0 +1,1 @@
+{"id": "명세신고_00918", "type": "명세신고", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "grid_diag", "rows": 8, "cols": 5}, {"block": "격자", "card": "num_cell", "rows": 8, "cols": 4}], "prefill": [{"target": 1, "kind": "pf_filled"}], "decoys": ["(단위:) 캡션"], "seed": 77359567}

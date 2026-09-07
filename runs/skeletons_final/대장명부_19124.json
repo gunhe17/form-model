@@ -1,0 +1,1 @@
+{"id": "대장명부_19124", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "stub_input", "rows": 11, "cols": 4}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 36076618}

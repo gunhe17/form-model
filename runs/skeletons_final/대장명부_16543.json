@@ -1,0 +1,1 @@
+{"id": "대장명부_16543", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 7, "cols": 7}, {"block": "격자", "card": "date_cell", "rows": 8, "cols": 5}], "prefill": [], "decoys": ["인쇄 상수 셀", "점선 절취선"], "seed": 702435140}

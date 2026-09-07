@@ -1,0 +1,1 @@
+{"id": "대장명부_12463", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "stub_input", "rows": 5, "cols": 4}, {"block": "격자", "card": "date_cell", "rows": 9, "cols": 4}], "prefill": [{"target": 0, "kind": "pf_sample"}], "decoys": ["인쇄 수신처 열거", "처리절차 플로차트", "점선 절취선"], "seed": 201085984}

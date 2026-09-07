@@ -1,0 +1,1 @@
+{"id": "기록지_19039", "type": "기록지", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "date_cell"}, {"block": "격자", "card": "cal_grid", "rows": 5, "cols": 8}, {"block": "시각", "card": "time_cell"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [], "decoys": ["인쇄 상수 셀", "(단위:) 캡션"], "seed": 581698205}

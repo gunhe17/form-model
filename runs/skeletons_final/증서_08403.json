@@ -1,0 +1,1 @@
+{"id": "증서_08403", "type": "증서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "text_cell"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_range"}, {"block": "서명줄", "card": "sig_stamp"}], "prefill": [{"target": 0, "kind": "pf_note"}], "decoys": [], "seed": 1504360071}

@@ -1,0 +1,1 @@
+{"id": "ho_작성요령서_0238", "type": "작성요령서", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "고지표", "card": "text_cell"}], "prefill": [], "decoys": ["점선 절취선"], "seed": 1887646779}

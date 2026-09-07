@@ -1,0 +1,1 @@
+{"id": "ho_대장명부_0721", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 11, "cols": 7}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 1000272788}

@@ -1,0 +1,1 @@
+{"id": "증서_17668", "type": "증서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "img_cell"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_split"}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [{"target": 0, "kind": "pf_label"}], "decoys": [], "seed": 718702678}

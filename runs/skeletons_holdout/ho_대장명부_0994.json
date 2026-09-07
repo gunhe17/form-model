@@ -1,0 +1,1 @@
+{"id": "ho_대장명부_0994", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "date_cell", "rows": 9, "cols": 7}], "prefill": [], "decoys": ["인쇄 상수 셀", "처리절차 플로차트"], "seed": 504142722}

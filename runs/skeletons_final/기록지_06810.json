@@ -1,0 +1,1 @@
+{"id": "기록지_06810", "type": "기록지", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "comb_slot"}, {"block": "격자", "card": "num_cell", "rows": 12, "cols": 5}, {"block": "금액", "card": "num_affix"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [], "decoys": [], "seed": 517705152}

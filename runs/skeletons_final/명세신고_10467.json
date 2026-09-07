@@ -1,0 +1,1 @@
+{"id": "명세신고_10467", "type": "명세신고", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "grid_diag", "rows": 7, "cols": 5}, {"block": "격자", "card": "num_cell", "rows": 11, "cols": 3}], "prefill": [{"target": 1, "kind": "pf_label"}], "decoys": ["인쇄 상수 셀", "인쇄 수신처 열거", "(단위:) 캡션"], "seed": 67897096}

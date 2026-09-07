@@ -1,0 +1,1 @@
+{"id": "계획서_12447", "type": "계획서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "격자", "card": "stub_input", "rows": 9, "cols": 3}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 554031551}

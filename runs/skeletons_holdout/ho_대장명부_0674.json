@@ -1,0 +1,1 @@
+{"id": "ho_대장명부_0674", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 8}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 1129426652}
