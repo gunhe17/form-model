@@ -9,7 +9,7 @@ RUN useradd -m -u ${UID} -s /bin/bash agent \
  && rm -rf /var/lib/apt/lists/*
 
 # 검출기 트랙 스택 + 서체 스왑 재렌더용 chromium. VLM 트랙(ms-swift)은 필요해지면 추가.
-RUN pip install --no-cache-dir ultralytics huggingface_hub playwright \
+RUN pip install --no-cache-dir ultralytics huggingface_hub playwright scipy \
  && playwright install --with-deps chromium && chmod -R a+rX /ms-playwright
 
 USER agent
