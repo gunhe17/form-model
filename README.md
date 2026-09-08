@@ -17,7 +17,7 @@
 | 4 복제 | `4_replica/` | 실서식을 손으로 충실히 옮긴 HTML 44쪽(`html/`)과 렌더·GT(`render/`). 학습 미포함 **평가 앵커** | 1차 44/149쪽 |
 | 5 데이터셋 | `5_dataset/` | 골격(`skeletons/`) → 렌더(`train/` 20,000 · `holdout/` 996). 증강 전 확정본 | 완료 |
 | 6 조사 | `6_research/` | 유사 사례·튜닝 문헌 97건(Opus 60 + Grok 37) 교차 검증. 좌표 0~1000 변환·detector 베이스라인 등 반영 항목 | 완료 |
-| 7 증강 | — | 7축·강도 3단, 4~6만 장. `augment.py` 미작성 | **다음** |
+| 7 증강 | `7_augment/` | 구분별 pool 확보: clean 20k · swap 6k(서체 재렌더) · office 26k · degraded 10k = 학습 62,000 + 평가용 stress 500. 기하는 YOLO 온라인 | 완료 |
 | 8 학습 | `8_train/` | **검출기 트랙 먼저**: FFDNet-L(YOLO11) → 11클래스, imgsz 1600. 변환기·데이터 정의·스모크 완료, 본런은 3090×2 대기. 종류 미달 시 Qwen3-VL 분류 2단계 | 준비 완료 |
 
 프로브(P1.5) 산출과 `probe_p15.py`·`gen_form.py`·`auto_label.py` 는 이 저장소에 없다(이전 작업공간 `form-model-lab`). 결과는 아래 "현재 단계" 표에만 남아 있다.
