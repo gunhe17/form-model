@@ -48,3 +48,14 @@ yolo detect val model=8_train/runs/ffdnet_1600/weights/best.pt data=8_train/yolo
 
 ## 다음
 종류 정확도 미달 시 2단계: 검출기 박스마다 주변 크롭을 Qwen3-VL에 주고 11종 중 하나만 고르게 한다(좌표 생성 없음 → 유령 없음).
+
+## 결과 (2026-09-08)
+
+| 런 | 가중치 | 홀드아웃 996 | 실서식 44 | stress 500 | 보고서 |
+|---|---|---|---|---|---|
+| 1차 clean 20,000 · 6 epoch | `runs/ffdnet_1600/weights/best.pt` | recall 99.97 | **66.56** | 55.01 | `1차_학습_감사.pdf` |
+| 2차 +증강 62,000 · 1 epoch (R1 종료) | `runs/ffdnet_1600_aug/weights/last_e1.pt` | 100.00 | 59.64 | **99.94** | `2차_학습_보고.pdf` |
+
+recall@IoU0.5, conf 0.25, `score.py` 기준. 픽셀 축(stress)은 2차로 닫혔고 실서식 축은 학습으로 안 풀린다 — 손실이 cgf(−21.9pt)·cg·dbx 셀 채움 계열에 몰림. 다음은 3_generator 치수·구성 분포 확장(gp 폭 40→100px대, cgf 높이 26→41px대, cg 점유율 77%→실서식 비율, opt·circ·dbx 추가) 후 클린+열화를 한 풀로 3차. 효과 확인은 `diag_style.py --compare`.
+
+도구: `score.py` 3축 채점 · `diag_replica.py` 놓침·유령 해부 · `diag_style.py` 스타일별 recall/치수 · `forms_aug.yaml` 2차 데이터 정의.
