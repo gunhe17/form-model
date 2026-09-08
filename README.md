@@ -4,6 +4,33 @@
 
 > 📄 **계획 전문**: [서식 좌표 모델 구축 계획](https://claude.ai/code/artifact/758cac16-6cc3-4d91-a400-e66b793fb956) — 10단계 절차·합격선·위험
 
+## 구조 = 절차
+
+폴더 번호가 곧 단계다. 각 단계는 앞 단계의 산출만 입력으로 받는다.
+
+| 단계 | 폴더 | 내용 | 상태 |
+|---|---|---|---|
+| 0 원천 | `0_source/` | 사업안내 PDF 12부. 서식 pool 의 출처 + 향후 확장 후보 | 완료 |
+| 1 코퍼스 | `1_corpus/` | 실서식 85종 157쪽 PNG(`pages/`), OCR 캐시 68쪽, 표집(probe·random·gap), 페이지 서지 | 완료 |
+| 2 사양 | `2_spec/` | 코퍼스 분석의 결론: 부품 카드 79종(`pool.json`), 문서 문법 20유형(`doc_grammar.json`), 실측 치수 분포(`variation.json` 등) | 완료 (P0) |
+| 3 생성기 | `3_generator/` | 사양 → 골격 JSON(`build_skeleton.py`) → HTML+PNG+GT(`render_skeleton.py`). 부품 정본은 `components.py`, HWP 질감은 `hwp_theme.py`, 전수 카탈로그는 `catalog/index.html` | 완료 (P2) |
+| 4 복제 | `4_replica/` | 실서식을 손으로 충실히 옮긴 HTML 44쪽(`html/`)과 렌더·GT(`render/`). 학습 미포함 **평가 앵커** | 1차 44/149쪽 |
+| 5 데이터셋 | `5_dataset/` | 골격(`skeletons/`) → 렌더(`train/` 20,000 · `holdout/` 996). 증강 전 확정본 | 완료 |
+| 6 증강 | — | 7축·강도 3단, 4~6만 장. `augment.py` 미작성 | **다음** |
+| 7 학습 | — | Qwen3-VL 4B LoRA 파일럿, RTX 3090×2 | 대기 |
+
+프로브(P1.5) 산출과 `probe_p15.py`·`gen_form.py`·`auto_label.py` 는 이 저장소에 없다(이전 작업공간 `form-model-lab`). 결과는 아래 "현재 단계" 표에만 남아 있다.
+
+```bash
+./venv/bin/pip install -r requirements.txt && ./venv/bin/playwright install chromium
+./venv/bin/python 3_generator/build_skeleton.py --n 200 --out 5_dataset/skeletons/smoke   # 골격
+./venv/bin/python 3_generator/render_skeleton.py 5_dataset/skeletons/smoke/*.json --out 5_dataset/smoke   # 렌더+GT
+./venv/bin/python 3_generator/build_component_map.py            # 카탈로그 재생성
+./venv/bin/python 4_replica/render_html.py 4_replica/html/*.html   # 복제 렌더
+```
+
+아래 작업 일지의 옛 경로: `pattern/` → `1_corpus/`·`2_spec/`, `runs/replica_*` → `4_replica/`, `runs/final_dataset`·`holdout_dataset`·`skeletons_*` → `5_dataset/`, `runs/component_map` → `3_generator/catalog/`. 일지에 나오는 그 밖의 `runs/*`(검증 스냅샷)는 보관하지 않았다.
+
 ## 왜
 
 현행이 다섯 축 전부에서 미달이다. 재현성만의 문제가 아니다.
@@ -91,36 +118,6 @@
 ⚠ **FormSchema 16종 계약 밖**이다. 선택지: ⑴ 계약을 17종으로 확장 ⑵ 내보낼 때 `text` 로 정규화.
 P0 완료 시점에 결정한다. 소급: 초안 12건 text→address.
 
-## 독립 실행
-
-```bash
-pip install mlx-vlm                    # 맥. CUDA 는 transformers 로 --backend cuda (기본)
-
-python3 probe_p15.py --backend mlx --model <모델> --scale 1.0 --probe a
-python3 probe_p15.py --backend mlx --model <모델> --scale 1.5 --probe a   # 결정적 비교
-python3 probe_p15.py --report
-```
-
-- **프로브 a** — "□ 를 전부 짚어라". 스키마·의미를 빼고 *보이는가* 만 남긴다. 여기서 못 보면 나머지는 무의미
-- **프로브 b** — "채울 칸을 전부 짚어라". GT 3장 69요소로 라벨 재현율·타입 정확도
-- 입력: `../image-to-form/_verify/` 의 페이지 이미지 + `recall_lab/groundtruth/` 의 사람 검수 GT
-- 결과: `runs/p15/<조건>/<서식>.json` + `.png`(오버레이). **오버레이가 본 채점이다**
-
-### ⚠ 점수보다 입력 토큰을 먼저 본다
-
-`--report` 는 조건별 입력 토큰 수를 같이 찍는다. scale 을 바꿨는데 토큰이 그대로면 전처리가 도로 축소한 것이고, **두 조건은 같은 실험이라 비교가 무효**다. 리포트가 경고를 낸다.
-
-같은 이유로 **OpenRouter 로는 이 프로브를 할 수 없다** — 최대 픽셀이 제공자·모델마다 다르고 사용자가 전처리를 지정할 수 없어서, 재려는 변수 자체가 통제 불가다.
-
-## 재채점
-
-`raw_text` 를 저장하므로 파서를 고쳐도 모델을 다시 부르지 않는다.
-
-```bash
-python3 probe_p15.py --rescore    # 저장된 출력으로 파싱·오버레이·집계만 재생성
-```
-
-실제로 North Micro 가 형식을 무시해 0건으로 잡혔을 때 이 경로로 복구했다.
 
 ## 환경
 
@@ -129,16 +126,8 @@ python3 probe_p15.py --rescore    # 저장된 출력으로 파싱·오버레이�
 | iMac M3 24GB (10코어 GPU) | 프로브·리허설. 2B 4비트 추론은 넉넉. **학습은 불가** (한 바퀴 4개월+) |
 | RTX 3090 × 2 (48GB) | 학습 본진. 본런 약 1주 |
 
-## 파일
 
-| 파일 | 역할 |
-|---|---|
-| `probe_p15.py` | P1.5 제로샷 프로브. `--demo` 로 GPU 없이 파싱·매칭 자체점검 |
-| `gen_form.py` | P2 생성기 v0 — data-f HTML + playwright, 좌표 계산 0줄. 실측 파라미터 사용 |
-| `auto_label.py` | P0 초안 라벨러 (CV+OCR앵커+규칙) |
-| `label_p0.py` / `review_p0.py` | 라벨링 서버 / 논리 검수 서버(경우 단위) |
-| `synth/` | 합성 서식 (png+json, gt 규약 동일) |
-| `runs/` | 산출 (gitignore) |
+## 작업 일지 (시간순)
 
 ## 2026-09-03 · 변형 대장 37장 전수 재검토
 - 방법: 카드별 원본 크롭을 대조 시트(runs/catalog_check/sheet1..7 + sheet_fix*)로 육안 재검토.
