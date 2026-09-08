@@ -23,18 +23,20 @@
 ## 실행
 
 ```bash
-./venv/bin/pip install ultralytics huggingface_hub
-./venv/bin/python 8_train/to_yolo.py                       # 5_dataset → yolo/ (심볼릭 링크 + 라벨)
-./venv/bin/python -c "from huggingface_hub import hf_hub_download as d; d('jbarrow/FFDNet-L','FFDNet-L.pt',local_dir='8_train/weights')"
+pip install ultralytics huggingface_hub
+python 8_train/to_yolo.py                       # 5_dataset → yolo/ (심볼릭 링크 + 라벨)
+python -c "from huggingface_hub import hf_hub_download as d; d('jbarrow/FFDNet-L','FFDNet-L.pt',local_dir='8_train/weights')"
 
-# 본런 (RTX 3090 ×2)
-./venv/bin/yolo detect train model=8_train/weights/FFDNet-L.pt data=8_train/yolo/forms.yaml \
-  imgsz=1600 epochs=60 batch=8 device=0,1 fliplr=0 project=8_train/runs name=ffdnet_1600
+# 본런 (RTX 3090 ×1) — data/project 는 절대경로로 준다
+yolo detect train model=8_train/weights/FFDNet-L.pt data=/work/8_train/yolo/forms.yaml \
+  imgsz=1600 epochs=60 batch=4 device=0 fliplr=0 project=/work/8_train/runs name=ffdnet_1600
 
 # 채점: 홀드아웃(val) + 실서식 복제(test)
-./venv/bin/yolo detect val model=8_train/runs/ffdnet_1600/weights/best.pt data=8_train/yolo/forms.yaml imgsz=1600 split=val
-./venv/bin/yolo detect val model=8_train/runs/ffdnet_1600/weights/best.pt data=8_train/yolo/forms.yaml imgsz=1600 split=test
+yolo detect val model=8_train/runs/ffdnet_1600/weights/best.pt data=8_train/yolo/forms.yaml imgsz=1600 split=val
+yolo detect val model=8_train/runs/ffdnet_1600/weights/best.pt data=8_train/yolo/forms.yaml imgsz=1600 split=test
 ```
+
+3090 1장 + imgsz 1600 은 **batch 4 가 상한**(batch 8 은 CUDA OOM, batch 4 에서 21.7/24.5GB · util 83%). 에폭당 약 30분(학습 5,000 iter 약 28분 + val 996장) → 60에폭 약 30시간. `project` 를 상대경로로 주면 Ultralytics 8.4.143 이 자체 `runs_dir` 밑(`runs/detect/8_train/runs/...`)에 써서 위 채점 명령이 `best.pt` 를 찾지 못한다. 로컬(Mac)에서는 `./venv/bin/` 접두어, 컨테이너에서는 시스템 python 그대로.
 
 파일: `to_yolo.py` 변환기 · `yolo/forms.yaml` 데이터 정의 · `yolo_smoke/` 24장 파이프라인 점검용(CPU 1 epoch 통과).
 
