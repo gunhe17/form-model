@@ -1,2 +1,8 @@
 venv/
 __pycache__/
+8_train/yolo/
+8_train/yolo_smoke/
+8_train/weights/
+8_train/runs/
+runs/
+docker/.env

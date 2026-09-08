@@ -1,0 +1,40 @@
+services:
+  train:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1001}          # 호스트 workspace 폴더 소유자 uid 와 맞출 것
+    image: form-model-train
+    container_name: form-model-train
+    init: true
+    restart: unless-stopped
+    env_file: .env
+
+    # ── 자원 상한 ──
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["${GPU:-1}"]   # 이 GPU 하나만 보인다. 다른 GPU 의 서비스는 영향 없음
+              capabilities: [gpu]
+    shm_size: 16g                          # 데이터로더 워커용. 없으면 Bus error
+    mem_limit: ${MEM:-48g}
+    cpus: ${CPUS:-12}
+    pids_limit: 4096
+
+    # ── 격리 ──
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    # ports: 없음. 접속은 docker compose exec 뿐
+
+    # ── 호스트에 닿는 통로는 이것뿐 ──
+    volumes:
+      - ${WORKSPACE}:/work                 # 코드·체크포인트·로그. 유일한 쓰기 경로
+      # - ${DATASET}:/data:ro              # 렌더 원본을 따로 둘 거면 읽기 전용으로
+      - claude-auth:/home/agent/.claude    # 로그인·세션 유지
+      - hf-cache:/home/agent/.cache/huggingface
+
+volumes:
+  claude-auth:
+  hf-cache:
