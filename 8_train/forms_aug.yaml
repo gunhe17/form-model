@@ -1,0 +1,15 @@
+# 2차 학습 — 전 구분(62,000). test 에 실서식 복제 + stress 열화 둘 다.
+# path 는 컨테이너 기준(/work). 1차 forms.yaml 은 to_yolo.py 가 8_train/yolo/ 에 생성하지만 이 파일은 정적이라 추적한다.
+path: /work
+train:
+  - 8_train/yolo/images/train              # clean        20,000
+  - 7_augment/pool/images/swap             # swap          6,000
+  - 7_augment/pool/images/office           # office       20,000
+  - 7_augment/pool/images/office_swap      # office_swap   6,000
+  - 7_augment/pool/images/degraded         # degraded      8,000
+  - 7_augment/pool/images/degraded_swap    # degraded_swap 2,000
+val: 8_train/yolo/images/val               # 홀드아웃 996 — 1차와 동일해야 best.pt 선택 기준이 비교 가능
+test:
+  - 8_train/yolo/images/replica            # 실서식 복제 44
+  - 7_augment/pool/images/stress           # 홀드아웃 열화 500
+names: {0: text, 1: number, 2: date, 3: time, 4: phone, 5: email, 6: radio, 7: checkbox, 8: signature, 9: textarea, 10: image}

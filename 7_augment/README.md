@@ -52,4 +52,4 @@ nohup ./7_augment/build_pool.sh > 7_augment/build_pool.log 2>&1 &               
 
 ## 학습 데이터 정의
 - 1차 `8_train/yolo/forms.yaml`: clean만
-- 2차 `8_train/yolo/forms_aug.yaml`: 전 구분, test에 stress 포함
+- 2차 `8_train/forms_aug.yaml`(추적 파일): 전 구분, test에 stress 포함
