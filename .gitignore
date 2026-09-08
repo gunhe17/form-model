@@ -10,3 +10,4 @@ docker/.env
 7_augment/render_swap/
 *.log
 weights/
+.DS_Store
