@@ -1,1 +1,0 @@
-{"id": "기록지_05274", "type": "기록지", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "mix_cell"}, {"block": "격자", "card": "num_cell", "rows": 5, "cols": 8}, {"block": "서명줄", "card": "sig_name"}], "prefill": [], "decoys": ["인쇄 상수 셀", "인쇄 수신처 열거"], "seed": 867068442}

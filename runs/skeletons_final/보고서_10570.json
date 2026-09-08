@@ -1,1 +1,0 @@
-{"id": "보고서_10570", "type": "보고서", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "num_cell", "rows": 4, "cols": 8}, {"block": "격자", "card": "stub_input", "rows": 12, "cols": 4}], "prefill": [{"target": 0, "kind": "pf_example"}], "decoys": [], "seed": 1014691941}

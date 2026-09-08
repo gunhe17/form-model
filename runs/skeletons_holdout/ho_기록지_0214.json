@@ -1,1 +1,0 @@
-{"id": "ho_기록지_0214", "type": "기록지", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "comb_slot"}, {"block": "격자", "card": "num_cell", "rows": 12, "cols": 7}, {"block": "시각", "card": "time_split"}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 534893428}

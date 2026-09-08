@@ -1,0 +1,1 @@
+{"id": "대장명부_13711", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "grid_diag", "rows": 5, "cols": 4}, {"block": "격자", "card": "stub_input", "rows": 11, "cols": 7}], "prefill": [], "decoys": ["처리절차 플로차트", "점선 절취선"], "seed": 208464613}

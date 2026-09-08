@@ -1,1 +1,0 @@
-{"id": "안내문_06241", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "격자", "card": "num_cell", "rows": 8, "cols": 6}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 168365522}

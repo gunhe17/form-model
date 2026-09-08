@@ -1,0 +1,1 @@
+{"id": "계획서_13968", "type": "계획서", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "격자", "card": "stub_input", "rows": 8, "cols": 7}], "prefill": [], "decoys": ["점선 절취선", "인쇄 상수 셀", "인쇄 수신처 열거"], "seed": 1614390339}

@@ -1,1 +1,0 @@
-{"id": "점검평가_17441", "type": "점검평가", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_pict"}, {"block": "격자", "card": "grid_diag", "rows": 3, "cols": 9}, {"block": "서술", "card": "ta_cell"}], "prefill": [{"target": 0, "kind": "pf_mask"}], "decoys": ["(단위:) 캡션"], "seed": 81722740}

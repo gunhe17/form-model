@@ -1,1 +1,0 @@
-{"id": "계획서_13898", "type": "계획서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 6}], "prefill": [], "decoys": ["점선 절취선", "처리절차 플로차트"], "seed": 115211017}

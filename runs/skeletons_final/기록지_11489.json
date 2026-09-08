@@ -1,1 +1,0 @@
-{"id": "기록지_11489", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "em_cell"}, {"block": "격자", "card": "num_cell", "rows": 6, "cols": 6}, {"block": "금액", "card": "num_bracket"}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 1482900743}

@@ -1,1 +1,0 @@
-{"id": "안내문_11049", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "격자", "card": "num_cell", "rows": 11, "cols": 6}], "prefill": [], "decoys": [], "seed": 602653062}

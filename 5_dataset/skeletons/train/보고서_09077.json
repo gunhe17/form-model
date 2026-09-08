@@ -1,0 +1,1 @@
+{"id": "보고서_09077", "type": "보고서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "stub_input", "rows": 11, "cols": 8}, {"block": "격자", "card": "stub_input", "rows": 9, "cols": 8}], "prefill": [{"target": 0, "kind": "pf_year20"}], "decoys": ["(단위:) 캡션", "점선 절취선"], "seed": 1798178002}

@@ -1,1 +1,0 @@
-{"id": "기록지_04504", "type": "기록지", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "inset_label"}, {"block": "격자", "card": "cal_grid", "rows": 7, "cols": 9}, {"block": "금액", "card": "num_unit"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [], "decoys": [], "seed": 1828951889}

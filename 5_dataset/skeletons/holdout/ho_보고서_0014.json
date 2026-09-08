@@ -1,0 +1,1 @@
+{"id": "ho_보고서_0014", "type": "보고서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 6, "cols": 4}, {"block": "격자", "card": "grid_diag", "rows": 5, "cols": 4}, {"block": "격자", "card": "num_cell", "rows": 11, "cols": 6}], "prefill": [], "decoys": [], "seed": 591743995}

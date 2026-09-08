@@ -1,1 +1,0 @@
-{"id": "계획서_02864", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "격자", "card": "date_cell", "rows": 7, "cols": 5}, {"block": "금액", "card": "num_unit"}], "prefill": [{"target": 2, "kind": "pf_year20"}], "decoys": ["인쇄 수신처 열거"], "seed": 1559876174}

@@ -1,1 +1,0 @@
-{"id": "공고문_06879", "type": "공고문", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["처리절차 플로차트", "점선 절취선"], "seed": 1286348272}

@@ -1,0 +1,1 @@
+{"id": "증서_18689", "type": "증서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "num_unit"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_dots"}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1934394743}

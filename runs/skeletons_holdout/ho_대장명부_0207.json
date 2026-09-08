@@ -1,1 +1,0 @@
-{"id": "ho_대장명부_0207", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "date_cell", "rows": 10, "cols": 4}], "prefill": [], "decoys": ["인쇄 수신처 열거", "점선 절취선"], "seed": 1964916848}

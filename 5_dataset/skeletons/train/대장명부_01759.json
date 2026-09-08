@@ -1,0 +1,1 @@
+{"id": "대장명부_01759", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "grid_diag", "rows": 4, "cols": 5}], "prefill": [{"target": 0, "kind": "pf_note"}, {"target": 1, "kind": "pf_year20"}], "decoys": [], "seed": 1822997769}

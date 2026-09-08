@@ -1,1 +1,0 @@
-{"id": "계획서_13571", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "격자", "card": "stub_input", "rows": 6, "cols": 4}, {"block": "격자", "card": "grid_diag", "rows": 5, "cols": 8}], "prefill": [], "decoys": ["점선 절취선"], "seed": 1748032967}

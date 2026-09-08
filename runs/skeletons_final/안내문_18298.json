@@ -1,1 +1,0 @@
-{"id": "안내문_18298", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["인쇄 수신처 열거", "점선 절취선"], "seed": 533115933}

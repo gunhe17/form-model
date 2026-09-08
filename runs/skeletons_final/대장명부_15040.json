@@ -1,1 +1,0 @@
-{"id": "대장명부_15040", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "num_cell", "rows": 6, "cols": 6}], "prefill": [{"target": 1, "kind": "pf_filled"}], "decoys": ["처리절차 플로차트", "(단위:) 캡션"], "seed": 1104861198}

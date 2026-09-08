@@ -1,1 +1,0 @@
-{"id": "대장명부_10257", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "stub_input", "rows": 4, "cols": 3}, {"block": "격자", "card": "grid_diag", "rows": 12, "cols": 7}], "prefill": [], "decoys": ["점선 절취선", "처리절차 플로차트"], "seed": 2008594277}

@@ -1,0 +1,1 @@
+{"id": "대장명부_12069", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "date_cell", "rows": 12, "cols": 3}, {"block": "격자", "card": "date_cell", "rows": 9, "cols": 7}], "prefill": [{"target": 0, "kind": "pf_label"}], "decoys": ["인쇄 수신처 열거"], "seed": 965810251}

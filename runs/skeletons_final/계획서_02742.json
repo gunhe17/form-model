@@ -1,1 +1,0 @@
-{"id": "계획서_02742", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "격자", "card": "num_cell", "rows": 11, "cols": 4}], "prefill": [{"target": 3, "kind": "pf_note"}], "decoys": ["처리절차 플로차트"], "seed": 640636530}

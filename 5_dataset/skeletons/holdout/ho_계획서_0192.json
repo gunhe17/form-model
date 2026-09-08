@@ -1,0 +1,1 @@
+{"id": "ho_계획서_0192", "type": "계획서", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "격자", "card": "stub_input", "rows": 8, "cols": 8}, {"block": "금액", "card": "num_unit"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 470323573}

@@ -1,1 +1,0 @@
-{"id": "증서_15833", "type": "증서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "date_cell"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "pf_year20"}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [], "decoys": [], "seed": 29295157}

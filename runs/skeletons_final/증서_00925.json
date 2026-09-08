@@ -1,1 +1,0 @@
-{"id": "증서_00925", "type": "증서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "num_unit"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_split"}, {"block": "서명줄", "card": "sig_bold"}], "prefill": [{"target": 4, "kind": "pf_note"}], "decoys": ["(단위:) 캡션"], "seed": 459598342}

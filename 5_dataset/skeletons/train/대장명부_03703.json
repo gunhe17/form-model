@@ -1,0 +1,1 @@
+{"id": "대장명부_03703", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 10, "cols": 4}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 341512416}

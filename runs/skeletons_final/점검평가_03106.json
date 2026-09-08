@@ -1,1 +1,0 @@
-{"id": "점검평가_03106", "type": "점검평가", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "img_cell"}, {"block": "격자", "card": "radio_likert", "rows": 6, "cols": 7}, {"block": "서술", "card": "ta_free"}], "prefill": [{"target": 0, "kind": "pf_italic"}], "decoys": ["인쇄 상수 셀", "점선 절취선"], "seed": 1552235735}

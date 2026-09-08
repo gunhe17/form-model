@@ -1,1 +1,0 @@
-{"id": "점검평가_12766", "type": "점검평가", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "text_suffix"}, {"block": "격자", "card": "radio_likert", "rows": 5, "cols": 7}, {"block": "서술", "card": "ta_cell"}], "prefill": [{"target": 1, "kind": "pf_italic"}], "decoys": [], "seed": 1569203319}

@@ -1,1 +1,0 @@
-{"id": "증서_07735", "type": "증서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "ph_cell"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_inline"}, {"block": "서명줄", "card": "sig_bold"}], "prefill": [], "decoys": ["(단위:) 캡션", "점선 절취선"], "seed": 1032714331}

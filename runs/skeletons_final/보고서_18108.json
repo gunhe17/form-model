@@ -1,1 +1,0 @@
-{"id": "보고서_18108", "type": "보고서", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 8, "cols": 5}, {"block": "격자", "card": "stub_input", "rows": 7, "cols": 6}], "prefill": [{"target": 1, "kind": "pf_sample"}], "decoys": ["(단위:) 캡션", "점선 절취선"], "seed": 68477178}

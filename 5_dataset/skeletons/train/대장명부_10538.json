@@ -1,0 +1,1 @@
+{"id": "대장명부_10538", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "stub_input", "rows": 12, "cols": 7}], "prefill": [{"target": 1, "kind": "pf_note"}], "decoys": ["점선 절취선"], "seed": 438678604}

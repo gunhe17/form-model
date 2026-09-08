@@ -1,0 +1,1 @@
+{"id": "대장명부_01084", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "num_cell", "rows": 8, "cols": 7}, {"block": "격자", "card": "num_cell", "rows": 12, "cols": 4}], "prefill": [], "decoys": ["점선 절취선"], "seed": 1320350099}

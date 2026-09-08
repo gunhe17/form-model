@@ -1,1 +1,0 @@
-{"id": "안내문_12449", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "notice_band"}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 1671327646}

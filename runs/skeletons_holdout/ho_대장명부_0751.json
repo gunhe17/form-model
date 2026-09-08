@@ -1,1 +1,0 @@
-{"id": "ho_대장명부_0751", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "stub_input", "rows": 4, "cols": 7}, {"block": "격자", "card": "stub_input", "rows": 3, "cols": 8}], "prefill": [], "decoys": [], "seed": 1346880927}

@@ -1,1 +1,0 @@
-{"id": "기록지_09433", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "mix_cell"}, {"block": "격자", "card": "date_cell", "rows": 10, "cols": 6}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [{"target": 2, "kind": "pf_filled"}], "decoys": ["인쇄 수신처 열거"], "seed": 1033019900}

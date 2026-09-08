@@ -1,1 +1,0 @@
-{"id": "기록지_00944", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "comb_slot"}, {"block": "격자", "card": "date_cell", "rows": 6, "cols": 9}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [{"target": 1, "kind": "pf_italic"}], "decoys": [], "seed": 1884389446}

@@ -1,1 +1,0 @@
-{"id": "명세신고_10703", "type": "명세신고", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 12, "cols": 8}, {"block": "격자", "card": "grid_diag", "rows": 12, "cols": 8}], "prefill": [{"target": 0, "kind": "pf_note"}], "decoys": ["인쇄 상수 셀", "처리절차 플로차트", "(단위:) 캡션"], "seed": 1198807663}

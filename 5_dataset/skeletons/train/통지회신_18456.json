@@ -1,0 +1,1 @@
+{"id": "통지회신_18456", "type": "통지회신", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "dot_box"}, {"block": "선택군", "card": "cb_col", "n_options": 5}, {"block": "날짜줄", "card": "date_dots"}, {"block": "서명줄", "card": "sig_bold"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 2074429234}

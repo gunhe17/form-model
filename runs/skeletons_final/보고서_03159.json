@@ -1,1 +1,0 @@
-{"id": "보고서_03159", "type": "보고서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "num_cell", "rows": 9, "cols": 9}, {"block": "격자", "card": "num_cell", "rows": 5, "cols": 4}], "prefill": [], "decoys": ["(단위:) 캡션", "인쇄 수신처 열거"], "seed": 394846855}

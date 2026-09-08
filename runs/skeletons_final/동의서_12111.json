@@ -1,1 +1,0 @@
-{"id": "동의서_12111", "type": "동의서", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "고지표", "card": "cell_sublabel"}, {"block": "동의문단", "card": "consent_check"}, {"block": "날짜줄", "card": "date_inline"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [], "decoys": [], "seed": 753728094}

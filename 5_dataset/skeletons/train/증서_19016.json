@@ -1,0 +1,1 @@
+{"id": "증서_19016", "type": "증서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "ph_multi"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_range"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [], "decoys": ["인쇄 상수 셀", "처리절차 플로차트"], "seed": 622914416}

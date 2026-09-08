@@ -1,1 +1,0 @@
-{"id": "ho_안내문_0451", "type": "안내문", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["인쇄 상수 셀", "처리절차 플로차트", "인쇄 수신처 열거"], "seed": 2001870943}

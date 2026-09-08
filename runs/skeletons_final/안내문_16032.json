@@ -1,1 +1,0 @@
-{"id": "안내문_16032", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "글머리서술", "card": "ta_outline"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 1621435520}

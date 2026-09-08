@@ -1,1 +1,0 @@
-{"id": "ho_안내문_0478", "type": "안내문", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "고지표", "card": "text_cell"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["처리절차 플로차트", "인쇄 수신처 열거", "점선 절취선"], "seed": 1518588955}

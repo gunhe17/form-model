@@ -1,1 +1,0 @@
-{"id": "증서_01407", "type": "증서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_multi"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_dots"}, {"block": "서명줄", "card": "sig_name"}], "prefill": [], "decoys": ["점선 절취선"], "seed": 1740603199}

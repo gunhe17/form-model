@@ -1,1 +1,0 @@
-{"id": "확약서_09616", "type": "확약서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "날짜줄", "card": "date_inline"}, {"block": "서명줄", "card": "sig_bold"}], "prefill": [], "decoys": ["(단위:) 캡션", "점선 절취선", "처리절차 플로차트"], "seed": 1920569281}

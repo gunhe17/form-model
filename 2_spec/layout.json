@@ -1,0 +1,315 @@
+{
+ "표본_서식": 18,
+ "페이지당_요소수": {
+  "min": 12,
+  "p25": 23,
+  "med": 36,
+  "p75": 56,
+  "max": 171
+ },
+ "세로위치_10분할_비율": [
+  0.0,
+  0.016,
+  0.145,
+  0.167,
+  0.167,
+  0.127,
+  0.133,
+  0.15,
+  0.094,
+  0.0
+ ],
+ "타입_동시출현_서식수": {
+  "text": 18,
+  "number": 14,
+  "date": 11,
+  "signature": 8,
+  "checkbox_group": 7,
+  "phone": 7,
+  "textarea": 5,
+  "radio": 5,
+  "time": 3,
+  "email": 2,
+  "consent": 1,
+  "image": 1
+ },
+ "자주_함께오는_타입쌍": [
+  {
+   "쌍": [
+    "number",
+    "text"
+   ],
+   "서식수": 14
+  },
+  {
+   "쌍": [
+    "date",
+    "text"
+   ],
+   "서식수": 11
+  },
+  {
+   "쌍": [
+    "date",
+    "signature"
+   ],
+   "서식수": 8
+  },
+  {
+   "쌍": [
+    "signature",
+    "text"
+   ],
+   "서식수": 8
+  },
+  {
+   "쌍": [
+    "checkbox_group",
+    "date"
+   ],
+   "서식수": 7
+  },
+  {
+   "쌍": [
+    "checkbox_group",
+    "text"
+   ],
+   "서식수": 7
+  },
+  {
+   "쌍": [
+    "date",
+    "number"
+   ],
+   "서식수": 7
+  },
+  {
+   "쌍": [
+    "date",
+    "phone"
+   ],
+   "서식수": 7
+  }
+ ],
+ "서식별": [
+  {
+   "form": "서식2호",
+   "n": 65,
+   "types": [
+    "checkbox_group",
+    "consent",
+    "date",
+    "email",
+    "image",
+    "number",
+    "phone",
+    "signature",
+    "text",
+    "textarea",
+    "time"
+   ]
+  },
+  {
+   "form": "서식15호",
+   "n": 57,
+   "types": [
+    "checkbox_group",
+    "date",
+    "phone",
+    "radio",
+    "text",
+    "time"
+   ]
+  },
+  {
+   "form": "서식4-1호",
+   "n": 38,
+   "types": [
+    "checkbox_group",
+    "date",
+    "phone",
+    "signature",
+    "text",
+    "textarea"
+   ]
+  },
+  {
+   "form": "서식8호",
+   "n": 53,
+   "types": [
+    "date",
+    "email",
+    "number",
+    "phone",
+    "signature",
+    "text"
+   ]
+  },
+  {
+   "form": "서식24호",
+   "n": 23,
+   "types": [
+    "number",
+    "text"
+   ]
+  },
+  {
+   "form": "서식3호",
+   "n": 12,
+   "types": [
+    "checkbox_group",
+    "date",
+    "signature",
+    "text"
+   ]
+  },
+  {
+   "form": "서식6호",
+   "n": 26,
+   "types": [
+    "date",
+    "phone",
+    "radio",
+    "signature",
+    "text"
+   ]
+  },
+  {
+   "form": "booklet p05",
+   "n": 17,
+   "types": [
+    "number",
+    "text"
+   ]
+  },
+  {
+   "form": "booklet p02",
+   "n": 22,
+   "types": [
+    "number",
+    "text"
+   ]
+  },
+  {
+   "form": "booklet p07",
+   "n": 26,
+   "types": [
+    "number",
+    "text"
+   ]
+  },
+  {
+   "form": "booklet p12",
+   "n": 129,
+   "types": [
+    "date",
+    "number",
+    "text"
+   ]
+  },
+  {
+   "form": "서식15호 p2",
+   "n": 64,
+   "types": [
+    "checkbox_group",
+    "date",
+    "number",
+    "radio",
+    "signature",
+    "text",
+    "textarea",
+    "time"
+   ]
+  },
+  {
+   "form": "booklet p03",
+   "n": 35,
+   "types": [
+    "number",
+    "text"
+   ]
+  },
+  {
+   "form": "booklet p06",
+   "n": 20,
+   "types": [
+    "number",
+    "text"
+   ]
+  },
+  {
+   "form": "booklet p09",
+   "n": 37,
+   "types": [
+    "number",
+    "text"
+   ]
+  },
+  {
+   "form": "booklet p11",
+   "n": 171,
+   "types": [
+    "date",
+    "number",
+    "text"
+   ]
+  },
+  {
+   "form": "아동정서발달 추천서",
+   "n": 29,
+   "types": [
+    "checkbox_group",
+    "date",
+    "number",
+    "phone",
+    "radio",
+    "signature",
+    "text",
+    "textarea"
+   ]
+  },
+  {
+   "form": "아동정서발달 소견서",
+   "n": 49,
+   "types": [
+    "checkbox_group",
+    "date",
+    "number",
+    "phone",
+    "radio",
+    "signature",
+    "text",
+    "textarea"
+   ]
+  }
+ ],
+ "세로위치_문서동등가중": [
+  0.0,
+  0.02,
+  0.13,
+  0.2,
+  0.14,
+  0.11,
+  0.13,
+  0.17,
+  0.09,
+  0.0
+ ],
+ "가로위치_문서동등가중": [
+  0.0,
+  0.03,
+  0.09,
+  0.17,
+  0.14,
+  0.18,
+  0.16,
+  0.19,
+  0.05,
+  0.0
+ ],
+ "검수_4단계": {
+  "세로 분포": "서식24호 지배(9/18페이지) 보정 위해 문서 동등가중 재계산 — 차이 최대 0.03, 강건 확인",
+  "가로 분포": "신규 측정 — 좌측 0~20%는 거의 비고(라벨열·여백), 요소는 x 0.3~0.8 분산",
+  "미완": "표 개수·반복행 비율 실측은 P0 후 (요청으로 중단, 정책 유지)"
+ }
+}

@@ -1,0 +1,1 @@
+{"id": "안내문_18422", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "notice_band"}], "prefill": [], "decoys": [], "seed": 2116299104}

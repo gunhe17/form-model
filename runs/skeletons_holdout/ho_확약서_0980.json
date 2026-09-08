@@ -1,1 +1,0 @@
-{"id": "ho_확약서_0980", "type": "확약서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "날짜줄", "card": "date_range"}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [{"target": 3, "kind": "pf_mask"}], "decoys": ["(단위:) 캡션"], "seed": 336985974}

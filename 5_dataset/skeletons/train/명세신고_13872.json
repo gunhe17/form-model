@@ -1,0 +1,1 @@
+{"id": "명세신고_13872", "type": "명세신고", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "num_cell", "rows": 7, "cols": 3}, {"block": "격자", "card": "num_cell", "rows": 9, "cols": 4}], "prefill": [{"target": 1, "kind": "pf_filled"}, {"target": 2, "kind": "pf_year20"}], "decoys": ["(단위:) 캡션"], "seed": 1722978655}

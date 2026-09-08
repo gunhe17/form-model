@@ -1,1 +1,0 @@
-{"id": "안내문_13823", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "ta_outline"}], "prefill": [], "decoys": [], "seed": 59098510}

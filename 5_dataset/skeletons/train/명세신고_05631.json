@@ -1,0 +1,1 @@
+{"id": "명세신고_05631", "type": "명세신고", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "date_cell", "rows": 4, "cols": 9}, {"block": "격자", "card": "date_cell", "rows": 5, "cols": 6}], "prefill": [], "decoys": ["처리절차 플로차트", "인쇄 수신처 열거", "점선 절취선"], "seed": 199996606}

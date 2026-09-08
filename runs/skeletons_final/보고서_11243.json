@@ -1,1 +1,0 @@
-{"id": "보고서_11243", "type": "보고서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "grid_diag", "rows": 7, "cols": 5}, {"block": "격자", "card": "num_cell", "rows": 10, "cols": 5}, {"block": "격자", "card": "num_cell", "rows": 4, "cols": 9}], "prefill": [], "decoys": ["처리절차 플로차트", "인쇄 상수 셀"], "seed": 1405069583}

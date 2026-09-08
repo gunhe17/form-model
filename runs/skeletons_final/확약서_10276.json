@@ -1,1 +1,0 @@
-{"id": "확약서_10276", "type": "확약서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "날짜줄", "card": "date_split"}, {"block": "서명줄", "card": "sig_name"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 278849734}

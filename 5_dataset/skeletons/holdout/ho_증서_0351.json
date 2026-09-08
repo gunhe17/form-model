@@ -1,0 +1,1 @@
+{"id": "ho_증서_0351", "type": "증서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_pict"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_inline"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [], "decoys": ["처리절차 플로차트", "점선 절취선"], "seed": 585995495}

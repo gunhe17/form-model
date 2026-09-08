@@ -1,1 +1,0 @@
-{"id": "점검평가_09592", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "dot_split"}, {"block": "격자", "card": "radio_grid", "rows": 12, "cols": 7}, {"block": "서술", "card": "ta_cell"}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 1315885981}

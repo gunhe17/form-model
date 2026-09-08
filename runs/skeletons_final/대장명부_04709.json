@@ -1,1 +1,0 @@
-{"id": "대장명부_04709", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "date_cell", "rows": 11, "cols": 9}], "prefill": [], "decoys": ["인쇄 상수 셀", "점선 절취선"], "seed": 964825163}

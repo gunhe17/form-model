@@ -1,1 +1,0 @@
-{"id": "기록지_03310", "type": "기록지", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "text_cell"}, {"block": "격자", "card": "date_cell", "rows": 4, "cols": 5}, {"block": "격자", "card": "date_slash", "rows": 6, "cols": 9}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [], "decoys": [], "seed": 1791886952}

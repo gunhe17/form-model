@@ -1,1 +1,0 @@
-{"id": "점검평가_08987", "type": "점검평가", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "num_unit"}, {"block": "격자", "card": "scale_anchor", "rows": 7, "cols": 5}, {"block": "서술", "card": "ta_free"}], "prefill": [], "decoys": ["인쇄 상수 셀", "(단위:) 캡션"], "seed": 1595387084}

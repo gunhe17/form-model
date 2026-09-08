@@ -1,0 +1,1 @@
+{"id": "계획서_03819", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "격자", "card": "num_cell", "rows": 4, "cols": 8}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 1383439594}

@@ -1,1 +1,0 @@
-{"id": "기록지_17080", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "date_split"}, {"block": "격자", "card": "num_cell", "rows": 10, "cols": 4}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 912334107}

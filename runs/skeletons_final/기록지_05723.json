@@ -1,1 +1,0 @@
-{"id": "기록지_05723", "type": "기록지", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "inset_label"}, {"block": "격자", "card": "cb_matrix", "rows": 4, "cols": 8}, {"block": "서명줄", "card": "sig_bold"}], "prefill": [], "decoys": ["점선 절취선", "(단위:) 캡션", "인쇄 수신처 열거"], "seed": 1498649388}

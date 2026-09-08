@@ -1,1 +1,0 @@
-{"id": "계획서_02505", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 9}, {"block": "금액", "card": "paren_unit"}], "prefill": [], "decoys": ["인쇄 수신처 열거", "인쇄 상수 셀"], "seed": 1078486128}

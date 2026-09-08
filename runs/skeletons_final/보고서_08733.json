@@ -1,1 +1,0 @@
-{"id": "보고서_08733", "type": "보고서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "stub_input", "rows": 8, "cols": 5}, {"block": "격자", "card": "date_cell", "rows": 5, "cols": 8}], "prefill": [], "decoys": ["처리절차 플로차트", "인쇄 상수 셀", "점선 절취선"], "seed": 1483193904}

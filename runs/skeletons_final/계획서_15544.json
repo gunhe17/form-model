@@ -1,1 +1,0 @@
-{"id": "계획서_15544", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "격자", "card": "date_cell", "rows": 4, "cols": 5}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1878409430}

@@ -1,0 +1,1 @@
+{"id": "보고서_12048", "type": "보고서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "num_cell", "rows": 12, "cols": 3}, {"block": "격자", "card": "num_cell", "rows": 8, "cols": 9}], "prefill": [{"target": 1, "kind": "pf_mask"}, {"target": 2, "kind": "pf_sample"}], "decoys": ["인쇄 수신처 열거"], "seed": 474643585}

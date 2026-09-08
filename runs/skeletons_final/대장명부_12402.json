@@ -1,1 +1,0 @@
-{"id": "대장명부_12402", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "date_cell", "rows": 11, "cols": 8}, {"block": "격자", "card": "num_cell", "rows": 9, "cols": 4}], "prefill": [], "decoys": [], "seed": 1874137141}

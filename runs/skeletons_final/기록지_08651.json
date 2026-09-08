@@ -1,1 +1,0 @@
-{"id": "기록지_08651", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "ph_pict"}, {"block": "격자", "card": "num_cell", "rows": 6, "cols": 9}, {"block": "시각", "card": "time_split"}, {"block": "서명줄", "card": "sig_bold"}], "prefill": [], "decoys": ["점선 절취선"], "seed": 1768496806}

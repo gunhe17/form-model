@@ -1,0 +1,1 @@
+{"id": "기록지_19359", "type": "기록지", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "dot_box"}, {"block": "격자", "card": "date_cell", "rows": 12, "cols": 4}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [], "decoys": [], "seed": 1825617756}

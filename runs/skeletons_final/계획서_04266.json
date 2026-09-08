@@ -1,1 +1,0 @@
-{"id": "계획서_04266", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "격자", "card": "num_cell", "rows": 8, "cols": 7}, {"block": "격자", "card": "num_cell", "rows": 7, "cols": 7}], "prefill": [], "decoys": [], "seed": 766144732}

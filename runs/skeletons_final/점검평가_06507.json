@@ -1,1 +1,0 @@
-{"id": "점검평가_06507", "type": "점검평가", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_cell"}, {"block": "격자", "card": "num_cell", "rows": 7, "cols": 5}, {"block": "서술", "card": "ta_outline"}], "prefill": [], "decoys": ["인쇄 수신처 열거", "(단위:) 캡션"], "seed": 360355505}

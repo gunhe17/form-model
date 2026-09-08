@@ -1,1 +1,0 @@
-{"id": "기록지_07114", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "dot_split"}, {"block": "격자", "card": "cb_matrix", "rows": 10, "cols": 8}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1817394996}

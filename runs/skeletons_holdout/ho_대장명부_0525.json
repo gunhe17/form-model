@@ -1,1 +1,0 @@
-{"id": "ho_대장명부_0525", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "num_cell", "rows": 12, "cols": 5}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 1342331517}

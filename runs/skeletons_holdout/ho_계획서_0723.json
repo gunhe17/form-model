@@ -1,1 +1,0 @@
-{"id": "ho_계획서_0723", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "격자", "card": "stub_input", "rows": 12, "cols": 5}], "prefill": [], "decoys": ["인쇄 상수 셀", "(단위:) 캡션"], "seed": 869756131}

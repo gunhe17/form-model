@@ -1,1 +1,0 @@
-{"id": "기록지_13235", "type": "기록지", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "text_cell"}, {"block": "격자", "card": "date_slash", "rows": 11, "cols": 3}, {"block": "격자", "card": "cal_grid", "rows": 11, "cols": 5}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [], "decoys": [], "seed": 409775264}

@@ -1,1 +1,0 @@
-{"id": "보고서_13731", "type": "보고서", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "stub_input", "rows": 4, "cols": 7}, {"block": "격자", "card": "num_cell", "rows": 11, "cols": 7}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 1345485258}

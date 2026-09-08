@@ -1,0 +1,1 @@
+{"id": "대장명부_17390", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 12, "cols": 5}, {"block": "격자", "card": "date_cell", "rows": 10, "cols": 8}], "prefill": [{"target": 2, "kind": "pf_mask"}], "decoys": ["인쇄 상수 셀"], "seed": 1250075330}

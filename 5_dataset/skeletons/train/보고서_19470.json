@@ -1,0 +1,1 @@
+{"id": "보고서_19470", "type": "보고서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "grid_diag", "rows": 8, "cols": 3}, {"block": "격자", "card": "stub_input", "rows": 10, "cols": 4}], "prefill": [{"target": 1, "kind": "pf_note"}], "decoys": ["처리절차 플로차트", "인쇄 상수 셀"], "seed": 104483133}

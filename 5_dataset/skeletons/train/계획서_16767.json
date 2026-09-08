@@ -1,0 +1,1 @@
+{"id": "계획서_16767", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "격자", "card": "stub_input", "rows": 4, "cols": 7}, {"block": "금액", "card": "num_both"}], "prefill": [], "decoys": [], "seed": 1428516781}

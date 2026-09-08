@@ -1,0 +1,1 @@
+{"id": "계획서_16154", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "격자", "card": "grid_diag", "rows": 3, "cols": 3}, {"block": "금액", "card": "num_unit"}], "prefill": [], "decoys": ["점선 절취선"], "seed": 1299751769}

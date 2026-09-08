@@ -1,1 +1,0 @@
-{"id": "증서_17191", "type": "증서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "comb_slot"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_inline"}, {"block": "서명줄", "card": "sig_stamp"}], "prefill": [], "decoys": ["(단위:) 캡션", "점선 절취선", "인쇄 수신처 열거"], "seed": 54425101}

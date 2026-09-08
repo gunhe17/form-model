@@ -1,1 +1,0 @@
-{"id": "ho_대장명부_0190", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 10, "cols": 4}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1865474016}

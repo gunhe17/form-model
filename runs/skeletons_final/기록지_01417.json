@@ -1,1 +1,0 @@
-{"id": "기록지_01417", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "text_cell"}, {"block": "격자", "card": "cal_grid", "rows": 9, "cols": 6}, {"block": "시각", "card": "time_split"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [], "decoys": ["(단위:) 캡션", "인쇄 상수 셀"], "seed": 1963613664}

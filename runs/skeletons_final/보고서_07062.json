@@ -1,1 +1,0 @@
-{"id": "보고서_07062", "type": "보고서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "num_cell", "rows": 9, "cols": 5}, {"block": "격자", "card": "num_cell", "rows": 7, "cols": 9}], "prefill": [{"target": 1, "kind": "pf_label"}], "decoys": ["(단위:) 캡션", "점선 절취선", "인쇄 수신처 열거"], "seed": 1214931068}

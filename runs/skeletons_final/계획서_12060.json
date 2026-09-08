@@ -1,1 +1,0 @@
-{"id": "계획서_12060", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "격자", "card": "num_cell", "rows": 11, "cols": 8}], "prefill": [], "decoys": [], "seed": 68239691}

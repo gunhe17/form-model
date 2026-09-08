@@ -1,1 +1,0 @@
-{"id": "계획서_15976", "type": "계획서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "격자", "card": "date_cell", "rows": 9, "cols": 9}], "prefill": [{"target": 2, "kind": "pf_label"}], "decoys": ["(단위:) 캡션", "점선 절취선"], "seed": 772959336}

@@ -1,1 +1,0 @@
-{"id": "안내문_01763", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "글머리서술", "card": "text_ul"}], "prefill": [{"target": 0, "kind": "pf_mask"}], "decoys": ["인쇄 수신처 열거"], "seed": 112617538}

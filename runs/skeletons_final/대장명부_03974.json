@@ -1,1 +1,0 @@
-{"id": "대장명부_03974", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "date_cell", "rows": 6, "cols": 6}, {"block": "격자", "card": "num_cell", "rows": 12, "cols": 6}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 1991872627}

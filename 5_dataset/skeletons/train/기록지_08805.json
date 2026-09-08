@@ -1,0 +1,1 @@
+{"id": "기록지_08805", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "text_cell"}, {"block": "격자", "card": "date_cell", "rows": 7, "cols": 3}, {"block": "서명줄", "card": "sig_name"}], "prefill": [], "decoys": ["인쇄 상수 셀", "점선 절취선"], "seed": 525189994}

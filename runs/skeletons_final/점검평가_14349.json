@@ -1,1 +1,0 @@
-{"id": "점검평가_14349", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "text_cell"}, {"block": "격자", "card": "grid_diag", "rows": 11, "cols": 9}, {"block": "서술", "card": "ta_cell"}, {"block": "서술", "card": "ta_cell"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 583274738}

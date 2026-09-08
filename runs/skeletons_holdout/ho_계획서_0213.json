@@ -1,1 +1,0 @@
-{"id": "ho_계획서_0213", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "격자", "card": "num_cell", "rows": 4, "cols": 4}], "prefill": [{"target": 3, "kind": "pf_example"}], "decoys": ["인쇄 수신처 열거"], "seed": 668845110}

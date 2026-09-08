@@ -1,1 +1,0 @@
-{"id": "증서_01375", "type": "증서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "num_unit"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_dots"}, {"block": "서명줄", "card": "sig_bold"}], "prefill": [], "decoys": [], "seed": 364568056}

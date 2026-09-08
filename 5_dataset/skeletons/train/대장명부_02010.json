@@ -1,0 +1,1 @@
+{"id": "대장명부_02010", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 12, "cols": 3}], "prefill": [{"target": 1, "kind": "pf_italic"}], "decoys": ["점선 절취선"], "seed": 505455328}

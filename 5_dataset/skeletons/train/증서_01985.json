@@ -1,0 +1,1 @@
+{"id": "증서_01985", "type": "증서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "text_suffix"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_split"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [], "decoys": ["점선 절취선"], "seed": 1127754177}

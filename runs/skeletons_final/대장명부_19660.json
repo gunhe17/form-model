@@ -1,1 +1,0 @@
-{"id": "대장명부_19660", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 12, "cols": 5}], "prefill": [{"target": 1, "kind": "pf_mask"}], "decoys": ["처리절차 플로차트"], "seed": 2042915522}

@@ -1,1 +1,0 @@
-{"id": "ho_점검평가_0123", "type": "점검평가", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "em_cell"}, {"block": "격자", "card": "radio_likert", "rows": 12, "cols": 4}, {"block": "서술", "card": "ta_cell"}], "prefill": [{"target": 0, "kind": "pf_sample"}], "decoys": ["인쇄 수신처 열거"], "seed": 1827677262}

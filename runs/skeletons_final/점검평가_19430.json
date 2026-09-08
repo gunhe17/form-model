@@ -1,1 +1,0 @@
-{"id": "점검평가_19430", "type": "점검평가", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "ph_cell"}, {"block": "격자", "card": "scale_anchor", "rows": 12, "cols": 8}, {"block": "서술", "card": "ta_free"}], "prefill": [], "decoys": ["점선 절취선"], "seed": 1823078172}

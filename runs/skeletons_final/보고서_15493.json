@@ -1,1 +1,0 @@
-{"id": "보고서_15493", "type": "보고서", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "date_cell", "rows": 3, "cols": 3}, {"block": "격자", "card": "stub_input", "rows": 3, "cols": 7}], "prefill": [], "decoys": ["처리절차 플로차트", "인쇄 상수 셀", "(단위:) 캡션"], "seed": 962821211}

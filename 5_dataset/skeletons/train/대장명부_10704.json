@@ -1,0 +1,1 @@
+{"id": "대장명부_10704", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "grid_diag", "rows": 6, "cols": 9}, {"block": "격자", "card": "grid_diag", "rows": 3, "cols": 9}], "prefill": [{"target": 1, "kind": "pf_note"}, {"target": 2, "kind": "pf_mask"}], "decoys": ["인쇄 수신처 열거"], "seed": 311424784}

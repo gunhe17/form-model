@@ -1,1 +1,0 @@
-{"id": "대장명부_15381", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 12, "cols": 9}], "prefill": [], "decoys": ["(단위:) 캡션", "인쇄 상수 셀", "인쇄 수신처 열거"], "seed": 1691599340}

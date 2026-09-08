@@ -1,1 +1,0 @@
-{"id": "계획서_19608", "type": "계획서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "격자", "card": "num_cell", "rows": 9, "cols": 9}], "prefill": [{"target": 1, "kind": "pf_italic"}], "decoys": ["(단위:) 캡션"], "seed": 2056746053}

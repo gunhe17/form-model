@@ -1,0 +1,1 @@
+{"id": "기록지_08372", "type": "기록지", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "ph_multi"}, {"block": "격자", "card": "date_cell", "rows": 11, "cols": 3}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [{"target": 2, "kind": "pf_example"}], "decoys": [], "seed": 1349216295}

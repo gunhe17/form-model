@@ -1,1 +1,0 @@
-{"id": "대장명부_15473", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "stub_input", "rows": 12, "cols": 8}, {"block": "격자", "card": "num_cell", "rows": 11, "cols": 6}], "prefill": [], "decoys": ["점선 절취선", "인쇄 수신처 열거"], "seed": 181803537}

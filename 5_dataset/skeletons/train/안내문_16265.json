@@ -1,0 +1,1 @@
+{"id": "안내문_16265", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["처리절차 플로차트", "(단위:) 캡션"], "seed": 634089677}

@@ -1,1 +1,0 @@
-{"id": "대장명부_19677", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "stub_input", "rows": 12, "cols": 6}, {"block": "격자", "card": "date_cell", "rows": 5, "cols": 8}], "prefill": [{"target": 1, "kind": "pf_year20"}], "decoys": [], "seed": 629987874}

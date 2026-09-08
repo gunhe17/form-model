@@ -1,1 +1,0 @@
-{"id": "안내문_07440", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "고지표", "card": "text_cell"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["(단위:) 캡션", "점선 절취선", "처리절차 플로차트"], "seed": 35838361}

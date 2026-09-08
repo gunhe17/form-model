@@ -1,1 +1,0 @@
-{"id": "점검평가_17320", "type": "점검평가", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "date_split"}, {"block": "격자", "card": "stub_input", "rows": 12, "cols": 4}, {"block": "서술", "card": "ta_free"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 1338655503}

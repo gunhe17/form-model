@@ -1,1 +1,0 @@
-{"id": "증서_17737", "type": "증서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "text_cell"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "pf_year20"}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [], "decoys": ["인쇄 상수 셀", "처리절차 플로차트"], "seed": 1040642954}

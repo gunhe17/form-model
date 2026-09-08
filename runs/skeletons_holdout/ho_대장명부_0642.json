@@ -1,1 +1,0 @@
-{"id": "ho_대장명부_0642", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 5, "cols": 4}, {"block": "격자", "card": "stub_input", "rows": 10, "cols": 9}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 1777386348}

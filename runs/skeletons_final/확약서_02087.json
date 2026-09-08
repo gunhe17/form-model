@@ -1,1 +1,0 @@
-{"id": "확약서_02087", "type": "확약서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "날짜줄", "card": "date_inline"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [{"target": 3, "kind": "pf_sample"}], "decoys": [], "seed": 1535710500}
