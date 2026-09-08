@@ -359,8 +359,9 @@ class R:
         return m.get(c) or m["date_split"]
     def b_시각(self,b):
         if b["card"]=="time_cell":
+            sp='<span data-f="time" class="cg" style="flex:1;margin:1px 0"></span>'  # 3.11 호환: f-string 안 백슬래시 금지
             return (f'<table><tr><th style="width:118px">사고시간</th><td class="vl">'
-                    f'{ROW("<span data-f=\"time\" class=\"cg\" style=\"flex:1;margin:1px 0\"></span>",WORD("am"),"/",WORD("pm"),style="gap:6px")}</td></tr></table>')
+                    f'{ROW(sp,WORD("am"),"/",WORD("pm"),style="gap:6px")}</td></tr></table>')
         return ROW(SLOT("time"),"시",SLOT("time"),"분",j="c")
     def b_서명줄(self,b):  # v1.3: 이름/서명 분리 + 직인은 발신형 전용 + ○○ 발신명의 비입력
         c=b["card"]
