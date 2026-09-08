@@ -6,3 +6,6 @@ __pycache__/
 8_train/runs/
 runs/
 docker/.env
+7_augment/pool/
+7_augment/render_swap/
+*.log
