@@ -15,7 +15,10 @@ RUN pip install --no-cache-dir ultralytics huggingface_hub playwright \
 USER agent
 WORKDIR /work
 ENV PATH=/home/agent/.local/bin:$PATH \
-    HF_HOME=/home/agent/.cache/huggingface
+    HF_HOME=/home/agent/.cache/huggingface \
+    YOLO_CONFIG_DIR=/home/agent/.config/Ultralytics
+# named volume 마운트 지점을 agent 소유로 미리 생성 (빈 볼륨은 이미지 소유권을 복사한다)
+RUN mkdir -p /home/agent/.claude /home/agent/.cache/huggingface /home/agent/.config/Ultralytics
 
 # Claude Code 네이티브 설치 (Node 불필요)
 RUN curl -fsSL https://claude.ai/install.sh | bash
