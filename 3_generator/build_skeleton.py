@@ -7,32 +7,34 @@ import json, random, argparse, os, math, collections
 
 # ── 유형 배분 (합 20000) ──────────────────────────────────────────────
 QUOTA = {  # v2.1: 문법 합성 단일 트랙 20,000 (복제는 채굴·검증 자료 — 생산 트랙 아님)
- "신청서":2990,"보고서":2490,"동의서":2340,"계획서":1210,"대장명부":930,"증서":930,"계약서":780,"점검평가":830,"확약서":760,"사정조사지":800,"기록지":610,"안내문":760,"공고문":640,"명세신고":480,"판단서":610,"조회요청서":580,"통지회신":580,"등록카드":410,"접수증":610,"작성요령서":530,"백지":130}
+ "신청서":2400,"보고서":900,"동의서":1900,"계획서":900,"대장명부":400,"증서":1200,"계약서":1100,"점검평가":830,"확약서":760,"사정조사지":800,"기록지":760,"안내문":760,"공고문":640,"명세신고":220,"판단서":760,"조회요청서":580,"통지회신":580,"등록카드":900,"접수증":950,"작성요령서":530,"백지":130,
+ "부품집중":2000}  # P1: 부품 집중 페이지 10% — 드문 클래스의 절대 수·치수 변화폭 채움
 assert sum(QUOTA.values())==20000
 
 # ── 블록 클래스 → 호환 카드 (실측빈도 근사 가중치) ────────────────────
-CARDS = {
- "인적표":{"text_cell":30,"cell_sublabel":4,"dot_box":3,"split_hyphen":6,"comb_slot":3,
-          "ph_cell":8,"em_cell":3,"text_suffix":3,"mix_cell":4,"img_cell":4,"num_unit":6,
-          "date_split":6,"date_cell":8,"ph_multi":3,"radio_word":5,"ph_pict":2,"dot_split":2,"inset_label":3},
- "선택군":{"cb_row":22,"cb_wrap":10,"cb_col":6,"cb_grid":8,"cb_bracket":8,"radio_yn":10,
-          "radio_word":6,"radio_paren":4,"radio_circled":4,"cb_sub":4,"cb_dep":8,
-          "cb_inline_parent":4,"cb_parent":5,"cb_prose":3,"header_opts":2},
- "서술":{"ta_cell":16,"ta_free":5,"ta_below":4,"ta_outline":5},
- "격자":{"num_cell":20,"date_cell":8,"grid_diag":3,"cb_matrix":4,"radio_likert":5,
-        "radio_grid":4,"cal_grid":2,"date_slash":3,"scale_anchor":2,"header_opts":3,
+CARDS = {  # P1 재가중: cell 계열↓ / gap·marker·comb·underline·placeholder·signature·photo↑
+ "인적표":{"text_cell":12,"cell_sublabel":3,"dot_box":2,"split_hyphen":8,"comb_slot":6,
+          "ph_cell":4,"em_cell":2,"text_suffix":5,"mix_cell":6,"img_cell":6,"num_unit":7,
+          "date_split":6,"date_cell":4,"ph_multi":5,"radio_word":3,"ph_pict":4,"dot_split":2,"inset_label":2,
+          "ph_lines":6,"gp_cell":6,"ul_cell":5,"sig_cell":4,"comb_jumin":6,"dbx_cell":3,"inset_label_full":4},
+ "선택군":{"cb_row":22,"cb_wrap":10,"cb_col":8,"cb_grid":8,"cb_bracket":10,"radio_yn":10,
+          "radio_word":3,"radio_paren":5,"radio_circled":5,"cb_sub":5,"cb_dep":8,
+          "cb_inline_parent":5,"cb_parent":5,"cb_prose":4,"header_opts":1},
+ "서술":{"ta_cell":8,"ta_free":5,"ta_below":4,"ta_outline":5},
+ "격자":{"num_cell":10,"date_cell":5,"grid_diag":3,"cb_matrix":5,"radio_likert":6,
+        "radio_grid":3,"cal_grid":2,"date_slash":4,"scale_anchor":5,"scale_words":4,"header_opts":2,
         "stub_input":3,"num_denom":2},
- "금액":{"num_unit":10,"num_both":4,"num_bracket":3,"paren_unit":4,"num_affix":2},
- "날짜줄":{"date_split":10,"date_inline":6,"date_dots":4,"date_range":5,"pf_year20":6},
+ "금액":{"num_unit":10,"num_both":7,"num_bracket":4,"paren_unit":5,"num_affix":3},
+ "날짜줄":{"date_split":10,"date_inline":6,"date_dots":5,"date_range":6,"pf_year20":8,"comb_date":5},
  "시각":{"time_split":5,"time_cell":4},
- "서명줄":{"sig_phrase":12,"sig_name":6,"sig_ul":5,"sig_stamp":3,"sig_stamp_paren":3,"sig_bold":3},
+ "서명줄":{"sig_phrase":12,"sig_name":6,"sig_ul":7,"sig_stamp":5,"sig_stamp_paren":5,"sig_bold":2,"stamp_box":3},
  "수신줄":{"text_recipient":8},
- "동의문단":{"consent":8,"consent_check":5},
- "제목":{"평제목":30,"cb_title":4,"title_paren":6},
+ "동의문단":{"consent":8,"consent_check":6},
+ "제목":{"평제목":20,"cb_title":6,"title_paren":8},
  "고지표":{"text_cell":10,"cell_sublabel":2},
  "접수밴드":{"text_paren":6,"text_cell":4},
- "글머리서술":{"ta_outline":8,"text_prose":5,"text_colon":6,"text_ul":6,"text_paren":4,"legal_prose":4,"notice_band":3},
- "사진":{"img_cell":6,"img_card":3},
+ "글머리서술":{"ta_outline":5,"text_prose":8,"text_colon":9,"text_ul":9,"text_paren":6,"legal_prose":4,"notice_band":3},
+ "사진":{"img_cell":6,"img_card":3,"img_circle":3},
 }
 DECOY = ["처리절차 플로차트","인쇄 수신처 열거","점선 절취선","(단위:) 캡션","인쇄 상수 셀"]  # 렌더 구현 5종만(골격↔렌더 일치)
 PF = ["pf_year20","pf_example","pf_sample","pf_filled","pf_mask","pf_note","pf_label","pf_italic"]
@@ -67,11 +69,14 @@ GRAMMAR = {
  "안내문":[("제목",1,1),("글머리서술",3,6),("격자",0,1)],
  "작성요령서":[("제목",1,1),("글머리서술",4,7)],
  "백지":[],
+ "부품집중":[("인적표",2,4),("선택군",1,3),("격자",1,2),("날짜줄",1,2),("서명줄",1,2),
+            ("글머리서술",1,2),("사진",0,1),("금액",0,1),("시각",0,1)],
 }
 NO_INPUT = {"안내문","작성요령서","백지","공고문"}  # 음성·희박형
 GRID_ALLOW = {  # 격자 카드 의미 게이팅 (미기재 유형은 범용 세트만)
- "점검평가":{"radio_likert","scale_anchor","num_denom","radio_grid","cb_matrix","num_cell","grid_diag","stub_input"},
- "사정조사지":{"radio_likert","radio_grid","cb_matrix","header_opts","scale_anchor","num_cell","stub_input"},
+ "점검평가":{"radio_likert","scale_anchor","scale_words","num_denom","radio_grid","cb_matrix","num_cell","grid_diag","stub_input"},
+ "사정조사지":{"radio_likert","radio_grid","cb_matrix","header_opts","scale_anchor","scale_words","num_cell","stub_input"},
+ "부품집중":{"radio_likert","cb_matrix","scale_anchor","scale_words","date_slash","num_cell","date_cell","stub_input"},
  "기록지":{"cal_grid","date_slash","num_cell","date_cell","cb_matrix"},
  "보고서":{"num_cell","date_cell","grid_diag","stub_input"},
  "대장명부":{"num_cell","date_cell","grid_diag","stub_input"},
@@ -93,7 +98,7 @@ class Sampler:
         self.card_count = collections.Counter()
         self.card_target = {}  # IRFS 목표: 총 요소수 비례 균형 하한
         allc = {c for m in CARDS.values() for c in m}
-        for c in allc: self.card_target[c] = max(1, round(800*scale))
+        for c in allc: self.card_target[c] = max(1, round(1200*scale))
     def w(self, block):
         """온도완화(√실측가중) × IRFS 부족분 부스트"""
         out={}
@@ -124,7 +129,7 @@ class Sampler:
                 if dtype=="증서" and bclass=="글머리서술": card="text_prose"     # 수료 선언문
                 b={"block":bclass,"card":card}
                 if bclass in ("선택군",): b["n_options"]=rng.choice([2,2,3,3,4,4,5,6,8,10,15])
-                if bclass=="격자": b["rows"]=rng.randint(3,12); b["cols"]=rng.randint(3,9)
+                if bclass=="격자": b["rows"]=rng.randint(2,7); b["cols"]=rng.randint(3,7)
                 blocks.append(b)
         if pure_print:   # 음성 클래스: 입력칸 0 문서 (제목+인쇄 문단·고지표만)
             blocks=[{"block":"제목","card":"평제목"},
@@ -132,12 +137,20 @@ class Sampler:
             if rng.random()<0.6: blocks.append({"block":"고지표","card":"text_cell"})
             if rng.random()<0.5: blocks.append({"block":"동의문단","card":"consent"})
         # prefill: 요소 토막 10% (5~15 균등)
-        pf_rate = 0 if pure_print else rng.uniform(0.05,0.15)
+        pf_rate = 0 if pure_print else rng.uniform(0.10,0.25)
         pf=[]; used_pf=set()
         for i,b in enumerate(blocks):
             if rng.random()<pf_rate:
                 k=rng.choice([p for p in PF if p not in used_pf] or PF)
                 used_pf.add(k); pf.append({"target":i,"kind":k})
+        # 밀도 상한: 예상 필드 50 초과면 격자 행 축소 (추정치 — 정확할 필요 없음)
+        EST={"인적표":8,"선택군":4,"서술":1,"글머리서술":2,"금액":1,"날짜줄":3,"시각":2,
+             "서명줄":2,"수신줄":1,"동의문단":1,"제목":1,"고지표":4,"접수밴드":2,"사진":1}
+        est=lambda: sum(min(b.get("rows",5),8)*min(b.get("cols",5),7) if b["block"]=="격자"
+                        else EST.get(b["block"],2) for b in blocks)
+        grids=[b for b in blocks if b["block"]=="격자"]
+        while est()>50 and any(b["rows"]>2 for b in grids):
+            max(grids,key=lambda x:x["rows"])["rows"]-=1
         # 데코이 0~3
         nd = rng.choices([0,1,2,3],[30,40,20,10])[0]
         decoys = rng.sample(DECOY, nd)
