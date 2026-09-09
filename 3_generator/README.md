@@ -33,7 +33,7 @@
 ```
 python 3_generator/build_skeleton.py --n 20000 --out 5_dataset/skeletons_v3/train   --seed 20260904
 python 3_generator/build_skeleton.py --n 1000  --out 5_dataset/skeletons_v3/holdout --seed 20260905   # 999장
-# 렌더 (6 프로세스): 골격 목록을 나눠 render_skeleton.py 에 --out 5_dataset/train_v3 / holdout_v3
-ls 5_dataset/skeletons_v3/train/*.json | xargs -P 6 -n 800 sh -c 'python 3_generator/render_skeleton.py "$@" --out 5_dataset/train_v3 > /dev/null' _
-ls 5_dataset/skeletons_v3/holdout/*.json | xargs -P 6 -n 400 sh -c 'python 3_generator/render_skeleton.py "$@" --out 5_dataset/holdout_v3 > /dev/null' _
+# 렌더 (6 프로세스, ls 글롭은 2만 파일에서 인자 한계 → find 사용): 골격 목록을 나눠 render_skeleton.py 에 --out 5_dataset/train_v3 / holdout_v3
+find 5_dataset/skeletons_v3/train -name '*.json' | xargs -P 6 -n 800 sh -c 'python 3_generator/render_skeleton.py "$@" --out 5_dataset/train_v3 > /dev/null' _
+find 5_dataset/skeletons_v3/holdout -name '*.json' | xargs -P 6 -n 400 sh -c 'python 3_generator/render_skeleton.py "$@" --out 5_dataset/holdout_v3 > /dev/null' _
 ```
