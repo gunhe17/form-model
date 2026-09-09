@@ -1,0 +1,1 @@
+{"id": "대장명부_11701", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "grid_diag", "rows": 6, "cols": 7}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 340462167}

@@ -1,0 +1,1 @@
+{"id": "사진대지_00353", "type": "사진대지", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}, {"block": "날짜줄", "card": "date_inline"}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [], "decoys": [], "seed": 413786292}

@@ -1,0 +1,1 @@
+{"id": "기록지_04132", "type": "기록지", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "dot_box"}, {"block": "격자", "card": "photo_grid", "rows": 3, "cols": 2}, {"block": "금액", "card": "num_unit"}, {"block": "서명줄", "card": "stamp_box"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1563627872}

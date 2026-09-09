@@ -1,0 +1,1 @@
+{"id": "계획서_00173", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 6}, {"block": "격자", "card": "stub_input", "rows": 4, "cols": 7}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 539924499}

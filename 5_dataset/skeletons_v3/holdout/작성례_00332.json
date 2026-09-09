@@ -1,0 +1,1 @@
+{"id": "작성례_00332", "type": "작성례", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "radio_word"}, {"block": "격자", "card": "pf_grid", "rows": 6, "cols": 5}], "prefill": [{"target": 1, "kind": "pf_filled"}, {"target": 2, "kind": "pf_example"}], "decoys": ["인쇄 상수 셀"], "seed": 1167712375}

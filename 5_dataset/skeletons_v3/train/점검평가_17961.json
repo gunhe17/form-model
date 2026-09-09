@@ -1,0 +1,1 @@
+{"id": "점검평가_17961", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "split_hyphen"}, {"block": "격자", "card": "cb_matrix", "rows": 5, "cols": 3}, {"block": "서술", "card": "ta_below"}], "prefill": [], "decoys": ["처리절차 플로차트", "(단위:) 캡션"], "seed": 56335518}

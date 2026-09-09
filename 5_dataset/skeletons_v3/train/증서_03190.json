@@ -1,0 +1,1 @@
+{"id": "증서_03190", "type": "증서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "comb_slot"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "comb_date"}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [{"target": 2, "kind": "pf_sample"}], "decoys": [], "seed": 1379748689}

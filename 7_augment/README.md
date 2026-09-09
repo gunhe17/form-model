@@ -61,3 +61,11 @@ nohup python 7_augment/render_swap.py --n 6000 --src 5_dataset/skeletons_v2/trai
 Y=8_train/yolo_s1 POOL=7_augment/pool_s1 RS=7_augment/render_swap_v2 S1=1 nohup ./7_augment/build_pool.sh > 7_augment/build_pool_s1.log 2>&1 &
 ```
 데이터 정의 `8_train/forms_s1.yaml`. build_pool 은 `Y`(YOLO 라벨 폴더)·`POOL`·`RS`(스왑 렌더)·`S1`(1단계 라벨) 환경변수로 v1/v2 를 가른다.
+
+## 4차(1단계 8종·v3) 실행
+```
+python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v3 --train-dir 5_dataset/train_v3 --val-dir 5_dataset/holdout_v3
+nohup python 7_augment/render_swap.py --n 6000 --src 5_dataset/skeletons_v3/train --out 7_augment/render_swap_v3 > 7_augment/render_swap_v3.log 2>&1 &
+Y=8_train/yolo_s1v3 POOL=7_augment/pool_s1v3 RS=7_augment/render_swap_v3 S1=1 nohup ./7_augment/build_pool.sh > 7_augment/build_pool_s1v3.log 2>&1 &
+```
+데이터 정의 `8_train/forms_s1v3.yaml`. 3차와 구성 동일, 렌더만 v3.

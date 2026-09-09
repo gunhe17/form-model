@@ -1,0 +1,1 @@
+{"id": "점검평가_03351", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "inset_label_full"}, {"block": "격자", "card": "scale_words", "rows": 6, "cols": 5}, {"block": "서술", "card": "ta_free"}], "prefill": [{"target": 1, "kind": "pf_year20"}], "decoys": [], "seed": 768984261}

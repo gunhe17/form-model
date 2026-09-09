@@ -63,13 +63,19 @@ def _T(k,d): return THEME.get(k,d)
 SLOT = lambda t="date",txt="",w=None: (f'<span data-f="{t}" style="display:inline-flex;width:{w or _T("slot_w",34)}px;height:{_T("slot_h",24)}px;align-items:center;'
     f'justify-content:center;font-size:14px;letter-spacing:normal">{txt}</span>')
 GP = lambda t,w=64: f'<span data-f="{t}" class="gp" style="width:{w}px"></span>'
+GPT = lambda t,w=16: f'<span data-f="{t}" class="gp" style="width:{w}px;margin:0"></span>'   # v3 밀착 슬롯: 글자 사이 10~20px, 여백 0 (실서식 1편 2호·17호)
+def PH(t,txt,fs=None,w=None):
+    """v3 인쇄 자리표: 박스 = 글자 자체(○·○○○). 폭 w 를 주면 실서식처럼 고정폭 inline-flex"""
+    fs=fs or _T("ph_fs",14)
+    if w: return f'<span data-f="{t}" style="display:inline-flex;width:{w}px;height:1.1em;align-items:center;justify-content:center;font-size:{fs}px;vertical-align:middle">{txt}</span>'
+    return f'<span data-f="{t}" style="display:inline-block;font-size:{fs}px;line-height:1.25;vertical-align:middle">{txt}</span>'
 CG = lambda t: f'<span data-f="{t}" class="cg"></span>'  # 셀 핏 입력: 셀 전폭-일정 여백
 CGF = lambda t: f'<span data-f="{t}" class="cgf"></span>'  # 셀 채움 입력: 행 높이 무관 3px 균일 인셋
 def TDC(t,h,cls="vl",extra=""):
     """행 높이 h 인 입력 셀 td — 높은 행(≥41)은 td 를 채우는 cgf, 낮은 행은 기존 cg"""
     if h>=41: return f'<td class="{cls} fillc" style="height:{h}px{extra}">{CGF(t)}</td>'
     return f'<td class="{cls}" style="height:{h}px{extra}">{CG(t)}</td>'
-MKC = lambda kind="checkbox": (f'<span data-f="{kind}" style="display:inline-block;width:{_T("mk",22)}px;height:{_T("mk",22)}px;vertical-align:middle"></span>')
+# v3: MKC 보이지 않는 22px 표식 삭제 — 픽셀 근거 없는 박스 2.1만 개가 척도표 25칸 전멸의 원인(PLAN 9절). 표 안 선택칸은 셀 전체 CGF.
 DBX = lambda t,w: (f'<span data-f="{t}" class="dbx" style="display:inline-block;border:1.4px dashed #000;'
     f'height:{_T("cg_h",26)}px;width:{w}px;vertical-align:middle"></span>')  # 실서식 .dbx 점선 인라인 박스
 UL = lambda t,w=None: f'<span data-f="{t}" class="ul" style="width:{w or _T("ul_w",90)}px"></span>'
@@ -136,7 +142,7 @@ class R:
             "comb":r.choice([(22,24,"solid"),(19,26,"dashed"),(26,28,"dashed"),(16,18,"solid"),(20,20,"solid")]),"mk_bw":r.choice([10,11,12,13,14]),
             "inset":r.choice([2,3,4,6]),"shade":r.choice(["#E2E2E2","#EDEDED","#D8D8D8","#F2F2F2","#FFFFFF","#FFFFFF"]),
             "outer":r.choice([1,1,1.6,2.2]),"shade2":"#F4F4F4","title_ls":r.choice([0.1,0.18,0.28,0.38]),"title_fs":r.choice([30,32,34]),
-            "sig_off":r.choice([12,24,40]),"cell_pad":r.choice(["3px 7px","2px 5px","4px 9px"]),"col_contrast":r.choice([0,0,0.6,1.0]),"open":r.random()<0.35}
+            "sig_off":r.choice([12,24,40]),"ph_fs":r.choice([12,13,14,15]),"cell_pad":r.choice(["3px 7px","2px 5px","4px 9px"]),"col_contrast":r.choice([0,0,0.6,1.0]),"open":r.random()<0.35}
         if self.theme["shade"]=="#FFFFFF": self.theme["shade2"]="#FFFFFF"
         global THEME; THEME=self.theme
         self.doc_marker = self.rng.choice(["□","[&nbsp;&nbsp;]"])   # 문서 단위 규약
@@ -190,7 +196,8 @@ class R:
         c=b["card"]; rng=self.rng
         cells={
          "text_cell":CGF("text"),"ph_cell":CGF("phone"),"em_cell":CGF("email"),
-         "date_cell":CGF("date"),"date_split":ROW(GP("date",30),"년",GP("date",24),"월",GP("date",24),"일",j="c"),
+         "date_cell":CGF("date"),"date_split":(ROW(GPT("date",rng.randint(12,20)),"년",GPT("date",rng.randint(10,18)),"월",GPT("date",rng.randint(10,18)),"일",j="c",style="gap:1px") if rng.random()<0.35   # v3 밀착
+                       else ROW(GP("date",30),"년",GP("date",24),"월",GP("date",24),"일",j="c")),
          "num_unit":ROW("만",GP("number",40),"세",j="c"),
          "split_hyphen":ROW(GP("text",64),"–",GP("text",76),j="c"),
          "comb_slot":ROW(*[CBX()]*5,j="c",style="gap:2px"),
@@ -209,8 +216,10 @@ class R:
             ROW('<span class="note" style="flex:none">'+rng.choice(["접수번호","관리번호","정리번호"])+'</span>','<span data-f="number" class="gp" style="flex:1"></span>')),
          "ul_cell":((ROW("자택:",UL("phone",rng.randint(90,140)))+ROW("휴대:",UL("phone",rng.randint(90,140))))
             if rng.random()<0.5 else ROW(UL("phone",rng.randint(90,200)),j="c")),
-         "sig_cell":ROW(GP("text",rng.randint(100,160)),
-            '<span data-f="signature" style="display:inline-block;line-height:'+rng.choice(["1","1.45"])+'">(인)</span>',j="c"),
+         "sig_cell":(ROW(GP("text",rng.randint(100,160)),
+            '<span data-f="signature" style="display:inline-block;line-height:'+rng.choice(["1","1.45"])+'">(인)</span>',j="c") if rng.random()<0.5 else
+            ROW(GP("text",rng.randint(110,170)),f'<span data-f="signature" style="font-size:{rng.choice([12,13,14])}px;line-height:1.3">{rng.choice(["(인)","(인)","(서명)"])}</span>',
+                '<span style="width:24px"></span>','<span style="white-space:nowrap">날짜 :</span>',GPT("date",rng.randint(24,40)),".",GPT("date",rng.randint(18,28)),".",style="gap:4px;white-space:nowrap")),   # v3: 빈 공간 뒤 소형 (인) + 날짜 (실서식 15호)
 
          "dot_split":(ROW('<span class="note" style="font-size:11px;width:58px;flex:none;text-align:left">(전화)</span>','<span data-f="phone" class="cg" style="flex:1;margin:1px 0"></span>')
             +'<div style="border-top:1.2px dotted #555;margin:1px -4px"></div>'
@@ -254,6 +263,19 @@ class R:
             if rng.random()<0.5:
                 return f'<table><tr>{"".join(tds[:2])}</tr><tr>{"".join(tds[2:])}</tr></table>'
             return f'<table><tr>{"".join(tds)}</tr></table>'
+        if c=="inline_pairs":   # v3: 한 셀에 라벨·빈칸 쌍 2~4개 나란히, 또는 라벨 + 잔여 전폭 cg (실서식 2편 1_1호·17호)
+            items=[p for p in picks if p[1]!="radio"][:rng.randint(2,4)]
+            for lb,_t in items: self.used_labels.add(lb)
+            LB=lambda lb: f'<span style="flex:none">{lb}</span>'
+            CGI=lambda t: f'<span data-f="{t}" class="cg" style="flex:1;margin:1px 0"></span>'
+            if rng.random()<0.4:   # 가로 inset: 셀마다 라벨 + cg flex:1
+                tds="".join(f'<td class="tl">{ROW(LB(lb),CGI(t),style="gap:4px")}</td>' for lb,t in items[:3])
+                return f'<table><tr><th style="width:118px">{lead}</th>{tds}</tr></table>'
+            parts=[]
+            for lb,t in items:
+                if t=="phone" and rng.random()<0.6: parts+=[LB(lb),GPT("phone",rng.randint(40,56)),"-",GPT("phone",rng.randint(40,56))]
+                else: parts+=[LB(lb),GP(t,rng.randint(60,150))]
+            return f'<table><tr><th style="width:118px">{lead}</th><td class="tl">{ROW(*parts,style="gap:2px;flex-wrap:wrap;row-gap:4px")}</td></tr></table>'
         if c=="img_cell":
             html=html.replace("</table>",'<tr><td class="vl" rowspan="1" data-f="image" style="width:110px;height:120px">사 진<br><span class="note">(3.5×4.5cm)</span></td><td colspan="3" class="tl fillc" style="vertical-align:top"><span class="note">특이사항</span><span data-f="textarea" class="cgf" style="top:24px"></span></td></tr></table>')
         return html
@@ -262,8 +284,10 @@ class R:
         ch=self.marker()
         kind="radio" if c in ("cb_row","cb_col","cb_wrap","cb_grid","cb_bracket") and rng.random()<0.5 else "checkbox"
         M=lambda: MK(ch, kind)   # 그룹 안은 전부 같은 kind
+        SFX=((lambda: (rng.choice([f"(&nbsp;{GP('text',rng.randint(36,70))}&nbsp;)",f"약 {GP('number',rng.randint(30,50))} m"]) if rng.random()<0.3 else ""))
+             if rng.random()<0.45 else (lambda: ""))   # v3: 선택지 뒤 괄호 빈칸 (실서식 15호 "기타 ( )"·"약 __ m")
         if c in("cb_row","cb_grid","cb_bracket","header_opts"):
-            item=lambda x: f'<span style="display:inline-flex;align-items:center;gap:3px;white-space:nowrap">{M()}{x}</span>'
+            item=lambda x: f'<span style="display:inline-flex;align-items:center;gap:3px;white-space:nowrap">{M()}{x}{SFX()}</span>'
             inner=ROW(*[item(x) for x in o],style="gap:12px;flex-wrap:wrap;row-gap:4px")
             return f'<table><tr><th style="width:118px">{olb}</th><td class="tl">{inner}</td></tr></table>'
         if c=="cb_col":
@@ -271,7 +295,7 @@ class R:
             return f'<table><tr><th style="width:118px">{olb}</th><td class="tl">{inner}</td></tr></table>'
         if c=="cb_wrap":
             half=(len(o)+1)//2
-            item=lambda x: f'<span style="display:inline-flex;align-items:center;gap:3px;white-space:nowrap">{M()}{x}</span>'
+            item=lambda x: f'<span style="display:inline-flex;align-items:center;gap:3px;white-space:nowrap">{M()}{x}{SFX()}</span>'
             r1=ROW(*[item(x) for x in o[:half]],style="gap:12px;flex-wrap:wrap;row-gap:4px")
             r2=ROW(*[item(x) for x in o[half:]],style="gap:12px;flex-wrap:wrap;row-gap:4px")
             return f'<table><tr><th style="width:118px">{olb}</th><td class="tl">{r1}{r2}</td></tr></table>'
@@ -383,7 +407,7 @@ class R:
             QS=["서비스 전반에 만족하십니까?","제공 인력은 친절하였습니까?","서비스 시간은 적절하였습니까?","재이용 의향이 있으십니까?"]
             def cf(r,cn):
                 if cn==0: return f'<td class="tl">{r+1}. {QS[r%4]}</td>'
-                return f'<td class="vl">{MKC("radio")}</td>'
+                return f'<td class="vl fillc">{CGF("radio")}</td>'   # v3: 빈 선택 셀 = 셀 전체 (실서식 17호 규약)
             return grid(rng,min(rows,4),cols,hs,cf)
         if c=="scale_words":   # 글자 인쇄 셀 자체가 선택지 (실서식 1편 17호·16-1호)
             hs=["문 항","매우만족","만족","보통","불만족","매우불만족"]; cols=6
@@ -396,7 +420,9 @@ class R:
                     op=(f'<span data-f="radio" style="display:inline-flex;width:22px;height:22px;align-items:center;'
                         f'justify-content:center;font-size:15px;line-height:22px;vertical-align:middle">{"①②③④⑤"[cn-1]}</span>')
                     return f'<td class="vl" style="font-size:13.5px;line-height:1.3">{op}{hs[cn]}</td>'
-                return f'<td class="vl" style="font-size:13.5px;line-height:1.3">{hs[cn]}<br>{MKC("radio")}</td>'
+                lab=hs[cn] if len(hs[cn])<5 or rng.random()<0.4 else hs[cn][:2]+"<br>"+hs[cn][2:]   # 매우<br>불만족
+                return f'<td class="vl fillc" style="font-size:13.5px;line-height:1.3;height:{hh}px">{lab}{CGF("radio")}</td>'   # v3: 글자 인쇄 셀 전체가 선택 박스
+            hh=rng.choice([34,38,41,44])
             return grid(rng,rng.randint(4,6),cols,hs,cf)
         if c=="scale_anchor":
             m=_T("mk",22)+2
@@ -410,7 +436,7 @@ class R:
         if c=="cb_matrix":
             def cf(r,cn):
                 if cn==0: return f'<td class="lb">{["오전","오후","저녁","심야"][r%4]}</td>'
-                return f'<td class="vl">{MKC("checkbox")}</td>'
+                return f'<td class="vl fillc">{CGF("checkbox")}</td>'   # v3
             return grid(rng,4,6,["구분","월","화","수","목","금"],cf)
         if c=="date_slash":
             cells="".join(f'<td class="vl">{ROW(SLOT("date","",30)," / ",SLOT("date","",30),j="c",style="gap:2px")}</td>' for _ in range(cols-1))
@@ -476,6 +502,9 @@ class R:
            "date_dots":ROW("20",GP("date",30),".",GP("date",24),".",GP("date",24),".",j="c",style="gap:2px"),
            "date_range":ROW("○ "+({"계약서":"계약기간","등록카드":"위촉기간","통지회신":"지원기간"}.get(self.sk["type"],"신청기간"))+" :",GP("date",30),"년",GP("date",24),"월",GP("date",24),"일 ~",GP("date",30),"년",GP("date",24),"월",GP("date",24),"일",style="margin:6px 0"),
            "comb_date":ROW(*COMB_DATE(),j="c",style="margin-top:20px;gap:2px"),
+           "date_tight":ROW("20",GPT("date",self.rng.randint(12,20)),"년",GPT("date",self.rng.randint(10,18)),"월",GPT("date",self.rng.randint(10,18)),"일",
+                            *(["~ 20",GPT("date",self.rng.randint(12,20)),"년",GPT("date",self.rng.randint(10,18)),"월",GPT("date",self.rng.randint(10,18)),"일"] if self.rng.random()<0.5 else []),
+                            j="c",style="margin-top:14px;gap:1px"),   # v3 밀착 (실서식 1편 2호)
            "pf_year20":ROW("20",SLOT(),"년",SLOT(),"월",SLOT(),"일",j="c",style="margin-top:20px")}
         return m.get(c) or m["date_split"]
     def b_시각(self,b):
@@ -483,6 +512,9 @@ class R:
             sp='<span data-f="time" class="cg" style="flex:1;margin:1px 0"></span>'  # 3.11 호환: f-string 안 백슬래시 금지
             return (f'<table><tr><th style="width:118px">사고시간</th><td class="vl">'
                     f'{ROW(sp,WORD("am"),"/",WORD("pm"),style="gap:6px")}</td></tr></table>')
+        if self.rng.random()<0.5:   # v3 밀착 시각 (실서식 17호: 26px 슬롯)
+            w=self.rng.randint(18,28)
+            return ROW(GPT("date",w),"일",GPT("time",w),"시",GPT("time",w),"분 ~",GPT("time",w),"시",GPT("time",w),"분",j="c",style="gap:1px")
         return ROW(SLOT("time"),"시",SLOT("time"),"분",j="c")
     def b_서명줄(self,b):  # v1.3: 이름/서명 분리 + 직인은 발신형 전용 + ○○ 발신명의 비입력
         c=b["card"]
@@ -501,7 +533,7 @@ class R:
         seq=ROLES.get(self.sk["type"])
         who=seq[self.sig_n%len(seq)] if seq else self.rng.choice(["신청인","보호자","작성자","동의자"])
         self.sig_n+=1
-        SIG=lambda t: (f'<span data-f="signature" style="font-size:14px;line-height:1.2">{t}</span>' if self.rng.random()<0.5   # 글줄 속 소형 문구(높이 ≤20)
+        SIG=lambda t: (f'<span data-f="signature" style="font-size:{self.rng.choice([12,13,14])}px;line-height:1.2">{t}</span>' if self.rng.random()<0.5   # 글줄 속 소형 문구(높이 14~17, v3: 실서식 h≤16 28%)
                        else f'<span data-f="signature" style="vertical-align:middle;display:inline-block">{t}</span>')
         if c=="sig_name": return f'<p class="sigline">{who} 성명 : {GP("text",110)} {SIG("(인)")}</p>'
         if c=="sig_ul":   return f'<p class="sigline">{UL("text",100)}<span data-f="signature" style="vertical-align:middle;display:inline-block">(인)</span></p>'
@@ -578,10 +610,11 @@ class R:
             head=rng.choice(["진 술 내 용","확 약 사 항","확인 사항"])
             lines="".join(f'<p class="ln" style="margin:6px 0">{i+1}. {s()}</p>' for i,s in enumerate(SENT[:rng.randint(3,6)]))
             return f'<p class="ln"><b>{head}</b></p>{lines}'
-        m={"text_colon":ROW(f"{lb} :",GP("text",rng.choice([180,260,340,460])),style="margin:6px 0"),   # 폭 400 초과 문장 빈칸 포함
+        fs=rng.choice([17,17,15,14])   # v3: 문장 글꼴 축 → gap 높이 16~19.5 (실서식 h≤18 44%)
+        m={"text_colon":ROW(f"{lb} :",GP("text",rng.choice([180,260,340,460])),style=f"margin:6px 0;font-size:{fs}px"),   # 폭 400 초과 문장 빈칸 포함
            "text_ul":ROW(f"{lb} :",UL("text",120),",",UL("text",120),style="margin:6px 0"),
            "text_paren":ROW(f"({lb} :",GP("text",100),")",style="margin:6px 0;gap:2px"),
-           "text_prose":ROW("위 사람은",GP("text",rng.choice([150,220,320,420])),"과정을 이수하였음을 확인합니다.",style="margin:6px 0"),
+           "text_prose":ROW("위 사람은",GP("text",rng.choice([150,220,320,420])),"과정을 이수하였음을 확인합니다.",style=f"margin:6px 0;font-size:{fs}px"),
            "ta_outline":(f'<p class="ln">□ {lb}</p>'
             f'<div class="indent1" style="display:flex;align-items:flex-start">○&nbsp;'
             f'<div data-f="textarea" style="flex:1;height:40px"></div></div>')}
@@ -610,12 +643,17 @@ class R:
         n='<span class="note">'
         m={"pf_example":f'<table><tr><td class="tl lb2">관찰 내용 {n}(예시를 참고하여 기재)</span></td></tr>'
              f'<tr><td style="height:56px"><span data-f="textarea" class="cg" style="height:48px">{n}예) 아동이 먼저 인사말을 건네고 착석하였습니다.</span></span></td></tr></table>',
-           "pf_sample":ROW("담당자 성명 :",SLOT("text","○○○",110),f'{n}(</span>',SLOT("text","○○○",60),'<span class="note">기관)</span>',style="margin:6px 0"),
+           "pf_sample":ROW("담당자 성명 :",PH("text","○○○"),f'{n}(</span>',PH("text","○○○"),'<span class="note">기관)</span>',style="margin:6px 0"),   # v3: 박스 = 글자
            "pf_filled":(lambda tv,mv: f'<table><tr><th style="width:118px">활동시간</th><td class="vl"><span data-f="time" class="cg" style="line-height:26px">{tv}</span></td>'
              f'<th style="width:118px">금액</th><td class="vl"><span data-f="number" class="cg" style="line-height:26px">{mv}</span></td></tr></table>')(
              self.rng.choice(["17:00 ~ 17:50","09:30 ~ 11:20","14:00 ~ 15:40","10:00 ~ 12:00"]),
              self.rng.choice(["27,500원","41,300원","15,000원","33,800원"])),
-           "pf_mask":ROW("20",SLOT("date","○○"),"년",SLOT("date","○○"),"월",SLOT("date","○○"),"일",j="c"),
+           "pf_mask":ROW("20",PH("date","○○"),"년",PH("date","○○"),"월",PH("date","○○"),"일",j="c",style="gap:2px"),
+           "pf_circle":(lambda r: ROW(*r.choice([
+               ["○ 교육일시 : 20",PH("date","○○"),".",PH("date","○",w=r.randint(22,31)),".",PH("date","○",w=r.randint(22,31)),". &nbsp; 장소 :",PH("text","○○○"),"교육장"],
+               ["○ 기간 : 20",PH("date","○○"),"년",PH("date","○",w=r.randint(22,31)),"월 ~ 20",PH("date","○○"),"년",PH("date","○",w=r.randint(22,31)),"월"],
+               ["○ 대상 :",PH("text","○○○"),"외",PH("number","○",w=r.randint(20,28)),"명 &nbsp; 담당 :",PH("text","○○○"),"(☎",PH("phone","○○○-○○○○"),")"]]),
+               style="margin:6px 0;gap:2px;font-size:"+str(r.choice([14,15,16]))+"px"))(self.rng),   # v3 낱글자 ○ 자리표 (실서식 21_x호·2편 16호)
            "pf_note":f'<table><tr><th style="width:130px">처리기한<br>경과사유</th><td style="height:48px">'
              f'<span data-f="textarea" class="cg" style="height:40px">{n}※ 처리기한 경과 시 사유를 기재합니다</span></span></td></tr></table>',
            "pf_label":f'<table><tr><th style="width:118px">대상 아동</th><td><span data-f="text" class="cg" style="line-height:26px">{n}※ 개인별 성명 전체 명시</span></span></td></tr></table>',

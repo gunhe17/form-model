@@ -1,0 +1,1 @@
+{"id": "서명부_09093", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "comb_jumin"}, {"block": "격자", "card": "sig_grid", "rows": 12, "cols": 2}, {"block": "날짜줄", "card": "comb_date"}], "prefill": [], "decoys": [], "seed": 102359911}

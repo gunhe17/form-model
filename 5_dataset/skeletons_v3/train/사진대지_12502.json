@@ -1,0 +1,1 @@
+{"id": "사진대지_12502", "type": "사진대지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "sig_cell"}, {"block": "격자", "card": "photo_grid", "rows": 3, "cols": 2}, {"block": "서명줄", "card": "sig_stamp"}], "prefill": [], "decoys": ["인쇄 수신처 열거", "(단위:) 캡션"], "seed": 616162125}

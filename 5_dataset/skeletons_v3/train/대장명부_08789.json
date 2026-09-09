@@ -1,0 +1,1 @@
+{"id": "대장명부_08789", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "date_cell", "rows": 2, "cols": 3}], "prefill": [{"target": 0, "kind": "pf_circle"}], "decoys": ["인쇄 상수 셀"], "seed": 748683772}

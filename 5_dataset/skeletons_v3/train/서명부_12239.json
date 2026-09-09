@@ -1,0 +1,1 @@
+{"id": "서명부_12239", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "inline_pairs"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}, {"block": "날짜줄", "card": "date_inline"}], "prefill": [], "decoys": ["점선 절취선"], "seed": 938037512}

@@ -1,0 +1,1 @@
+{"id": "작성례_08185", "type": "작성례", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "img_cell"}, {"block": "격자", "card": "pf_grid", "rows": 5, "cols": 5}], "prefill": [{"target": 0, "kind": "pf_label"}, {"target": 2, "kind": "pf_filled"}], "decoys": ["인쇄 수신처 열거"], "seed": 1322671841}

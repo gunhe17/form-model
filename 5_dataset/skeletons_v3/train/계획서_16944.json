@@ -1,0 +1,1 @@
+{"id": "계획서_16944", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "격자", "card": "num_cell", "rows": 5, "cols": 5}], "prefill": [], "decoys": ["인쇄 상수 셀", "점선 절취선"], "seed": 1966829678}

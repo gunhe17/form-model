@@ -1,0 +1,1 @@
+{"id": "서명부_08659", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}, {"block": "날짜줄", "card": "pf_year20"}], "prefill": [], "decoys": [], "seed": 138171196}

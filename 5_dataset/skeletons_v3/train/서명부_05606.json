@@ -1,0 +1,1 @@
+{"id": "서명부_05606", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}], "prefill": [], "decoys": ["인쇄 수신처 열거", "인쇄 상수 셀"], "seed": 1407886763}

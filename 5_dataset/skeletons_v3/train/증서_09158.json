@@ -1,0 +1,1 @@
+{"id": "증서_09158", "type": "증서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "date_split"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "pf_year20"}, {"block": "서명줄", "card": "stamp_box"}], "prefill": [], "decoys": [], "seed": 302977416}

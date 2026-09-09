@@ -1,0 +1,1 @@
+{"id": "점검평가_06737", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "text_suffix"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 7}, {"block": "서술", "card": "ta_free"}], "prefill": [{"target": 1, "kind": "pf_note"}, {"target": 2, "kind": "pf_circle"}], "decoys": [], "seed": 982053736}

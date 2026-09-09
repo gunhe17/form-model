@@ -1,0 +1,1 @@
+{"id": "서명부_13362", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "cell_sublabel"}, {"block": "격자", "card": "sig_grid", "rows": 10, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_example"}, {"target": 1, "kind": "pf_filled"}], "decoys": [], "seed": 97002064}

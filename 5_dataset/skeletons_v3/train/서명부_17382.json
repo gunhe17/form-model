@@ -1,0 +1,1 @@
+{"id": "서명부_17382", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "ph_multi"}, {"block": "격자", "card": "sig_grid", "rows": 9, "cols": 2}], "prefill": [{"target": 1, "kind": "pf_sample"}], "decoys": ["점선 절취선"], "seed": 1153931765}

@@ -1,0 +1,1 @@
+{"id": "작성례_03752", "type": "작성례", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "text_suffix"}, {"block": "격자", "card": "pf_grid", "rows": 4, "cols": 5}, {"block": "날짜줄", "card": "date_split"}], "prefill": [{"target": 0, "kind": "pf_circle"}], "decoys": ["처리절차 플로차트"], "seed": 1614065328}

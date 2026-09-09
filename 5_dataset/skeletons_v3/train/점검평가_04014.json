@@ -1,0 +1,1 @@
+{"id": "점검평가_04014", "type": "점검평가", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_cell"}, {"block": "격자", "card": "radio_likert", "rows": 4, "cols": 7}, {"block": "서술", "card": "ta_outline"}], "prefill": [{"target": 3, "kind": "pf_example"}], "decoys": ["처리절차 플로차트"], "seed": 178812666}

@@ -1,0 +1,1 @@
+{"id": "기록지_14214", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "num_unit"}, {"block": "격자", "card": "cal_grid", "rows": 5, "cols": 7}, {"block": "서명줄", "card": "sig_stamp"}], "prefill": [], "decoys": [], "seed": 1228128023}

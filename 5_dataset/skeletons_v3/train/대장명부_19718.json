@@ -1,0 +1,1 @@
+{"id": "대장명부_19718", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "stub_input", "rows": 3, "cols": 3}], "prefill": [{"target": 1, "kind": "pf_mask"}], "decoys": ["(단위:) 캡션", "점선 절취선"], "seed": 615536501}

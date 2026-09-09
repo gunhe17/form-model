@@ -1,0 +1,1 @@
+{"id": "대장명부_05856", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "num_cell", "rows": 5, "cols": 3}], "prefill": [{"target": 0, "kind": "pf_mask"}], "decoys": ["인쇄 수신처 열거"], "seed": 822831348}

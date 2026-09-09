@@ -1,0 +1,1 @@
+{"id": "서명부_02687", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "radio_word"}, {"block": "격자", "card": "sig_grid", "rows": 11, "cols": 2}, {"block": "날짜줄", "card": "date_inline"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1742379454}

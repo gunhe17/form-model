@@ -1,0 +1,1 @@
+{"id": "대장명부_05428", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "date_cell", "rows": 3, "cols": 5}, {"block": "격자", "card": "num_cell", "rows": 4, "cols": 3}], "prefill": [{"target": 0, "kind": "pf_sample"}], "decoys": ["인쇄 상수 셀", "인쇄 수신처 열거"], "seed": 279079096}

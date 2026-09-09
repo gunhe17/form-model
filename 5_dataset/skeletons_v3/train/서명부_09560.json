@@ -1,0 +1,1 @@
+{"id": "서명부_09560", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_multi"}, {"block": "격자", "card": "sig_grid", "rows": 11, "cols": 2}], "prefill": [{"target": 1, "kind": "pf_sample"}], "decoys": ["인쇄 상수 셀", "점선 절취선", "처리절차 플로차트"], "seed": 829794073}

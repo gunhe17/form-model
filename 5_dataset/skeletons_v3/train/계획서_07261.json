@@ -1,0 +1,1 @@
+{"id": "계획서_07261", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "격자", "card": "num_cell", "rows": 2, "cols": 3}], "prefill": [{"target": 0, "kind": "pf_filled"}], "decoys": ["인쇄 상수 셀", "(단위:) 캡션"], "seed": 335521304}

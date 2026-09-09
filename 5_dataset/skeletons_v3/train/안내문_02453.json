@@ -1,0 +1,1 @@
+{"id": "안내문_02453", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "ul_lines"}, {"block": "글머리서술", "card": "ul_lines"}, {"block": "글머리서술", "card": "notice_band"}], "prefill": [{"target": 0, "kind": "pf_note"}, {"target": 3, "kind": "pf_circle"}], "decoys": ["(단위:) 캡션"], "seed": 892909776}

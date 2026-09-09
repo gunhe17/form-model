@@ -1,0 +1,1 @@
+{"id": "계획서_18170", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "격자", "card": "grid_diag", "rows": 2, "cols": 4}, {"block": "금액", "card": "num_both"}], "prefill": [{"target": 1, "kind": "pf_note"}], "decoys": [], "seed": 22838734}

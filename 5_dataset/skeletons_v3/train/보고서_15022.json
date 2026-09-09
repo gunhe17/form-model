@@ -1,0 +1,1 @@
+{"id": "보고서_15022", "type": "보고서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "date_cell", "rows": 4, "cols": 7}, {"block": "격자", "card": "stub_input", "rows": 5, "cols": 3}], "prefill": [{"target": 0, "kind": "pf_circle"}], "decoys": ["(단위:) 캡션"], "seed": 633103975}

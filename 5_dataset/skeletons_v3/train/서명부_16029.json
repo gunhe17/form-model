@@ -1,0 +1,1 @@
+{"id": "서명부_16029", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "comb_slot"}, {"block": "격자", "card": "sig_grid", "rows": 11, "cols": 2}, {"block": "날짜줄", "card": "date_split"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 1563817192}

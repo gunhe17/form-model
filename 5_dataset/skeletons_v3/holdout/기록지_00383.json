@@ -1,0 +1,1 @@
+{"id": "기록지_00383", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "mix_cell"}, {"block": "격자", "card": "photo_grid", "rows": 3, "cols": 2}, {"block": "시각", "card": "time_split"}, {"block": "서명줄", "card": "sig_bold"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 2082524257}

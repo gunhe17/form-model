@@ -1,0 +1,1 @@
+{"id": "안내문_04830", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "격자", "card": "num_cell", "rows": 5, "cols": 3}], "prefill": [], "decoys": [], "seed": 1059025209}

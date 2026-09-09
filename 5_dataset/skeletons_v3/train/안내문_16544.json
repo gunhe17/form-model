@@ -1,0 +1,1 @@
+{"id": "안내문_16544", "type": "안내문", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "격자", "card": "num_cell", "rows": 2, "cols": 3}], "prefill": [], "decoys": [], "seed": 676947054}

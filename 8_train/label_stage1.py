@@ -101,16 +101,19 @@ def main():
     a=ap.parse_args()
     grids={'train':collections.Counter(),'replica':collections.Counter()}; share={'train':collections.Counter(),'replica':collections.Counter()}
     dens={'train':[], 'replica':[]}; outf=open(a.out,'w') if a.out else None
+    invis={'train':0,'replica':0}   # v3 검사: 표 안 radio/checkbox 의 보이지 않는 박스(테두리·글자·class 없음) — 0 이어야 함
     for name,hd,gd in (('train',a.train,None),('replica',os.path.join(a.replica,'html'),os.path.join(a.replica,'render'))):
         for stem,fields,boxes,cls in scan(hd,gd,a.limit if name=='train' else None):
             dens[name].append(sum(1 for c in cls if c in CLASSES))
             for e,b,c in zip(fields,boxes,cls):
                 share[name][c]+=1
+                if name=='train' and e['f'] in ('radio','checkbox') and e['intable'] and not e['cls'] and not e['text'] and not has_border(e) and not has_ul(e): invis[name]+=1
                 if c in CLASSES: grids[name][(c,bucket(b['w'],WB),bucket(b['h'],HB),'표' if e['intable'] else '글줄')]+=1
             if outf: outf.write(json.dumps(dict(page=stem,cls=cls,types=[e['f'] for e in fields]),ensure_ascii=False)+'\n')
     for name in ('train','replica'):
         tot=sum(share[name].values()); print(f"\n== {name}: 필드 {tot} · 페이지 {len(dens[name])} · 페이지당 중앙값 {sorted(dens[name])[len(dens[name])//2] if dens[name] else 0}")
         print('  '+' · '.join(f"{c} {100*share[name][c]/tot:.1f}%" for c in CLASSES+['word','area'] if share[name][c]))
+        if name=='train': print(f"  보이지 않는 표 안 선택 박스: {invis[name]}" + ("  ← 0 이어야 함 (PLAN 9.4 #1)" if invis[name] else ""))
     if a.coverage:
         print(f"\n== 커버리지 격자: 실서식에 있는데 학습에 {a.min}개 미만인 칸 (클래스, 폭, 높이, 문맥 : 실서식 / 학습)")
         rows=[(k, grids['replica'][k], grids['train'][k]) for k in grids['replica'] if grids['train'][k]<a.min]

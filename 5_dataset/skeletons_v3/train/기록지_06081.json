@@ -1,0 +1,1 @@
+{"id": "기록지_06081", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "num_unit"}, {"block": "격자", "card": "sig_grid", "rows": 12, "cols": 2}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [{"target": 3, "kind": "pf_filled"}], "decoys": [], "seed": 1298159346}

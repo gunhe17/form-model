@@ -1,0 +1,1 @@
+{"id": "대장명부_00963", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "date_cell", "rows": 2, "cols": 6}, {"block": "격자", "card": "grid_diag", "rows": 5, "cols": 6}], "prefill": [], "decoys": ["(단위:) 캡션", "인쇄 상수 셀"], "seed": 15392769}

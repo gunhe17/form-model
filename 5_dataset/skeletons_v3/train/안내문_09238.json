@@ -1,0 +1,1 @@
+{"id": "안내문_09238", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "text_ul"}], "prefill": [{"target": 1, "kind": "pf_year20"}, {"target": 3, "kind": "pf_sample"}], "decoys": [], "seed": 905758640}

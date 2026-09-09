@@ -1,0 +1,1 @@
+{"id": "계획서_17238", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "ul_lines"}, {"block": "격자", "card": "grid_diag", "rows": 6, "cols": 5}, {"block": "금액", "card": "paren_unit"}], "prefill": [], "decoys": ["처리절차 플로차트", "인쇄 수신처 열거", "점선 절취선"], "seed": 2098124033}

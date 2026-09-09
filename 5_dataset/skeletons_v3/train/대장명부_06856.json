@@ -1,0 +1,1 @@
+{"id": "대장명부_06856", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "date_cell", "rows": 6, "cols": 5}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 188369480}

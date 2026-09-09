@@ -1,0 +1,1 @@
+{"id": "안내문_07079", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "고지표", "card": "text_cell"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 21779543}

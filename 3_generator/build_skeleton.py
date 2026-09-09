@@ -17,7 +17,7 @@ CARDS = {  # P1 재가중: cell 계열↓ / gap·marker·comb·underline·placeh
  "인적표":{"text_cell":12,"cell_sublabel":3,"dot_box":2,"split_hyphen":8,"comb_slot":6,
           "ph_cell":4,"em_cell":2,"text_suffix":5,"mix_cell":6,"img_cell":6,"num_unit":7,
           "date_split":6,"date_cell":4,"ph_multi":5,"radio_word":3,"ph_pict":4,"dot_split":2,"inset_label":2,
-          "ph_lines":6,"gp_cell":6,"ul_cell":5,"sig_cell":8,"comb_jumin":6,"dbx_cell":3,"inset_label_full":4},
+          "ph_lines":6,"gp_cell":6,"ul_cell":5,"sig_cell":8,"comb_jumin":6,"dbx_cell":3,"inset_label_full":4,"inline_pairs":8},   # v3 inline_pairs
  "선택군":{"cb_row":22,"cb_wrap":10,"cb_col":8,"cb_grid":8,"cb_bracket":10,"radio_yn":10,
           "radio_word":3,"radio_paren":5,"radio_circled":5,"cb_sub":5,"cb_dep":8,
           "cb_inline_parent":5,"cb_parent":5,"cb_prose":4,"header_opts":1},
@@ -26,7 +26,7 @@ CARDS = {  # P1 재가중: cell 계열↓ / gap·marker·comb·underline·placeh
         "radio_grid":3,"cal_grid":2,"date_slash":4,"scale_anchor":5,"scale_words":4,"header_opts":2,
         "stub_input":3,"num_denom":2,"photo_grid":3,"sig_grid":3,"pf_grid":3},
  "금액":{"num_unit":10,"num_both":7,"num_bracket":4,"paren_unit":5,"num_affix":3},
- "날짜줄":{"date_split":10,"date_inline":6,"date_dots":5,"date_range":6,"pf_year20":8,"comb_date":5},
+ "날짜줄":{"date_split":10,"date_inline":6,"date_dots":5,"date_range":6,"pf_year20":8,"comb_date":5,"date_tight":7},   # v3 date_tight
  "시각":{"time_split":5,"time_cell":4},
  "서명줄":{"sig_phrase":12,"sig_name":6,"sig_ul":7,"sig_stamp":5,"sig_stamp_paren":5,"sig_bold":2,"stamp_box":3},
  "수신줄":{"text_recipient":8},
@@ -38,7 +38,7 @@ CARDS = {  # P1 재가중: cell 계열↓ / gap·marker·comb·underline·placeh
  "사진":{"img_cell":6,"img_card":3,"img_circle":3},
 }
 DECOY = ["처리절차 플로차트","인쇄 수신처 열거","점선 절취선","(단위:) 캡션","인쇄 상수 셀"]  # 렌더 구현 5종만(골격↔렌더 일치)
-PF = ["pf_year20","pf_example","pf_sample","pf_filled","pf_mask","pf_note","pf_label","pf_italic"]
+PF = ["pf_year20","pf_example","pf_sample","pf_filled","pf_mask","pf_note","pf_label","pf_italic","pf_circle"]   # v3 pf_circle
 
 # ── 유형별 블록 문법: (블록클래스, 최소, 최대) ───────────────────────
 GRAMMAR = {

@@ -1,0 +1,1 @@
+{"id": "기록지_03292", "type": "기록지", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "sig_cell"}, {"block": "격자", "card": "cal_grid", "rows": 5, "cols": 7}, {"block": "서명줄", "card": "sig_name"}], "prefill": [{"target": 0, "kind": "pf_mask"}], "decoys": ["점선 절취선"], "seed": 1515467910}

@@ -1,0 +1,1 @@
+{"id": "대장명부_02812", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "grid_diag", "rows": 5, "cols": 5}, {"block": "격자", "card": "date_cell", "rows": 5, "cols": 4}], "prefill": [{"target": 1, "kind": "pf_note"}, {"target": 2, "kind": "pf_label"}], "decoys": [], "seed": 581846233}

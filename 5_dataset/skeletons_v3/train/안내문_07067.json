@@ -1,0 +1,1 @@
+{"id": "안내문_07067", "type": "안내문", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "ul_lines"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "글머리서술", "card": "ul_lines"}], "prefill": [], "decoys": ["(단위:) 캡션", "인쇄 상수 셀"], "seed": 864076916}

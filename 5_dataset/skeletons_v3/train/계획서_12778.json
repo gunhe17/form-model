@@ -1,0 +1,1 @@
+{"id": "계획서_12778", "type": "계획서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 7}, {"block": "금액", "card": "num_both"}], "prefill": [{"target": 2, "kind": "pf_year20"}], "decoys": [], "seed": 35968916}

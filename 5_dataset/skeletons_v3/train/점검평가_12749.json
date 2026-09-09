@@ -1,0 +1,1 @@
+{"id": "점검평가_12749", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "split_hyphen"}, {"block": "격자", "card": "radio_likert", "rows": 4, "cols": 4}, {"block": "서술", "card": "ta_below"}], "prefill": [{"target": 2, "kind": "pf_year20"}], "decoys": ["인쇄 수신처 열거"], "seed": 1680980984}

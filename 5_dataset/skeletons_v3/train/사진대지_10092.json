@@ -1,0 +1,1 @@
+{"id": "사진대지_10092", "type": "사진대지", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "ph_lines"}, {"block": "격자", "card": "photo_grid", "rows": 3, "cols": 2}, {"block": "서명줄", "card": "sig_stamp"}], "prefill": [{"target": 0, "kind": "pf_note"}], "decoys": ["인쇄 상수 셀", "(단위:) 캡션"], "seed": 1993508356}

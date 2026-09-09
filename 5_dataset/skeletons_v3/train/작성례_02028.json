@@ -1,0 +1,1 @@
+{"id": "작성례_02028", "type": "작성례", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "text_suffix"}, {"block": "격자", "card": "pf_grid", "rows": 6, "cols": 5}], "prefill": [{"target": 1, "kind": "pf_mask"}], "decoys": ["(단위:) 캡션", "점선 절취선"], "seed": 1638799930}

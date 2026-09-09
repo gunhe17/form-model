@@ -1,0 +1,1 @@
+{"id": "기록지_06227", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "dot_box"}, {"block": "격자", "card": "date_cell", "rows": 4, "cols": 7}, {"block": "시각", "card": "time_split"}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [], "decoys": [], "seed": 957361753}

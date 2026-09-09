@@ -1,0 +1,1 @@
+{"id": "기록지_16051", "type": "기록지", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_lines"}, {"block": "격자", "card": "cal_grid", "rows": 6, "cols": 4}, {"block": "서명줄", "card": "sig_stamp"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 1792020622}

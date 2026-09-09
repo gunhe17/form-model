@@ -1,0 +1,1 @@
+{"id": "기록지_09221", "type": "기록지", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ul_cell"}, {"block": "격자", "card": "sig_grid", "rows": 10, "cols": 2}, {"block": "금액", "card": "num_affix"}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 570957734}

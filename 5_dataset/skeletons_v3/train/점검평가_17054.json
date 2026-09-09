@@ -1,0 +1,1 @@
+{"id": "점검평가_17054", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "dbx_cell"}, {"block": "격자", "card": "num_denom", "rows": 3, "cols": 3}, {"block": "서술", "card": "ta_free"}], "prefill": [{"target": 0, "kind": "pf_label"}], "decoys": ["점선 절취선"], "seed": 1490164095}
