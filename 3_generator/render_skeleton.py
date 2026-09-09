@@ -321,6 +321,57 @@ class R:
         rows=min(b.get("rows",5),8); cols=min(b.get("cols",5),7)
         theme=rng.choice(GRID_THEMES)
         hs=(theme+[h for h in ("담당","확인","결과","점검") if h not in theme])[:cols]
+        if c=="photo_grid":   # 사진대지: 2열 × 2~3행, 사진 박스 + 촬영일 캡션 (페이지당 4~6장)
+            nr=rng.randint(2,3); pw=rng.randint(260,380); ph=rng.randint(180,300)
+            named=rng.random()<0.5; body=""; k=0
+            for _r in range(nr):
+                ps=""; cs=""
+                for _ in range(2):
+                    k+=1
+                    lab="현장 사진 "+str(k) if named else "사 진"
+                    ps+=(f'<td class="vl" style="height:{ph+12}px"><span data-f="image" style="display:inline-block;'
+                         f'width:{pw}px;height:{ph}px;border:1px solid #000;line-height:{ph}px;color:#555">{lab}</span></td>')
+                    cs+=f'<td class="vl note">{ROW("사진 "+str(k)+" · 촬영일 :",GP("date",60),j="c")}</td>'
+                body+=f"<tr>{ps}</tr><tr>{cs}</tr>"
+            return f"<table>{body}</table>"
+        if c=="sig_grid":   # 참석자 서명부: 행마다 서명 문구 (표 안 소형 signature)
+            n=rng.randint(6,14); comb4=rng.random()<0.35
+            cw=["7%","20%","31%","22%","20%"]
+            hs2=["연번","성명","소속(기관)",
+                 "연락처"+('<br><span class="note">(뒤 4자리)</span>' if comb4 else ""),"서명"]
+            sm=rng.random()   # 서명 열 규약은 표 단위 (실서식은 한 장에 한 형태)
+            def sig_td():
+                if sm<0.30: return f'<td class="vl">{CG("signature")}</td>'
+                txt,fs,sw,sh=(("(인)",11,rng.randint(24,30),rng.randint(18,22)) if sm<0.62 else
+                              ("(서명)",12,rng.randint(40,56),rng.randint(18,26)) if sm<0.88 else
+                              ("(서명 또는 인)",11,rng.randint(84,116),rng.randint(18,26)))
+                return (f'<td class="vl"><span data-f="signature" style="display:inline-block;width:{sw}px;'
+                        f'height:{sh}px;line-height:{sh}px;font-size:{fs}px;font-family:NanumDotum;'
+                        f'white-space:nowrap;overflow:hidden">{txt}</span></td>')
+            body=""
+            for i in range(n):
+                h=rng.randint(34,48)
+                tel=(ROW(*[CBX("phone")]*4,j="c",style="gap:2px") if comb4 else GP("phone",rng.randint(90,140)))
+                body+=(f'<tr style="height:{h}px"><td class="vl note">{i+1}</td>'
+                       f'{TDC("text",h)}{TDC("text",h)}'
+                       f'<td class="vl">{tel}</td>{sig_td()}</tr>')
+            cg2="<colgroup>"+"".join(f'<col style="width:{w}">' for w in cw)+"</colgroup>"
+            return f'<table>{cg2}<tr>'+"".join(f"<th>{x}</th>" for x in hs2)+f"</tr>{body}</table>"
+        if c=="pf_grid":   # 작성례 표: 셀마다 마스킹된 예시값이 회색 소자로 인쇄
+            prows=rng.randint(5,8); pcols=rng.randint(4,6)
+            hs=(rng.choice(GRID_THEMES)+[h for h in ("담당","확인","결과","점검") if h not in theme])[:pcols]
+            EX={"number":["00","0","12","3","00"],"date":["20○○.○○.○○","20○○-○○-○○","○○.○○.○○"],
+                "phone":["010-○○○○-○○○○","○○○-○○○-○○○○"],"time":["○○:○○~○○:○○","09:00~10:00"],
+                "text":["○○○","홍길동","○○기관","○○동 ○○길","예) ○○○","○○○ 외 ○명"]}
+            hr=[rng.choice([30,34,41,48]) for _ in range(prows)]
+            def cf(r,cn):
+                t=HEADER_TYPE.get(hs[cn],"text")
+                v=str(r+1) if hs[cn] in ("연번","순번") else rng.choice(EX[t])
+                fs=13 if len(v)<=8 else 11
+                return (f'<td class="vl" style="height:{hr[r]}px"><span data-f="{t}" class="cg" '
+                        f'style="line-height:{_T("cg_h",26)}px"><span class="note" '
+                        f'style="font-size:{fs}px;color:#666">{v}</span></span></td>')
+            return f'<p class="note" style="margin-bottom:3px">〈작성례〉</p>'+grid(rng,prows,pcols,hs,cf)
         if c=="radio_likert":
             hs=["문 항","매우만족","만족","보통","불만족","매우불만족"]; cols=6
             QS=["서비스 전반에 만족하십니까?","제공 인력은 친절하였습니까?","서비스 시간은 적절하였습니까?","재이용 의향이 있으십니까?"]
@@ -497,6 +548,20 @@ class R:
         if c=="notice_band":
             return ('<div style="background:#DDD;font-family:NanumDotum;font-weight:700;text-align:center;padding:5px 0;border-top:2px solid #000">유의사항</div>'
                     f'<div class="note" style="padding:10px 16px;border-bottom:1px solid #000">1. {rng.choice(["본 서식은 사실대로 기재하여야 하며, 허위 기재 시 지원이 제한될 수 있습니다.","기재 내용이 변동된 경우 지체 없이 신고하여야 합니다."])}<br>2. {rng.choice(["담당 공무원 확인에 동의하지 않는 경우 해당 서류를 제출하여야 합니다.","문의는 관할 시·군·구 또는 읍·면·동 주민센터로 하시기 바랍니다."])}</div>')
+        if c=="ul_lines":   # 진술·확약 문장: 글줄 문맥 문장마다 밑줄 빈칸 1~3개
+            U=lambda t,a,b2: UL(t,rng.randint(a,b2))
+            SENT=[lambda: f'본인은 {U("text",120,260)} 에 거주하는 {U("text",70,120)} 로서 아래 사항이 사실과 다름없음을 확인합니다.',
+             lambda: f'20{U("date",60,90)} 년 {U("date",60,90)} 월 {U("date",60,90)} 일 {U("text",120,220)} 에서 발생한 사안에 대하여 다음과 같이 진술합니다.',
+             lambda: f'본인은 {U("text",90,160)} 사업의 제공인력으로서 관계 법령과 업무상 비밀유지 의무를 준수할 것을 확약합니다.',
+             lambda: f'통지는 연락처 {U("phone",120,200)} 로 받기를 원하며, 변동이 있는 경우 지체 없이 신고하겠습니다.',
+             lambda: f'위 진술이 사실과 다를 경우 {U("text",100,180)} 에 따른 어떠한 처분도 감수하겠습니다.',
+             lambda: f'본인은 총 {U("number",60,90)} 회, {U("number",60,90)} 시간의 교육을 이수하였음을 확인합니다.',
+             lambda: f'제출 서류 중 {U("text",140,260)} 항목은 {U("date",90,150)} 을(를) 기준으로 작성하였습니다.',
+             lambda: f'상기 본인 {U("text",90,150)} 은(는) {U("text",150,260)} 에 관하여 위와 같이 진술합니다.']
+            rng.shuffle(SENT)
+            head=rng.choice(["진 술 내 용","확 약 사 항","확인 사항"])
+            lines="".join(f'<p class="ln" style="margin:6px 0">{i+1}. {s()}</p>' for i,s in enumerate(SENT[:rng.randint(3,6)]))
+            return f'<p class="ln"><b>{head}</b></p>{lines}'
         m={"text_colon":ROW(f"{lb} :",GP("text",180),style="margin:6px 0"),
            "text_ul":ROW(f"{lb} :",UL("text",120),",",UL("text",120),style="margin:6px 0"),
            "text_paren":ROW(f"({lb} :",GP("text",100),")",style="margin:6px 0;gap:2px"),
