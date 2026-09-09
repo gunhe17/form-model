@@ -36,13 +36,16 @@ ALT_LABEL = {"text":["성명","보호자 성명","대상자 성명","기관명",
  "date":["생년월일","신청일","등록일"],"number":["나이","연령","만 나이"],"radio":["성별","장애 유무","동거 여부","수급 여부"]}
 RADIO_PAIR = {"성별":("여","남"),"장애 유무":("유","무"),"동거 여부":("유","무"),"수급 여부":("유","무")}
 CARD_TYPE = {"ph_cell":"phone","ph_multi":"phone","ph_pict":"phone","em_cell":"email",
- "date_cell":"date","date_split":"date","num_unit":"number","radio_word":"radio"}
+ "date_cell":"date","date_split":"date","num_unit":"number","radio_word":"radio",
+ "ph_lines":"phone","ul_cell":"phone","sig_cell":"text","gp_cell":"text"}
 CARD_COVERS = {"dot_split":{"연락처","전자우편","전화번호"},"ph_multi":{"전화번호","연락처","휴대전화"},
+ "ph_lines":{"전화번호","연락처","휴대전화"},"ul_cell":{"전화번호","연락처","휴대전화"},
  "mix_cell":{"주소","전화번호","연락처"},"ph_pict":{"문의처","전화번호","연락처"}}
 CARD_LABEL = {"ph_cell":"연락처","em_cell":"전자우편","date_cell":"생년월일","date_split":"생년월일",
  "num_unit":"나이","radio_word":"성별","split_hyphen":"주민등록번호","comb_slot":"우편번호",
  "cell_sublabel":"성명","mix_cell":"주소","text_suffix":"관계","ph_multi":"전화번호",
- "ph_pict":"문의처","dot_box":"성명","dot_split":"연락처","text_cell":"성명","img_cell":"성명"}
+ "ph_pict":"문의처","dot_box":"성명","dot_split":"연락처","text_cell":"성명","img_cell":"성명",
+ "ph_lines":"연락처","gp_cell":"접수번호","ul_cell":"전화번호","sig_cell":"성명"}
 HEADER_TYPE = {"연번":"number","순번":"number","금액":"number","단가":"number","횟수":"number",
  "합계":"number","계":"number","신규":"number","연속":"number","종결":"number","교육시간":"number",
  "활동시간":"time","일자":"date","생년월일":"date","신청일":"date","선정일":"date","연락처":"phone"}
@@ -61,6 +64,10 @@ SLOT = lambda t="date",txt="",w=None: (f'<span data-f="{t}" style="display:inlin
 GP = lambda t,w=64: f'<span data-f="{t}" class="gp" style="width:{w}px"></span>'
 CG = lambda t: f'<span data-f="{t}" class="cg"></span>'  # 셀 핏 입력: 셀 전폭-일정 여백
 CGF = lambda t: f'<span data-f="{t}" class="cgf"></span>'  # 셀 채움 입력: 행 높이 무관 3px 균일 인셋
+def TDC(t,h,cls="vl",extra=""):
+    """행 높이 h 인 입력 셀 td — 높은 행(≥41)은 td 를 채우는 cgf, 낮은 행은 기존 cg"""
+    if h>=41: return f'<td class="{cls} fillc" style="height:{h}px{extra}">{CGF(t)}</td>'
+    return f'<td class="{cls}" style="height:{h}px{extra}">{CG(t)}</td>'
 MKC = lambda kind="checkbox": (f'<span data-f="{kind}" style="display:inline-block;width:{_T("mk",22)}px;height:{_T("mk",22)}px;vertical-align:middle"></span>')
 UL = lambda t,w=None: f'<span data-f="{t}" class="ul" style="width:{w or _T("ul_w",90)}px"></span>'
 def MK(ch, kind="checkbox"):   # 마커 v1.6: 글리프 박스 고정 + kind(택일=radio)
@@ -83,7 +90,7 @@ def ROW(*xs, j="l", style=""):
     st=f' style="{style}"' if style else ""
     return f'<div class="{cls}"{st}>'+"".join(str(x) for x in xs)+"</div>"
 
-def kv_table(rows):   # [(라벨,셀html)...] 2열×n
+def kv_table(rows, hf=None):   # [(라벨,셀html)...] 2열×n, hf() = 행 높이
     out=["<table>"]
     for i in range(0,len(rows),2):
         pair=rows[i:i+2]; tr=""
@@ -92,7 +99,7 @@ def kv_table(rows):   # [(라벨,셀html)...] 2열×n
             tr+=f'<th style="width:118px">{lb}</th><td class="{tdc}">{cell}</td>'
         if len(pair)==1:
             tr=tr.replace('<td class=','<td colspan="3" class=',1)
-        out.append(f"<tr>{tr}</tr>")
+        out.append(f'<tr style="height:{hf()}px">{tr}</tr>' if hf else f"<tr>{tr}</tr>")
     out.append("</table>"); return "".join(out)
 
 COLW = {"연번":0.5,"순번":0.5,"구분":0.8,"성명":0.9,"주소":2.2,"비고":0.8,"계":0.6,"확인":0.6,
@@ -117,7 +124,7 @@ class R:
         self.theme={"mk":r.choice([18,20,22,24,26]),"slot_w":r.choice([26,30,34,40,46]),
             "slot_h":r.choice([20,22,24,26,28]),"cell_h":r.choice([30,32,34,38,44]),
             "lbw":r.choice([92,105,118,132,150]),"ul_w":r.choice([60,90,120,160]),
-            "ul_th":r.choice([1.0,1.2,1.5,1.8]),"cg_h":r.choice([22,26,30]),
+            "ul_th":r.choice([1.0,1.2,1.5,1.8]),"cg_h":r.choice([22,26,30]),"row_h":r.choice([34,41,48,56,72]),
             "inset":r.choice([2,3,4,6]),"shade":r.choice(["#E2E2E2","#EDEDED","#D8D8D8","#F2F2F2","#FFFFFF","#FFFFFF"]),
             "outer":r.choice([1,1,1.6,2.2]),"shade2":"#F4F4F4","title_ls":r.choice([0.1,0.18,0.28,0.38]),"title_fs":r.choice([30,32,34]),
             "sig_off":r.choice([12,24,40]),"cell_pad":r.choice(["3px 7px","2px 5px","4px 9px"]),"col_contrast":r.choice([0,0,0.6,1.0]),"open":r.random()<0.22}
@@ -130,6 +137,12 @@ class R:
         """블록 진입 시 1회 호출 — mixed 문서만 블록 간 변경 허용, 그룹 내부 불변"""
         if self.g=="mixed": return self.rng.choice(["□","[&nbsp;&nbsp;]"])
         return self.doc_marker
+    def rowh(self):
+        """행 높이 축: 문서 테마값 기준 + 행마다 변주(가끔 2배 높이)"""
+        h=_T("row_h",34); r=self.rng.random()
+        if r<0.18: h=int(h*self.rng.choice([1.8,2.2]))
+        elif r<0.45: h=self.rng.choice([34,41,48,56,72])
+        return h
     def optset(self,n):
         fits=[p for p in OPTSETS if len(p[1])>=n and p[0] not in self.used_labels]
         if not fits: fits=[p for p in OPTSETS if p[0] not in self.used_labels] or OPTSETS
@@ -174,6 +187,15 @@ class R:
          "ph_pict":ROW("(☎",GP("phone",80),")",j="c",style="gap:2px"),
          "dot_box":f'<span data-f="text" class="cgf" style="border:1.4px dashed #555"></span>',
 
+         "ph_lines":ROW("집 :",GP("phone",rng.randint(120,200)))+ROW("휴대전화 :",GP("phone",rng.randint(120,200))),
+         "gp_cell":(ROW('<span class="note" style="flex:none">(전화번호 :</span>','<span data-f="phone" class="gp" style="flex:1"></span>','<span class="note" style="flex:none">)</span>')
+            if rng.random()<0.5 else
+            ROW('<span class="note" style="flex:none">'+rng.choice(["접수번호","관리번호","정리번호"])+'</span>','<span data-f="number" class="gp" style="flex:1"></span>')),
+         "ul_cell":((ROW("자택:",UL("phone",rng.randint(90,140)))+ROW("휴대:",UL("phone",rng.randint(90,140))))
+            if rng.random()<0.5 else ROW(UL("phone",rng.randint(90,200)),j="c")),
+         "sig_cell":ROW(GP("text",rng.randint(100,160)),
+            '<span data-f="signature" style="display:inline-block;line-height:'+rng.choice(["1","1.45"])+'">(인)</span>',j="c"),
+
          "dot_split":(ROW('<span class="note" style="font-size:11px;width:58px;flex:none;text-align:left">(전화)</span>','<span data-f="phone" class="cg" style="flex:1;margin:1px 0"></span>')
             +'<div style="border-top:1.2px dotted #555;margin:1px -4px"></div>'
             +ROW('<span class="note" style="font-size:11px;width:58px;flex:none;text-align:left">(전자우편)</span>','<span data-f="email" class="cg" style="flex:1;margin:1px 0"></span>')),
@@ -196,7 +218,7 @@ class R:
         for lb,t in picks[:3]:
             rows.append((lb, ROW(WORD("여"),WORD("남"),j="c") if t=="radio" else CGF(t)))
             self.used_labels.add(lb)
-        html=kv_table(rows)
+        html=kv_table(rows, self.rowh)
         if c=="inset_label":
             items=[p for p in [("주민등록번호","number"),("외국인등록번호","text"),("주소","text"),("연락처","phone"),("전자우편","email"),("소속기관","text")] if p[0] not in self.used_labels]
             rng.shuffle(items)
@@ -262,8 +284,9 @@ class R:
         c=b["card"]
         cand=[x for x in LEX["서술라벨"] if x not in self.used_labels] or LEX["서술라벨"]
         lb=self.rng.choice(cand); self.used_labels.add(lb)
-        if c=="ta_cell": return f'<table><tr><th style="width:118px">{lb}</th><td style="height:76px"><span data-f="textarea" class="cg" style="height:68px"></span></td></tr></table>'
-        if c=="ta_below": return f'<table><tr><td class="tl lb2">{lb} <span class="note">(구체적으로 기술)</span></td></tr><tr><td style="height:64px"><span data-f="textarea" class="cg" style="height:56px"></span></td></tr></table>'
+        h=self.rowh()*2
+        if c=="ta_cell": return f'<table><tr><th style="width:118px">{lb}</th>{TDC("textarea",h,cls="")}</tr></table>'
+        if c=="ta_below": return f'<table><tr><td class="tl lb2">{lb} <span class="note">(구체적으로 기술)</span></td></tr><tr>{TDC("textarea",h,cls="")}</tr></table>'
         if c=="ta_outline": return (f'<p class="ln">□ {lb}</p>'
             f'<div class="indent1" style="display:flex;align-items:flex-start">○&nbsp;'
             f'<div data-f="textarea" style="flex:1;height:56px"></div></div>')
@@ -305,23 +328,24 @@ class R:
                         '<tr><th>보호자 서명</th><td class="thick"><span data-f="signature" class="cg"></span></td></tr></table>')
         if c=="stub_input":
             items=[("사업명","text"),("수행기관","text"),("담당자","text"),("연락처","phone"),("신청일","date"),("연번","number"),("소재지","text")]
+            hr=[self.rowh() for _ in range(rows)]
             def cf(r,cn):
                 if cn==0:
                     return f'<td class="lb">{ROW("기타(",GP("text",40),")",style="gap:2px")}</td>' if r==rows-1 else f'<td class="lb">{items[r%7][0]}</td>'
                 t="text" if r==rows-1 else items[r%7][1]
-                return f'<td><span data-f="{t}" class="cg"></span></td>'
+                return TDC(t,hr[r],cls="")
             return grid(rng,rows,min(cols,3),["구분","내용","비고"],cf)
         if c=="num_denom":
             return f'<table><tr><th style="width:118px">합 계</th><td class="vl">{GP("number",56)}/100점</td></tr></table>'
         if c=="header_opts":
             return f'<table><tr><th>서비스구분<br><span class="note">(기관내/방문)</span></th></tr>'+"".join(f'<tr><td class="vl">{ROW(WORD("기관내"),WORD("방문"),j="c")}</td></tr>' for _ in range(3))+"</table>"
         if c=="cal_grid":
-            d=[0]
+            d=[0]; ch=max(44,self.rowh()+14)
             def cf(r,cn):
                 d[0]+=1
                 num=f'<div class="note" style="font-size:11px;text-align:left;line-height:1">{d[0]}</div>' if d[0]<=31 else '<div style="height:11px"></div>'
-                inp=f'<span data-f="text" class="cg" style="height:28px"></span>' if d[0]<=31 else ''
-                return f'<td style="height:46px;vertical-align:top">{num}{inp}</td>'
+                inp='<span data-f="text" class="cgf" style="top:16px"></span>' if d[0]<=31 else ''
+                return f'<td class="fillc" style="height:{ch}px;vertical-align:top">{num}{inp}</td>'
             return grid(rng,5,7,["일","월","화","수","목","금","토"],cf)
         if c=="grid_diag":
             diag=('<th style="width:110px;background:linear-gradient(to top right,#E2E2E2 49.5%,#000 49.5%,#000 50.5%,#E2E2E2 50.5%)">'
@@ -329,17 +353,18 @@ class R:
                   '<div style="text-align:left;font-size:12px;line-height:1.1">구분</div></th>')
             hs2="".join(f"<th>{h}</th>" for h in hs[1:cols])
             rlbs=["신규","연속","종결","변경","중단","재개","이관","기타"]
+            hr=[self.rowh() for _ in range(rows)]
             body="".join('<tr>'+f'<td class="lb">{rlbs[r%8]}</td>'
-                         +"".join(f'<td class="vl"><span data-f="{HEADER_TYPE.get(hs[i+1],"text")}" class="cg"></span></td>' for i in range(cols-1))+'</tr>' for r in range(rows))
+                         +"".join(TDC(HEADER_TYPE.get(hs[i+1],"text"),hr[r]) for i in range(cols-1))+'</tr>' for r in range(rows))
             return f'<table><tr>{diag}{hs2}</tr>{body}</table>'
         # generic: 열 헤더 라벨이 입력 타입을 결정 (라벨 1:입력 1 규칙)
         if c=="num_cell": theme=GRID_THEMES[4]
         if c=="date_cell": theme=GRID_THEMES[2]
         if c in ("num_cell","date_cell"): hs=(theme+[h for h in ("담당","확인","결과","점검") if h not in theme])[:cols]
         if c not in ("num_cell","date_cell"): self.missing.add(c)
+        hr=[self.rowh() for _ in range(rows)]
         def cf(r,cn):
-            ct=HEADER_TYPE.get(hs[cn],"text")
-            return f'<td class="vl"><span data-f="{ct}" class="cg"></span></td>'
+            return TDC(HEADER_TYPE.get(hs[cn],"text"),hr[r])
         return grid(rng,rows,cols,hs,cf)
     def b_금액(self,b):
         c=b["card"]
