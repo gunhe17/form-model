@@ -61,3 +61,5 @@ recall@IoU0.5, `score.py`. 1·2차 실서식은 conf 0.25·11종(GT 999), 3차�
 3차 스타일별(1차 대비): cg 7.8→70.6, cgf 66.8→84.9, gp 59.1→76.6, opt·circ·stamp 0→100. 남은 놓침 125개는 글자 인쇄 척도 선택칸과 폭 ≤20px 밀착 빈칸(학습 0개)이 대부분 → 다음 생성기 보강(`docs/DECISIONS.md` 9절).
 
 도구: `score.py` 3축 채점 · `diag_replica.py` 놓침·유령 해부 · `diag_style.py` 스타일별 recall/치수 · `forms_aug.yaml` 2차 데이터 정의.
+
+- `diag_dump.py` — GT 단위 매칭 덤프 → 놓침 원인 귀속표 (PLAN 9절)
