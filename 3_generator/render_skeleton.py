@@ -41,6 +41,7 @@ CARD_COVERS = {"dot_split":{"연락처","전자우편","전화번호"},"ph_multi
  "mix_cell":{"주소","전화번호","연락처"},"ph_pict":{"문의처","전화번호","연락처"}}
 CARD_LABEL = {"ph_cell":"연락처","em_cell":"전자우편","date_cell":"생년월일","date_split":"생년월일",
  "num_unit":"나이","radio_word":"성별","split_hyphen":"주민등록번호","comb_slot":"우편번호",
+ "comb_jumin":"주민등록번호","comb_date":"생년월일",
  "cell_sublabel":"성명","mix_cell":"주소","text_suffix":"관계","ph_multi":"전화번호",
  "ph_pict":"문의처","dot_box":"성명","dot_split":"연락처","text_cell":"성명","img_cell":"성명"}
 HEADER_TYPE = {"연번":"number","순번":"number","금액":"number","단가":"number","횟수":"number",
@@ -63,9 +64,13 @@ CG = lambda t: f'<span data-f="{t}" class="cg"></span>'  # 셀 핏 입력: 셀 �
 CGF = lambda t: f'<span data-f="{t}" class="cgf"></span>'  # 셀 채움 입력: 행 높이 무관 3px 균일 인셋
 MKC = lambda kind="checkbox": (f'<span data-f="{kind}" style="display:inline-block;width:{_T("mk",22)}px;height:{_T("mk",22)}px;vertical-align:middle"></span>')
 UL = lambda t,w=None: f'<span data-f="{t}" class="ul" style="width:{w or _T("ul_w",90)}px"></span>'
+def CBX(t="text"):   # 낱칸(comb) 하나 — 치수·선 스타일은 문서 테마
+    w,h,st=_T("comb",(22,24,"solid"))
+    return f'<span data-f="{t}" style="display:inline-block;width:{w}px;height:{h}px;border:1px {st} #000"></span>'
+COMB_DATE=lambda: [CBX("date")]*3+["년"]+[CBX("date")]*2+["월"]+[CBX("date")]*2+["일"]
 def MK(ch, kind="checkbox"):   # 마커 v1.6: 글리프 박스 고정 + kind(택일=radio)
-    m=_T("mk",22)
-    return (f'<span data-f="{kind}" style="display:inline-flex;width:{m}px;height:{m}px;align-items:center;'
+    m=_T("mk",22); w=m+_T("mk_bw",12) if ch.startswith("[") else m   # 대괄호는 가로로 넓음
+    return (f'<span data-f="{kind}" style="display:inline-flex;width:{w}px;height:{m}px;align-items:center;'
             f'justify-content:center;vertical-align:middle;font-size:{max(12,m-7)}px;letter-spacing:normal;line-height:{m}px;position:relative;top:-2px;margin:0 3px 0 0">{ch}</span>')
 def RMK(kind="radio"):
     m=_T("mk",22)
@@ -118,6 +123,7 @@ class R:
             "slot_h":r.choice([20,22,24,26,28]),"cell_h":r.choice([30,32,34,38,44]),
             "lbw":r.choice([92,105,118,132,150]),"ul_w":r.choice([60,90,120,160]),
             "ul_th":r.choice([1.0,1.2,1.5,1.8]),"cg_h":r.choice([22,26,30]),
+            "comb":r.choice([(22,24,"solid"),(19,26,"dashed"),(26,28,"dashed"),(16,18,"solid"),(20,20,"solid")]),"mk_bw":r.choice([10,11,12,13,14]),
             "inset":r.choice([2,3,4,6]),"shade":r.choice(["#E2E2E2","#EDEDED","#D8D8D8","#F2F2F2","#FFFFFF","#FFFFFF"]),
             "outer":r.choice([1,1,1.6,2.2]),"shade2":"#F4F4F4","title_ls":r.choice([0.1,0.18,0.28,0.38]),"title_fs":r.choice([30,32,34]),
             "sig_off":r.choice([12,24,40]),"cell_pad":r.choice(["3px 7px","2px 5px","4px 9px"]),"col_contrast":r.choice([0,0,0.6,1.0]),"open":r.random()<0.22}
@@ -166,7 +172,9 @@ class R:
          "date_cell":CGF("date"),"date_split":ROW(GP("date",30),"년",GP("date",24),"월",GP("date",24),"일",j="c"),
          "num_unit":ROW("만",GP("number",40),"세",j="c"),
          "split_hyphen":ROW(GP("text",64),"–",GP("text",76),j="c"),
-         "comb_slot":ROW(*['<span data-f="text" style="display:inline-block;width:22px;height:24px;border:1px solid #000"></span>']*5,j="c",style="gap:2px"),
+         "comb_slot":ROW(*[CBX()]*5,j="c",style="gap:2px"),
+         "comb_jumin":ROW(*([CBX("number")]*6+["-"]+[CBX("number")]*7),j="c",style="gap:2px;flex-wrap:wrap;row-gap:2px"),
+         "comb_date":ROW(*COMB_DATE(),j="c",style="gap:2px;flex-wrap:wrap;row-gap:2px"),
          "cell_sublabel":ROW('<span class="note">(한글)</span>',GP("text",90),'<span class="note">(한자)</span>',GP("text",70),j="c"),
          "mix_cell":ROW('<span data-f="text" class="cg" style="flex:1;margin:1px 0"></span>','<span class="note" style="flex:none">(전화번호 :</span>','<span data-f="phone" class="gp" style="width:70px"></span>','<span class="note">)</span>'),
 
@@ -209,7 +217,9 @@ class R:
         return html
     def b_선택군(self,b):
         c=b["card"]; rng=self.rng; n=b.get("n_options",4); olb,o=self.optset(n); g=self.g
-        ch=self.marker(); M=lambda:MK(ch)
+        ch=self.marker()
+        kind="radio" if c in ("cb_row","cb_col","cb_wrap","cb_grid","cb_bracket") and rng.random()<0.5 else "checkbox"
+        M=lambda: MK(ch, kind)   # 그룹 안은 전부 같은 kind
         if c in("cb_row","cb_grid","cb_bracket","header_opts"):
             item=lambda x: f'<span style="display:inline-flex;align-items:center;gap:3px;white-space:nowrap">{M()}{x}</span>'
             inner=ROW(*[item(x) for x in o],style="gap:12px;flex-wrap:wrap;row-gap:4px")
@@ -355,6 +365,7 @@ class R:
            "date_inline":ROW(GP("date",36),"년 &nbsp;",GP("date",28),"월 &nbsp;",GP("date",28),"일",j="c"),
            "date_dots":ROW("20",GP("date",30),".",GP("date",24),".",GP("date",24),".",j="c",style="gap:2px"),
            "date_range":ROW("○ "+({"계약서":"계약기간","등록카드":"위촉기간","통지회신":"지원기간"}.get(self.sk["type"],"신청기간"))+" :",GP("date",30),"년",GP("date",24),"월",GP("date",24),"일 ~",GP("date",30),"년",GP("date",24),"월",GP("date",24),"일",style="margin:6px 0"),
+           "comb_date":ROW(*COMB_DATE(),j="c",style="margin-top:20px;gap:2px"),
            "pf_year20":ROW("20",SLOT(),"년",SLOT(),"월",SLOT(),"일",j="c",style="margin-top:20px")}
         return m.get(c) or m["date_split"]
     def b_시각(self,b):
