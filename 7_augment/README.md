@@ -53,3 +53,11 @@ nohup ./7_augment/build_pool.sh > 7_augment/build_pool.log 2>&1 &               
 ## 학습 데이터 정의
 - 1차 `8_train/yolo/forms.yaml`: clean만
 - 2차 `8_train/forms_aug.yaml`(추적 파일): 전 구분, test에 stress 포함
+
+## 3차(1단계 8종·v2) 실행
+```
+python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1 --train-dir 5_dataset/train_v2 --val-dir 5_dataset/holdout_v2
+nohup python 7_augment/render_swap.py --n 6000 --src 5_dataset/skeletons_v2/train --out 7_augment/render_swap_v2 > 7_augment/render_swap_v2.log 2>&1 &
+Y=8_train/yolo_s1 POOL=7_augment/pool_s1 RS=7_augment/render_swap_v2 S1=1 nohup ./7_augment/build_pool.sh > 7_augment/build_pool_s1.log 2>&1 &
+```
+데이터 정의 `8_train/forms_s1.yaml`. build_pool 은 `Y`(YOLO 라벨 폴더)·`POOL`·`RS`(스왑 렌더)·`S1`(1단계 라벨) 환경변수로 v1/v2 를 가른다.

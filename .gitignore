@@ -15,3 +15,5 @@ weights/
 5_dataset/train_v2/
 5_dataset/holdout_v2/
 .claude/worktrees/
+7_augment/pool_s1/
+7_augment/render_swap_v2/

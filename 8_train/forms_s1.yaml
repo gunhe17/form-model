@@ -1,0 +1,14 @@
+# 3차(1단계 8종) 학습 — v2 렌더 + 증강 풀(pool_s1). path 는 컨테이너 기준.
+path: /work
+train:
+  - 8_train/yolo_s1/images/train           # clean v2     20,000
+  - 7_augment/pool_s1/images/swap          # swap          6,000
+  - 7_augment/pool_s1/images/office        # office       20,000
+  - 7_augment/pool_s1/images/office_swap   # office_swap   6,000
+  - 7_augment/pool_s1/images/degraded      # degraded      8,000
+  - 7_augment/pool_s1/images/degraded_swap # degraded_swap 2,000
+val: 8_train/yolo_s1/images/val            # 홀드아웃 v2 995
+test:
+  - 8_train/yolo_s1/images/replica         # 실서식 복제 44 (GT 999)
+  - 7_augment/pool_s1/images/stress        # 홀드아웃 v2 열화 500
+names: {0: marker, 1: comb, 2: cell, 3: gap, 4: underline, 5: placeholder, 6: signature, 7: photo}

@@ -1,6 +1,7 @@
 """5_dataset GT(픽셀 xywh + 타입) → Ultralytics YOLO 형식.
 사용: ./venv/bin/python 8_train/to_yolo.py [--out 8_train/yolo]                 # 의미 11종
       ./venv/bin/python 8_train/to_yolo.py --stage1 [--out 8_train/yolo_s1]     # 1단계 생김새 8종 (word·area 제외)
+      ... --train-dir 5_dataset/train_v2 --val-dir 5_dataset/holdout_v2            # v2 렌더 사용 시
 산출: {out}/images/{train,val,replica}/*.png (심볼릭 링크) + labels/.../*.txt + forms.yaml
 """
 import argparse, glob, json, os, struct, sys
@@ -42,7 +43,9 @@ def convert(split, src, out, stage1=False):
     return n, bad
 
 if __name__ == "__main__":
-    ap = argparse.ArgumentParser(); ap.add_argument("--out"); ap.add_argument("--stage1", action="store_true"); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--out"); ap.add_argument("--stage1", action="store_true")
+    ap.add_argument("--train-dir", default=SPLITS["train"]); ap.add_argument("--val-dir", default=SPLITS["val"]); a = ap.parse_args()
+    SPLITS["train"], SPLITS["val"] = a.train_dir, a.val_dir
     out = a.out or ("8_train/yolo_s1" if a.stage1 else "8_train/yolo")
     names = __import__("label_stage1").CLASSES if a.stage1 else TYPES
     for s, src in SPLITS.items():
