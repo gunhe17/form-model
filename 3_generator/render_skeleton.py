@@ -42,7 +42,7 @@ CARD_COVERS = {"dot_split":{"연락처","전자우편","전화번호"},"ph_multi
 CARD_LABEL = {"ph_cell":"연락처","em_cell":"전자우편","date_cell":"생년월일","date_split":"생년월일",
  "num_unit":"나이","radio_word":"성별","split_hyphen":"주민등록번호","comb_slot":"우편번호",
  "cell_sublabel":"성명","mix_cell":"주소","text_suffix":"관계","ph_multi":"전화번호",
- "ph_pict":"문의처","dot_box":"성명","dot_split":"연락처","text_cell":"성명","img_cell":"성명"}
+ "ph_pict":"문의처","dot_box":"성명","dbx_cell":"계좌번호","dot_split":"연락처","text_cell":"성명","img_cell":"성명"}
 HEADER_TYPE = {"연번":"number","순번":"number","금액":"number","단가":"number","횟수":"number",
  "합계":"number","계":"number","신규":"number","연속":"number","종결":"number","교육시간":"number",
  "활동시간":"time","일자":"date","생년월일":"date","신청일":"date","선정일":"date","연락처":"phone"}
@@ -62,6 +62,8 @@ GP = lambda t,w=64: f'<span data-f="{t}" class="gp" style="width:{w}px"></span>'
 CG = lambda t: f'<span data-f="{t}" class="cg"></span>'  # 셀 핏 입력: 셀 전폭-일정 여백
 CGF = lambda t: f'<span data-f="{t}" class="cgf"></span>'  # 셀 채움 입력: 행 높이 무관 3px 균일 인셋
 MKC = lambda kind="checkbox": (f'<span data-f="{kind}" style="display:inline-block;width:{_T("mk",22)}px;height:{_T("mk",22)}px;vertical-align:middle"></span>')
+DBX = lambda t,w: (f'<span data-f="{t}" class="dbx" style="display:inline-block;border:1.4px dashed #000;'
+    f'height:{_T("cg_h",26)}px;width:{w}px;vertical-align:middle"></span>')  # 실서식 .dbx 점선 인라인 박스
 UL = lambda t,w=None: f'<span data-f="{t}" class="ul" style="width:{w or _T("ul_w",90)}px"></span>'
 def MK(ch, kind="checkbox"):   # 마커 v1.6: 글리프 박스 고정 + kind(택일=radio)
     m=_T("mk",22)
@@ -106,7 +108,8 @@ def grid(rng, rows, cols, headers, cellfn):
         cg="<colgroup>"+"".join(f'<col style="width:{max(3,round(w/tot*100,1))}%">' for w in ws)+"</colgroup>"
     else: cg=""
     body="".join("<tr>"+"".join(cellfn(r,c) for c in range(cols))+"</tr>" for r in range(rows))
-    return f"<table>{cg}<tr>{hs}</tr>{body}</table>"
+    sep=' class="hdsep"' if _T("open",False) and rng.random()<0.6 else ""   # 무외곽 표: 헤더 아래 2px (실서식 5_1호)
+    return f"<table>{cg}<tr{sep}>{hs}</tr>{body}</table>"
 
 class R:
     def __init__(self, sk):
@@ -120,7 +123,7 @@ class R:
             "ul_th":r.choice([1.0,1.2,1.5,1.8]),"cg_h":r.choice([22,26,30]),
             "inset":r.choice([2,3,4,6]),"shade":r.choice(["#E2E2E2","#EDEDED","#D8D8D8","#F2F2F2","#FFFFFF","#FFFFFF"]),
             "outer":r.choice([1,1,1.6,2.2]),"shade2":"#F4F4F4","title_ls":r.choice([0.1,0.18,0.28,0.38]),"title_fs":r.choice([30,32,34]),
-            "sig_off":r.choice([12,24,40]),"cell_pad":r.choice(["3px 7px","2px 5px","4px 9px"]),"col_contrast":r.choice([0,0,0.6,1.0]),"open":r.random()<0.22}
+            "sig_off":r.choice([12,24,40]),"cell_pad":r.choice(["3px 7px","2px 5px","4px 9px"]),"col_contrast":r.choice([0,0,0.6,1.0]),"open":r.random()<0.35}
         if self.theme["shade"]=="#FFFFFF": self.theme["shade2"]="#FFFFFF"
         global THEME; THEME=self.theme
         self.doc_marker = self.rng.choice(["□","[&nbsp;&nbsp;]"])   # 문서 단위 규약
@@ -192,6 +195,9 @@ class R:
         if c=="radio_word":
             a,b2=RADIO_PAIR.get(lead,("여","남"))
             cells["radio_word"]=ROW(WORD(a),WORD(b2),j="c")
+        if c=="dbx_cell":   # 점선 인라인 박스 1~2개(하이픈 분할)
+            cells[c]=(ROW(DBX("number",rng.randint(60,200)),j="c") if rng.random()<0.5
+                      else ROW(DBX("number",rng.randint(60,110)),"–",DBX("text",rng.randint(60,110)),j="c",style="gap:4px"))
         rows.append((first, cells.get(c, CGF("text"))))
         for lb,t in picks[:3]:
             rows.append((lb, ROW(WORD("여"),WORD("남"),j="c") if t=="radio" else CGF(t)))
@@ -204,6 +210,15 @@ class R:
             tds2="".join(f'<td class="tl fillc" style="height:56px;vertical-align:top">{lb}<span data-f="{t}" class="cgf" style="top:26px"></span></td>' for lb,t in items[2:4])
             for lb,_ in items: self.used_labels.add(lb)
             return f'<table><tr>{tds}</tr><tr>{tds2}</tr></table>'
+        if c=="inset_label_full":   # 라벨 상단 인쇄 + 셀 잔여 전폭 입력 (실서식 2편 13호)
+            items=[p for p in picks if p[1]!="radio"]+[("주소","text"),("소속기관","text"),("전자우편","email"),("연락처","phone")]
+            top=rng.choice([22,24,26]); hh=top+rng.choice([28,34,42])
+            tds=[f'<td class="tl fillc" style="height:{hh}px;vertical-align:top">{lb}<span data-f="{t}" class="cgf" style="top:{top}px"></span></td>'
+                 for lb,t in items[:4]]
+            for lb,_t in items[:4]: self.used_labels.add(lb)
+            if rng.random()<0.5:
+                return f'<table><tr>{"".join(tds[:2])}</tr><tr>{"".join(tds[2:])}</tr></table>'
+            return f'<table><tr>{"".join(tds)}</tr></table>'
         if c=="img_cell":
             html=html.replace("</table>",'<tr><td class="vl" rowspan="1" data-f="image" style="width:110px;height:120px">사 진<br><span class="note">(3.5×4.5cm)</span></td><td colspan="3" class="tl fillc" style="vertical-align:top"><span class="note">특이사항</span><span data-f="textarea" class="cgf" style="top:24px"></span></td></tr></table>')
         return html
@@ -280,6 +295,19 @@ class R:
                 if cn==0: return f'<td class="tl">{r+1}. {QS[r%4]}</td>'
                 return f'<td class="vl">{MKC("radio")}</td>'
             return grid(rng,min(rows,4),cols,hs,cf)
+        if c=="scale_words":   # 글자 인쇄 셀 자체가 선택지 (실서식 1편 17호·16-1호)
+            hs=["문 항","매우만족","만족","보통","불만족","매우불만족"]; cols=6
+            QS=["서비스 전반에 만족하십니까?","제공 인력은 친절하였습니까?","서비스 시간은 적절하였습니까?",
+                "재이용 의향이 있으십니까?","서비스 내용을 충분히 안내받으셨습니까?","불편사항이 신속히 처리되었습니까?"]
+            circled=rng.random()<0.5
+            def cf(r,cn):
+                if cn==0: return f'<td class="tl" style="font-size:14.5px">{r+1}. {QS[r%len(QS)]}</td>'
+                if circled:
+                    op=(f'<span data-f="radio" style="display:inline-flex;width:22px;height:22px;align-items:center;'
+                        f'justify-content:center;font-size:15px;line-height:22px;vertical-align:middle">{"①②③④⑤"[cn-1]}</span>')
+                    return f'<td class="vl" style="font-size:13.5px;line-height:1.3">{op}{hs[cn]}</td>'
+                return f'<td class="vl" style="font-size:13.5px;line-height:1.3">{hs[cn]}<br>{MKC("radio")}</td>'
+            return grid(rng,rng.randint(4,6),cols,hs,cf)
         if c=="scale_anchor":
             m=_T("mk",22)+2
             cells="".join(f'<td class="vl" style="width:34px"><span data-f="radio" style="display:inline-flex;width:{m}px;height:{m}px;align-items:center;justify-content:center">{"①②③④⑤⑥⑦⑧⑨⑩"[i]}</span></td>' for i in range(10))
@@ -365,10 +393,10 @@ class R:
         return ROW(SLOT("time"),"시",SLOT("time"),"분",j="c")
     def b_서명줄(self,b):  # v1.3: 이름/서명 분리 + 직인은 발신형 전용 + ○○ 발신명의 비입력
         c=b["card"]
-        if c in ("sig_stamp","sig_stamp_paren") and self.sk["type"] not in ("증서","통지회신","공고문"):
+        if c in ("sig_stamp","sig_stamp_paren","stamp_box") and self.sk["type"] not in ("증서","통지회신","공고문"):
             c="sig_phrase"
-        elif self.sk["type"] in ("증서","통지회신","공고문") and c not in ("sig_stamp","sig_stamp_paren"):
-            c=self.rng.choice(["sig_stamp","sig_stamp_paren"])
+        elif self.sk["type"] in ("증서","통지회신","공고문") and c not in ("sig_stamp","sig_stamp_paren","stamp_box"):
+            c=self.rng.choice(["sig_stamp","sig_stamp_paren","stamp_box"])
         if c=="sig_bold":
             if getattr(self,"sig_bold_used",False): c="sig_phrase"
             else:
@@ -383,6 +411,13 @@ class R:
         if c=="sig_name": return f'<p class="sigline">{who} 성명 : {GP("text",110)} <span data-f="signature" style="vertical-align:middle;display:inline-block">(인)</span></p>'
         if c=="sig_ul":   return f'<p class="sigline">{UL("text",100)}<span data-f="signature" style="vertical-align:middle;display:inline-block">(인)</span></p>'
         OO='<span data-f="text" style="display:inline-block;width:44px;text-align:center">○○</span>'
+        if c=="stamp_box":   # 도장칸 (실서식 2편 14호)
+            z=self.rng.randint(90,120); col=self.rng.choice(["#000","#000","#B02B25"])
+            ch=self.rng.choice(["인","직인",""])
+            box=(f'<span data-f="signature" style="display:inline-block;width:{z}px;height:{z}px;'
+                 f'border:1.2px solid {col};color:{col};text-align:center;line-height:{z-3}px;'
+                 f'font-family:NanumDotum;font-size:{16 if len(ch)>1 else 20}px">{ch}</span>')
+            return f'<p class="sigline">{OO} 시장·군수·구청장 &nbsp;{box}</p>'
         if c=="sig_stamp": return f'<p class="sigline">{OO} 시장·군수·구청장 <span data-f="signature" style="vertical-align:middle;display:inline-block;border:2.2px solid #B02B25;color:#B02B25;padding:6px 10px">직인</span></p>'
         if c=="sig_stamp_paren": return f'<p class="sigline">{OO} 시장·군수·구청장 &nbsp; <span data-f="signature" style="vertical-align:middle;display:inline-block">(직인)</span></p>'
         return f'<p class="sigline">{who} : {GP("text",110)}<span data-f="signature" style="vertical-align:middle;display:inline-block">(서명 또는 인)</span></p>'
@@ -435,6 +470,10 @@ class R:
             f'<div data-f="textarea" style="flex:1;height:40px"></div></div>')}
         return m.get(c) or m["ta_outline"]
     def b_사진(self,b):
+        if b["card"]=="img_circle":   # 원형 사진·로고 칸 (실서식 1편 12호 신분증)
+            d=self.rng.choice([26,32,40,48,60]); n=self.rng.randint(2,3)
+            circ=f'<span data-f="image" style="display:inline-block;width:{d}px;height:{d}px;border:1.4px solid #000;border-radius:50%"></span>'
+            return f'<div style="display:flex;justify-content:center;gap:34px;margin:14px 0">{circ*n}</div>'
         if b["card"]=="img_card":
             return '<div style="border:2px solid #000;padding:20px;text-align:center"><div data-f="image" style="border:1.4px solid #000;width:96px;height:118px;margin:0 auto;line-height:118px">사 진</div></div>'
         return '<table><tr><td class="vl" data-f="image" style="width:110px;height:130px">사 진<br><span class="note">(3.5×4.5cm)</span></td></tr></table>'

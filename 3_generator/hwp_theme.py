@@ -31,12 +31,13 @@ h1.doctitle .tight{{letter-spacing:0}}
 table{{border-collapse:collapse;width:100%;table-layout:fixed;margin:0;border:{T["outer"]}px solid #000;
  font-family:'NanumDotum';font-size:15px;line-height:1.45}}
 td,th{{border:1px solid #000;padding:{T["cell_pad"]};vertical-align:middle;font-weight:400;height:{T["cell_h"]}px}}
-{("td:first-child,th:first-child{{border-left:none}}td:last-child,th:last-child{{border-right:none}}table{{border-left:none!important;border-right:none!important;border-top:2px solid #000;border-bottom:2px solid #000}}" if T.get("open") else "")}
+{("td:first-child,th:first-child{border-left:none}td:last-child,th:last-child{border-right:none}table{border-left:none!important;border-right:none!important;border-top:2px solid #000;border-bottom:2px solid #000}" if T.get("open") else "")}
 th,.lb{{background:{T["shade"]};text-align:center;font-family:'NanumDotum'}}       /* 회색 15% */
 .lb2{{background:{T["shade2"]}}}                                                     /* 회색 8% 보조 */
 .vl{{text-align:center}}
 .tl{{text-align:left}}
 .thick{{border:2.2px solid #000}}
+tr.hdsep th{{border-bottom:2px solid #000}}   /* 무외곽 표 헤더 아래 굵은 구분선 */
 .dashed{{border-style:dashed}}
 .ln{{padding:3px 0}}
 .indent1{{padding-left:14px}}.indent2{{padding-left:30px}}                    /* 개조식 □→○→- */
