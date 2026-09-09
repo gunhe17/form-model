@@ -1,0 +1,151 @@
+<title>서식 검출기 세 라운드 결과</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--paper:#F6F7F5;--ink:#1A1D21;--ink2:#4A525C;--mu:#6F7884;--rule:#C9CFD8;--shade:#EEF1F4;--shade2:#E3E8EE;--acc:#2C4C8C;--acc2:#24407A;
+ --s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--ok:#1F7A4D;--okbg:#E4F2EA;--bad:#B3372E;--badbg:#F8E7E5;--wn:#A8701A;--wnbg:#F7EEDB}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#15181C;--ink:#E7E9EC;--ink2:#C0C6CE;--mu:#9AA3AF;--rule:#2E343C;--shade:#1D2126;--shade2:#242930;--acc:#7FA2E8;--acc2:#A9C1F0;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--ok:#5CC48E;--okbg:#1B3327;--bad:#E06A5F;--badbg:#3A2320;--wn:#D9A24C;--wnbg:#3A2E18}}
+:root[data-theme=dark]{--paper:#15181C;--ink:#E7E9EC;--ink2:#C0C6CE;--mu:#9AA3AF;--rule:#2E343C;--shade:#1D2126;--shade2:#242930;--acc:#7FA2E8;--acc2:#A9C1F0;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--ok:#5CC48E;--okbg:#1B3327;--bad:#E06A5F;--badbg:#3A2320;--wn:#D9A24C;--wnbg:#3A2E18}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;font-size:15px;line-height:1.75}
+.page{max-width:920px;margin:0 auto;padding:48px 28px 96px}
+h1,h2,h3{font-family:"Noto Serif KR",serif;font-weight:700;margin:0;text-wrap:balance;line-height:1.3}h1{font-size:32px}h2{font-size:22px;margin-top:60px;padding-top:14px;border-top:3px double var(--mu)}h3{font-size:16px;margin:28px 0 8px;color:var(--acc2)}
+p{margin:12px 0;max-width:70ch}.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin-bottom:10px}
+.lede{font-size:17px;max-width:66ch}
+.easy{font-size:14px;background:var(--shade);border:1px solid var(--rule);padding:10px 14px;margin:14px 0;max-width:74ch}.easy b{color:var(--acc2);margin-right:6px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border:1px solid var(--rule);margin:22px 0}.tiles>div{padding:16px 18px;background:var(--shade)}
+.tiles .k{font-size:12.5px;color:var(--mu)}.tiles .v{font-family:"IBM Plex Mono",monospace;font-size:34px;line-height:1.1;margin:6px 0 4px;font-variant-numeric:tabular-nums}.tiles .n{font-size:12.5px;color:var(--ink2)}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11.5px;padding:1px 8px;border-radius:2px;vertical-align:1px}.ok{background:var(--okbg);color:var(--ok)}.miss{background:var(--badbg);color:var(--bad)}.wn{background:var(--wnbg);color:var(--wn)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:14px 0}th,td{border:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}th{background:var(--shade);font-weight:500;color:var(--ink2);font-size:12.5px}td.n,th.n{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+.g3{display:grid;grid-template-columns:150px 1fr;gap:8px 12px;align-items:center;font-size:13px;margin:14px 0}.g3 .row{display:grid;gap:3px}.g3 .bar{display:grid;grid-template-columns:1fr 56px;gap:8px;align-items:center}.g3 .t{height:12px;background:var(--shade2);position:relative}.g3 .t i{position:absolute;left:0;top:0;bottom:0;border-radius:0 3px 3px 0}.g3 .n{font-family:"IBM Plex Mono",monospace;font-size:12px;text-align:right;color:var(--ink2)}
+.s1{background:var(--s1)}.s2{background:var(--s2)}.s3{background:var(--s3)}
+.legend{display:flex;gap:18px;font-size:12.5px;color:var(--ink2);margin:4px 0 0}.legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px;border-radius:2px}
+.bars{display:grid;grid-template-columns:120px 1fr 90px;gap:5px 10px;align-items:center;font-size:13px;margin:14px 0}.bars .l{color:var(--ink2)}.bars .b{height:14px;background:var(--shade2);position:relative}.bars .b i{position:absolute;left:0;top:0;bottom:0;background:var(--acc);border-radius:0 3px 3px 0}.bars .b i.lo{background:var(--bad)}.bars .b i.mid{background:var(--wn)}.bars .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--ink2);white-space:nowrap}
+.pair{display:grid;grid-template-columns:130px 1fr 1fr;gap:6px 10px;align-items:center;font-size:13px;margin:14px 0}.pair .l{color:var(--ink2)}.pair .b{height:11px;background:var(--shade2);position:relative}.pair .b i{position:absolute;left:0;top:0;bottom:0;border-radius:0 3px 3px 0}.pair .b span{position:absolute;right:-46px;top:-3px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink2)}
+.tl{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.tl>div{border:1px solid var(--rule);padding:12px 14px;background:var(--shade);font-size:13.5px}.tl b{display:block;font-family:"IBM Plex Mono",monospace;color:var(--acc2);margin-bottom:6px}.tl .r{font-family:"IBM Plex Mono",monospace;font-size:20px;margin:4px 0}
+svg text{font-family:"Noto Sans KR",sans-serif;fill:var(--ink)}
+.fig{border:1px solid var(--rule);background:#fff;padding:10px;margin:12px 0;overflow-x:auto}.fig figcaption{font-size:12.5px;color:var(--mu);margin-top:6px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:760px){.two,.tl,.tiles{grid-template-columns:1fr}}
+</style>
+<div class="page">
+<div class="eyebrow">form-model · 8_train · 2026-09-10</div>
+<h1>서식 검출기 세 라운드 결과</h1>
+<p class="lede">빈 행정서식에서 입력 칸을 찾는 검출기를 세 번 학습했습니다. 무엇을 바꿨고, 실제 서식에서 얼마나 좋아졌고, 아직 못 찾는 칸은 왜 못 찾는지를 그림으로 정리했습니다.</p>
+
+<div class="tiles">
+  <div><div class="k">실서식 44장 · 100칸 중 찾은 칸</div><div class="v">84</div><div class="n">1차 70 → 2차 63 → <b>3차 84</b> · 목표 98</div></div>
+  <div><div class="k">찾은 칸의 종류를 맞춘 비율</div><div class="v">97%</div><div class="n">1차 59 → 3차 97 <span class="chip ok">통과</span></div></div>
+  <div><div class="k">찾은 칸의 위치 정확도</div><div class="v">96%</div><div class="n">1차 92 → 3차 96 <span class="chip ok">통과</span></div></div>
+</div>
+
+<h2>1. 세 라운드에서 무엇을 바꿨나</h2>
+<div class="tl">
+  <div><b>1차 · 의미 11종</b><div class="r">실서식 70</div>깨끗한 합성 서식 2만 장. 칸의 <em>뜻</em>(이름·전화·체크박스…) 11종을 그대로 맞추게 함.<br><span style="color:var(--mu)">→ 합성은 만점, 실서식 70, 흐린 복사본 55</span></div>
+  <div><b>2차 · 11종 + 증강</b><div class="r">실서식 63</div>1차 위에 복사기·스캔 열화 서식 6만 장을 더 가르침.<br><span style="color:var(--mu)">→ 흐린 복사본 99.9로 해결. 대신 실서식 넓은 셀을 잃음</span></div>
+  <div><b>3차 · 생김새 8종</b><div class="r">실서식 84</div>검출기엔 <em>모양</em>만 묻고(□·낱칸·셀·빈칸·밑줄·자리표·서명·사진) 뜻은 2단계로. 생성기를 실서식 치수로 재구성. 클린+열화를 처음부터 한 풀로.<br><span style="color:var(--mu)">→ 종류 97, 위치 96, 복사본 99.9, 실서식 84</span></div>
+</div>
+<div class="easy"><b>쉽게 말하면</b>1차는 "이 칸이 전화번호 칸인지"까지 그림만 보고 맞추라고 시켰습니다. 모양이 같은 칸(택일 □와 복수 □, 이름 칸과 전화 칸)은 그림에 답이 없어 틀렸습니다. 3차는 "어떻게 생겼나"만 묻고, 그 대신 연습 문제집을 실제 서식처럼 다시 만들었습니다. 그러자 종류 정확도가 59에서 97로 뛰었습니다.</div>
+
+<h2>2. 세 가지 시험, 세 라운드</h2>
+<p>시험은 셋입니다. 연습 문제집에서 뽑은 996장(합성), 실제 서식을 옮긴 44장(실서식), 홀드아웃에 복사기 열화를 입힌 500장(stress). 막대는 "100칸 중 찾은 칸".</p>
+<div class="g3">
+  <div>합성 홀드아웃</div><div class="row">
+    <div class="bar"><div class="t"><i class="s1" style="width:99.97%"></i></div><div class="n">99.97</div></div>
+    <div class="bar"><div class="t"><i class="s2" style="width:100%"></i></div><div class="n">100.0</div></div>
+    <div class="bar"><div class="t"><i class="s3" style="width:99.96%"></i></div><div class="n">99.96</div></div></div>
+  <div>실서식 44장</div><div class="row">
+    <div class="bar"><div class="t"><i class="s1" style="width:69.57%"></i></div><div class="n">69.6</div></div>
+    <div class="bar"><div class="t"><i class="s2" style="width:63.36%"></i></div><div class="n">63.4</div></div>
+    <div class="bar"><div class="t"><i class="s3" style="width:83.85%"></i></div><div class="n">83.9</div></div></div>
+  <div>stress 500장</div><div class="row">
+    <div class="bar"><div class="t"><i class="s1" style="width:55.01%"></i></div><div class="n">55.0</div></div>
+    <div class="bar"><div class="t"><i class="s2" style="width:99.94%"></i></div><div class="n">99.9</div></div>
+    <div class="bar"><div class="t"><i class="s3" style="width:99.88%"></i></div><div class="n">99.9</div></div></div>
+</div>
+<div class="legend"><span><i class="s1"></i>1차</span><span><i class="s2"></i>2차</span><span><i class="s3"></i>3차</span></div>
+<div class="tw"><table>
+<tr><th>실서식 44장 · 세 축</th><th class="n">1차</th><th class="n">2차</th><th class="n">3차</th><th>기준</th></tr>
+<tr><td>놓침 — 100칸 중 찾은 칸</td><td class="n">69.6</td><td class="n">63.4</td><td class="n">83.9</td><td>98 <span class="chip miss">미달</span></td></tr>
+<tr><td>좌표 — 찾은 칸 중 위치 정확</td><td class="n">91.9</td><td class="n">94.3</td><td class="n">96.2</td><td>95 <span class="chip ok">통과</span></td></tr>
+<tr><td>종류 — 찾은 칸 중 종류 정확</td><td class="n">58.6</td><td class="n">61.3</td><td class="n">97.2</td><td>97 <span class="chip ok">통과</span></td></tr>
+<tr><td>Ultralytics mAP50</td><td class="n">0.27</td><td class="n">0.26</td><td class="n">0.74</td><td></td></tr>
+</table></div>
+<p>3차는 세 축 중 둘을 처음 통과했습니다. 남은 것은 "찾기" 한 축입니다. 1·2차 실서식은 문턱 0.25·11종, 3차는 문턱 0.05·8종 기준입니다(같은 0.25로 맞추면 3차 80.8).</p>
+
+<h2>3. 어떤 모양의 칸을 잘 찾고, 못 찾나</h2>
+<p>3차 모델이 실서식에서 클래스별로 찾은 비율. 막대 색은 기준(95) 대비: 초록 계열은 도달, 노랑은 근접, 빨강은 미달.</p>
+<div class="bars">
+  <div class="l">comb 낱칸</div><div class="b"><i style="width:100%"></i></div><div class="v">100 (83개)</div>
+  <div class="l">underline 밑줄</div><div class="b"><i style="width:100%"></i></div><div class="v">100 (27)</div>
+  <div class="l">marker 마커</div><div class="b"><i style="width:98.8%"></i></div><div class="v">98.8 (165)</div>
+  <div class="l">cell 셀</div><div class="b"><i class="mid" style="width:83.3%"></i></div><div class="v">83.3 (336)</div>
+  <div class="l">signature 서명</div><div class="b"><i class="mid" style="width:82.1%"></i></div><div class="v">82.1 (39)</div>
+  <div class="l">gap 빈칸</div><div class="b"><i class="lo" style="width:73.2%"></i></div><div class="v">73.2 (280)</div>
+  <div class="l">placeholder 자리표</div><div class="b"><i class="lo" style="width:60%"></i></div><div class="v">60.0 (40)</div>
+  <div class="l">photo 사진</div><div class="b"><i class="lo" style="width:50%"></i></div><div class="v">50 (2개)</div>
+</div>
+<div class="easy"><b>읽는 법</b>테두리가 있거나 표시가 뚜렷한 것(낱칸·밑줄·□)은 다 찾습니다. 못 찾는 것은 표시가 없는 빈칸(gap)과 인쇄 글자 위에 쓰는 자리표(placeholder), 그리고 셀의 일부입니다. 사진은 실서식에 2개뿐이라 1개 차이가 50%로 보입니다.</div>
+
+<h3>1차 → 3차, HTML 스타일별 변화</h3>
+<p>같은 실서식 칸을 "어떻게 그려졌나"로 나눈 것. 왼쪽 막대 1차, 오른쪽 막대 3차.</p>
+<div class="pair">
+  <div class="l">cg 셀 채움 (51)</div><div class="b"><i class="s1" style="width:7.8%"></i><span>7.8</span></div><div class="b"><i class="s3" style="width:70.6%"></i><span>70.6</span></div>
+  <div class="l">cgf 셀 여백채움 (271)</div><div class="b"><i class="s1" style="width:66.8%"></i><span>66.8</span></div><div class="b"><i class="s3" style="width:84.9%"></i><span>84.9</span></div>
+  <div class="l">gp 투명 빈칸 (214)</div><div class="b"><i class="s1" style="width:59.1%"></i><span>59.1</span></div><div class="b"><i class="s3" style="width:76.6%"></i><span>76.6</span></div>
+  <div class="l">opt 척도 마커 (10)</div><div class="b"><i class="s1" style="width:0%"></i><span>0</span></div><div class="b"><i class="s3" style="width:100%"></i><span>100</span></div>
+  <div class="l">circ 원형 (3)</div><div class="b"><i class="s1" style="width:0%"></i><span>0</span></div><div class="b"><i class="s3" style="width:100%"></i><span>100</span></div>
+  <div class="l">stamp 도장칸 (1)</div><div class="b"><i class="s1" style="width:0%"></i><span>0</span></div><div class="b"><i class="s3" style="width:100%"></i><span>100</span></div>
+  <div class="l">dbx 점선 박스 (8)</div><div class="b"><i class="s1" style="width:50%"></i><span>50</span></div><div class="b"><i class="s3" style="width:100%"></i><span>100</span></div>
+  <div class="l">ul 밑줄 (25)</div><div class="b"><i class="s1" style="width:92%"></i><span>92</span></div><div class="b"><i class="s3" style="width:100%"></i><span>100</span></div>
+  <div class="l">ck □ 마커 (105)</div><div class="b"><i class="s1" style="width:99%"></i><span>99.0</span></div><div class="b"><i class="s3" style="width:98.1%"></i><span>98.1</span></div>
+</div>
+<p>16종 중 15종이 좋아지거나 그대로이고, 내려간 것은 □ 마커 105개 중 1개뿐입니다. 1·2차에서 0%였던 척도 마커·원형·도장칸은 생성기에 그 부품을 넣은 뒤 100%가 됐습니다. "본 적 있으면 찾는다"는 것이 그대로 보입니다.</p>
+
+<h2>4. 3차 학습이 왜 3 에폭에서 멈췄나</h2>
+<div class="fig"><svg viewBox="0 0 640 230" width="100%" style="max-width:640px;display:block">
+  <line x1="60" y1="20" x2="60" y2="180" stroke="var(--rule)"/><line x1="60" y1="180" x2="600" y2="180" stroke="var(--rule)"/>
+  <g font-size="11" fill="var(--mu)"><text x="52" y="184" text-anchor="end">70</text><text x="52" y="104" text-anchor="end">85</text><text x="52" y="24" text-anchor="end">100</text></g>
+  <g font-size="12"><text x="150" y="200" text-anchor="middle">1 에폭</text><text x="330" y="200" text-anchor="middle">2 에폭</text><text x="510" y="200" text-anchor="middle">3 에폭</text></g>
+  <polyline points="150,25 330,24.5 510,24" fill="none" stroke="var(--s1)" stroke-width="2.5"/>
+  <polyline points="150,26 330,25.3 510,25.6" fill="none" stroke="var(--s3)" stroke-width="2.5" stroke-dasharray="6 4"/>
+  <polyline points="150,106 330,119 510,123" fill="none" stroke="var(--s2)" stroke-width="2.5"/>
+  <g fill="var(--s2)"><circle cx="150" cy="106" r="5"/><circle cx="330" cy="119" r="5"/><circle cx="510" cy="123" r="5"/></g>
+  <g font-size="12" font-family="IBM Plex Mono"><text x="150" y="96" text-anchor="middle">83.9</text><text x="330" y="139" text-anchor="middle">81.4</text><text x="510" y="143" text-anchor="middle">80.7</text></g>
+  <g font-size="12"><text x="608" y="28" fill="var(--s1)">합성 99.8</text><text x="608" y="44" fill="var(--s3)">stress 99.9</text><text x="608" y="127" fill="var(--s2)">실서식</text></g>
+</svg><figcaption>세로축은 100칸 중 찾은 칸. 합성과 stress는 만점 근처에서 계속 오르고, 실서식은 1 에폭이 정점이고 내려갑니다. 예측 총수도 1,148 → 1,041로 줄었습니다.</figcaption></div>
+<div class="easy"><b>쉽게 말하면</b>연습 문제를 더 풀수록 연습 문제집 점수는 오르는데 실전 점수는 내려갔습니다. 연습 문제집의 버릇(글자 없는 빈 칸, 넓은 빈칸)에 점점 더 맞춰지면서, 실전에서만 보이는 낯선 칸을 조심스럽게 안 찍기 시작한 겁니다. 그래서 "2 에폭 연속 1점 미만 상승이면 멈춘다"는 규칙이 3 에폭에서 발동했고, 가장 좋았던 1 에폭 모델을 최종으로 골랐습니다. 1차 때도 똑같은 모양이었습니다.</div>
+
+<h2>5. 못 찾은 16칸은 어떤 칸인가</h2>
+<p>놓친 칸 125개를 실제로 잘라, 연습 문제집에서 같은 크기의 칸과 나란히 놓고 비교했습니다. 두 가지 모양이 대부분을 차지합니다.</p>
+<div class="two">
+<div class="fig"><svg viewBox="0 0 400 150" width="100%" style="display:block">
+  <g stroke="var(--ink)" stroke-width="1" fill="none">
+    <rect x="10" y="20" width="380" height="110"/><line x1="10" y1="48" x2="390" y2="48"/><line x1="10" y1="76" x2="390" y2="76"/><line x1="10" y1="104" x2="390" y2="104"/>
+    <line x1="170" y1="20" x2="170" y2="130"/><line x1="214" y1="20" x2="214" y2="130"/><line x1="258" y1="20" x2="258" y2="130"/><line x1="302" y1="20" x2="302" y2="130"/><line x1="346" y1="20" x2="346" y2="130"/>
+  </g>
+  <g font-size="9.5" text-anchor="middle"><text x="192" y="38">매우만족</text><text x="236" y="38">만족</text><text x="280" y="38">보통</text><text x="324" y="38">불만족</text><text x="368" y="38">매우불만족</text></g>
+  <g font-size="10"><text x="16" y="66">1. 서비스에 만족하셨습니까?</text><text x="16" y="94">2. 시간은 적절했습니까?</text><text x="16" y="122">3. 다시 이용하시겠습니까?</text></g>
+  <g font-size="9.5" text-anchor="middle" fill="var(--ink2)"><text x="192" y="66">매우만족</text><text x="236" y="66">만족</text><text x="280" y="66">보통</text><text x="324" y="66">불만족</text><text x="368" y="66">매우불만족</text>
+   <text x="192" y="94">매우만족</text><text x="236" y="94">만족</text><text x="280" y="94">보통</text><text x="324" y="94">불만족</text><text x="368" y="94">매우불만족</text>
+   <text x="192" y="122">매우만족</text><text x="236" y="122">만족</text><text x="280" y="122">보통</text><text x="324" y="122">불만족</text><text x="368" y="122">매우불만족</text></g>
+  <g stroke="var(--bad)" stroke-width="2" fill="none"><rect x="172" y="50" width="40" height="24"/><rect x="216" y="50" width="40" height="24"/><rect x="260" y="50" width="40" height="24"/><rect x="304" y="50" width="40" height="24"/><rect x="348" y="50" width="40" height="24"/></g>
+</svg><figcaption><b>① 글자가 인쇄된 척도 선택칸</b> — 놓친 셀 26개 중 25개. 사람이 글자 위에 ○를 치는 칸인데, 연습 문제집의 같은 크기 셀은 전부 글자 없는 빈 칸이었습니다. 모델은 "글자가 든 칸은 입력이 아니다"라고 배운 셈입니다.</figcaption></div>
+<div class="fig"><svg viewBox="0 0 400 150" width="100%" style="display:block">
+  <g font-size="14"><text x="20" y="50">20</text><text x="66" y="50">년</text><text x="118" y="50">월</text><text x="170" y="50">일</text></g>
+  <g stroke="var(--bad)" stroke-width="2" fill="none"><rect x="42" y="34" width="18" height="20"/><rect x="88" y="34" width="24" height="20"/><rect x="140" y="34" width="24" height="20"/></g>
+  <text x="20" y="80" font-size="11" fill="var(--bad)">실서식: 글자 사이 10~20px, 여백 없음</text>
+  <g font-size="14"><text x="20" y="120">20</text><text x="96" y="120">년</text><text x="176" y="120">월</text><text x="256" y="120">일</text></g>
+  <g stroke="var(--s1)" stroke-width="2" fill="none"><rect x="46" y="104" width="40" height="20"/><rect x="122" y="104" width="44" height="20"/><rect x="202" y="104" width="44" height="20"/></g>
+  <text x="20" y="145" font-size="11" fill="var(--s1)">연습 문제집: 24~44px, 좌우 여백</text>
+</svg><figcaption><b>② 날짜 글자 사이의 좁은 빈틈</b> — 놓친 빈칸 75개 중 69개가 높이 20px 이하이고, 폭 20px 이하 빈칸은 연습 문제집에 <b>0개</b>였습니다(실서식 20개). 40~60px 빈칸도 실서식 44% 대 연습 14%로 적었습니다.</figcaption></div>
+</div>
+<div class="easy"><b>결론</b>"본 적 없는 것은 못 찾는다"입니다. 앞서 "같은 크기 칸이 연습에 수만 개 있다"고 봤지만 크기 구간이 너무 넓었고, 잘게 나누니 실서식에 있는데 연습에 없는 모양이 두 가지 드러났습니다.</div>
+
+<h2>6. 다음 라운드</h2>
+<div class="tw"><table>
+<tr><th>보강</th><th>무엇을</th><th>기대</th></tr>
+<tr><td>①</td><td>글자가 인쇄된 척도 선택칸 카드(매우만족~매우불만족, 예/아니오, 해당/미해당)</td><td>놓친 cell 26 중 25 → cell 83 → 90대</td></tr>
+<tr><td>②</td><td>날짜·기간 글자 사이 폭 10~20px 밀착 빈칸</td><td>학습 0 → 수천. gap 73 → 80대</td></tr>
+<tr><td>③</td><td>폭 40~60px 빈칸 비중 14% → 40%대</td><td>gap 추가 회복</td></tr>
+<tr><td>④</td><td>폭 60~90px 셀 비중 상향(현재 100~120에 몰림)</td><td>소형 셀 회복</td></tr>
+</table></div>
+<p>같은 규칙으로 4차를 돌립니다. 1 에폭 결과(약 90분)에서 방향이 보이고, 정체 규칙이 조기 종료를 맡습니다. 기록은 8_train/docs/PLAN.md 8절과 DECISIONS.md 9절에 있습니다.</p>
+</div>

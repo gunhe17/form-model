@@ -8,3 +8,7 @@
 | `build_dataset_review.py <render_dir> <skeleton_dir> <out.html> [label]` | 재구성 데이터셋 검수(유형별·카드별·클래스별 크롭, 분포·격자) | 렌더 폴더 |
 
 게시는 Claude Code Artifact 로. 검토 이력은 `../DECISIONS.md` 4·5·7절.
+
+## results_3rounds.html
+
+1·2·3차 결과 보고 아티팩트 원본(정적 HTML, 빌더 없음 — 수치는 `docs/PLAN.md` 8절·`README.md` 결과표에서 손으로 옮김). PDF는 `docs/3차_학습_보고.pdf`.

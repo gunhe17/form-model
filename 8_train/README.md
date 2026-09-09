@@ -54,7 +54,7 @@ yolo detect val model=8_train/runs/ffdnet_1600/weights/best.pt data=8_train/yolo
 | 학습 | 가중치 | 홀드아웃 recall | 실서식 recall | stress recall | 보고서 |
 |---|---|---|---|---|---|
 | 1차 (의미 11종, clean 20,000 · 6 epoch) | `runs/ffdnet_1600/weights/best.pt` | 99.97 | 69.57 | 55.01 | `docs/1차_학습_감사.pdf` |
-| 2차 (11종 + 증강 62,000 · 1 epoch R1) | `runs/ffdnet_1600_aug/weights/last_e1.pt` | 100.00 | 63.36 | 99.94 | `docs/2차_학습_보고.pdf` |
+| 2차 (11종 + 증강 62,000 · 1 epoch R1) | `runs/ffdnet_1600_aug/weights/last_e1.pt` | 100.00 | 63.36 | 99.94 | `docs/2차_학습_보고.pdf · 3차 `docs/3차_학습_보고.pdf`` |
 | **3차 (1단계 생김새 8종, v2 · 3 epoch R4, e1 채택)** | **`runs/ffdnet_s1/weights/last_e1.pt`** | **99.96** | **83.85** | **99.88** | `docs/PLAN.md` 8절 |
 
 recall@IoU0.5, `score.py`. 1·2차 실서식은 conf 0.25·11종(GT 999), 3차는 conf 0.05·8종(GT 972, word·area 제외; conf 0.25 로는 80.76). 3차는 실서식 좌표 96.22·종류 97.17 로 두 축 통과, recall 만 미달(기준 98). 실서식 mAP50 0.27→0.74.
