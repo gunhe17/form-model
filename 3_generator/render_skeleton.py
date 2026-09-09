@@ -146,8 +146,13 @@ class R:
         """블록 진입 시 1회 호출 — mixed 문서만 블록 간 변경 허용, 그룹 내부 불변"""
         if self.g=="mixed": return self.rng.choice(["□","[&nbsp;&nbsp;]"])
         return self.doc_marker
+    def rowhs(self,n):
+        """표 단위 행 높이: 한 표 안은 균일(실서식 규약), 15% 확률로 한 행만 1.8~2.2배"""
+        h=self.rowh(); hr=[h]*n
+        if n>1 and self.rng.random()<0.15: hr[self.rng.randrange(n)]=int(h*self.rng.choice([1.8,2.2]))
+        return hr
     def rowh(self):
-        """행 높이 축: 문서 테마값 기준 + 행마다 변주(가끔 2배 높이)"""
+        """행 높이 축: 문서 테마값 기준 + 표마다 변주(가끔 2배 높이)"""
         h=_T("row_h",34); r=self.rng.random()
         if r<0.18: h=int(h*self.rng.choice([1.8,2.2]))
         elif r<0.45: h=self.rng.choice([34,41,48,56,72])
@@ -340,18 +345,19 @@ class R:
             hs2=["연번","성명","소속(기관)",
                  "연락처"+('<br><span class="note">(뒤 4자리)</span>' if comb4 else ""),"서명"]
             sm=rng.random()   # 서명 열 규약은 표 단위 (실서식은 한 장에 한 형태)
+            SIGSZ=(("(인)",11,rng.randint(24,30),rng.randint(18,22)) if sm<0.62 else
+                   ("(서명)",12,rng.randint(40,56),rng.randint(18,26)) if sm<0.88 else
+                   ("(서명 또는 인)",11,rng.randint(84,116),rng.randint(18,26)))
+            h=rng.randint(34,48); telw=rng.randint(90,140)   # 행 높이·연락처 폭도 표 단위
             def sig_td():
                 if sm<0.30: return f'<td class="vl">{CG("signature")}</td>'
-                txt,fs,sw,sh=(("(인)",11,rng.randint(24,30),rng.randint(18,22)) if sm<0.62 else
-                              ("(서명)",12,rng.randint(40,56),rng.randint(18,26)) if sm<0.88 else
-                              ("(서명 또는 인)",11,rng.randint(84,116),rng.randint(18,26)))
+                txt,fs,sw,sh=SIGSZ
                 return (f'<td class="vl"><span data-f="signature" style="display:inline-block;width:{sw}px;'
                         f'height:{sh}px;line-height:{sh}px;font-size:{fs}px;font-family:NanumDotum;'
                         f'white-space:nowrap;overflow:hidden">{txt}</span></td>')
             body=""
             for i in range(n):
-                h=rng.randint(34,48)
-                tel=(ROW(*[CBX("phone")]*4,j="c",style="gap:2px") if comb4 else GP("phone",rng.randint(90,140)))
+                tel=(ROW(*[CBX("phone")]*4,j="c",style="gap:2px") if comb4 else GP("phone",telw))
                 body+=(f'<tr style="height:{h}px"><td class="vl note">{i+1}</td>'
                        f'{TDC("text",h)}{TDC("text",h)}'
                        f'<td class="vl">{tel}</td>{sig_td()}</tr>')
@@ -363,7 +369,7 @@ class R:
             EX={"number":["00","0","12","3","00"],"date":["20○○.○○.○○","20○○-○○-○○","○○.○○.○○"],
                 "phone":["010-○○○○-○○○○","○○○-○○○-○○○○"],"time":["○○:○○~○○:○○","09:00~10:00"],
                 "text":["○○○","홍길동","○○기관","○○동 ○○길","예) ○○○","○○○ 외 ○명"]}
-            hr=[rng.choice([30,34,41,48]) for _ in range(prows)]
+            hr=[rng.choice([30,34,41,48])]*prows
             def cf(r,cn):
                 t=HEADER_TYPE.get(hs[cn],"text")
                 v=str(r+1) if hs[cn] in ("연번","순번") else rng.choice(EX[t])
@@ -417,7 +423,7 @@ class R:
                         '<tr><th>보호자 서명</th><td class="thick"><span data-f="signature" class="cg"></span></td></tr></table>')
         if c=="stub_input":
             items=[("사업명","text"),("수행기관","text"),("담당자","text"),("연락처","phone"),("신청일","date"),("연번","number"),("소재지","text")]
-            hr=[self.rowh() for _ in range(rows)]
+            hr=self.rowhs(rows)
             def cf(r,cn):
                 if cn==0:
                     return f'<td class="lb">{ROW("기타(",GP("text",40),")",style="gap:2px")}</td>' if r==rows-1 else f'<td class="lb">{items[r%7][0]}</td>'
@@ -442,7 +448,7 @@ class R:
                   '<div style="text-align:left;font-size:12px;line-height:1.1">구분</div></th>')
             hs2="".join(f"<th>{h}</th>" for h in hs[1:cols])
             rlbs=["신규","연속","종결","변경","중단","재개","이관","기타"]
-            hr=[self.rowh() for _ in range(rows)]
+            hr=self.rowhs(rows)
             body="".join('<tr>'+f'<td class="lb">{rlbs[r%8]}</td>'
                          +"".join(TDC(HEADER_TYPE.get(hs[i+1],"text"),hr[r]) for i in range(cols-1))+'</tr>' for r in range(rows))
             return f'<table><tr>{diag}{hs2}</tr>{body}</table>'
@@ -451,7 +457,7 @@ class R:
         if c=="date_cell": theme=GRID_THEMES[2]
         if c in ("num_cell","date_cell"): hs=(theme+[h for h in ("담당","확인","결과","점검") if h not in theme])[:cols]
         if c not in ("num_cell","date_cell"): self.missing.add(c)
-        hr=[self.rowh() for _ in range(rows)]
+        hr=self.rowhs(rows)
         def cf(r,cn):
             return TDC(HEADER_TYPE.get(hs[cn],"text"),hr[r])
         return grid(rng,rows,cols,hs,cf)
