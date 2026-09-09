@@ -11,3 +11,4 @@ docker/.env
 *.log
 weights/
 .DS_Store
+8_train/yolo_s1/
