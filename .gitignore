@@ -12,3 +12,5 @@ docker/.env
 weights/
 .DS_Store
 8_train/yolo_s1/
+5_dataset/train_v2/
+5_dataset/holdout_v2/

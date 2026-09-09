@@ -7,8 +7,8 @@ import json, random, argparse, os, math, collections
 
 # ── 유형 배분 (합 20000) ──────────────────────────────────────────────
 QUOTA = {  # v2.1: 문법 합성 단일 트랙 20,000 (복제는 채굴·검증 자료 — 생산 트랙 아님)
- "신청서":1750,"보고서":650,"동의서":1450,"계획서":650,"대장명부":400,"증서":1100,"계약서":1000,"점검평가":830,"확약서":710,"사정조사지":750,"기록지":760,"안내문":710,"공고문":640,"명세신고":170,"판단서":760,"조회요청서":580,"통지회신":580,"등록카드":850,"접수증":850,"작성요령서":480,"백지":130,
- "사진대지":1100,"서명부":1000,"진술서":700,"작성례":500,   # P1-F: 부족 클래스(photo·signature·underline·placeholder)를 논리적으로 요구하는 유형
+ "신청서":1500,"보고서":650,"동의서":1200,"계획서":650,"대장명부":400,"증서":1100,"계약서":1000,"점검평가":830,"확약서":710,"사정조사지":750,"기록지":760,"안내문":710,"공고문":640,"명세신고":170,"판단서":760,"조회요청서":580,"통지회신":580,"등록카드":850,"접수증":850,"작성요령서":480,"백지":130,
+ "사진대지":1100,"서명부":1300,"진술서":900,"작성례":500,   # P1-F: 부족 클래스(photo·signature·underline·placeholder)를 논리적으로 요구하는 유형
  "부품집중":900}  # P1: 부품 집중 페이지 5% — 드문 클래스의 절대 수·치수 변화폭 채움
 assert sum(QUOTA.values())==20000
 
@@ -183,8 +183,8 @@ class Sampler:
 
 if __name__=="__main__":
     ap=argparse.ArgumentParser(); ap.add_argument("--n",type=int,default=200)
-    ap.add_argument("--out",default="5_dataset/skeletons/smoke"); a=ap.parse_args()
-    s=Sampler(a.n); pages=s.run(a.out)
+    ap.add_argument("--out",default="5_dataset/skeletons/smoke"); ap.add_argument("--seed",type=int,default=20260904); a=ap.parse_args()
+    s=Sampler(a.n, seed=a.seed); pages=s.run(a.out)
     tc=collections.Counter(p["type"] for p in pages)
     print(f"골격 {len(pages)}장 → {a.out}")
     print("유형 분포:", dict(tc))
