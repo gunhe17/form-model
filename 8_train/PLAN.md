@@ -55,7 +55,7 @@
 | 단계 | 작업 | 산출 | 합격 |
 |---|---|---|---|
 | P0 측정 | `label_stage1.py`로 학습 20,000 + 실서식 44에 8종 라벨 부여, 클래스 × 치수 × 문맥 격자 | 커버리지 표 | 실서식이 있는 격자 칸 중 학습이 비어 있는 칸 목록 확정 |
-| P1 생성기 | 2절 수단 구현: 카드 가중치·쿼터·치수 범위·신규 부품(opt·circ·dbx·stamp·open_table·inset_label_full)·부품 집중 페이지 | 3_generator 수정, 20,000장 재렌더 | P0 격자의 빈 칸 0, 클래스 점유율 5~35%, 밀도 중앙값 25±5 |
+| P1 생성기 | 2절 수단 구현: 카드 가중치·쿼터·치수 범위·신규 부품(opt·circ·dbx·stamp·open_table·inset_label_full)·부품 집중 페이지 | 3_generator 수정, 20,000장 재렌더, **검수 아티팩트** | P0 격자의 빈 칸 0, 클래스 점유율 5~35%, 밀도 중앙값 25±5, **사용자 검수 통과(필수)** |
 | P2 증강 | 재렌더본에 7_augment build_pool 그대로 (clean+swap+office+degraded) | 풀 62,000 + stress 500 | 구분별 장수 일치 |
 | P3 학습 | `to_yolo.py --stage1` 로 8종 라벨(word·area 제외) → FFDNet-L → 8종 헤드, imgsz 1600, batch 4, 클린+열화 한 풀, 6 에폭, 에폭마다 실서식·stress 채점 | last_eN.pt | 실서식 후보 recall(conf 0.05) ≥ 95, stress ≥ 98, 홀드아웃 ≥ 99.5 |
 | P4 진단 | diag_style --compare(재구성 전후), 클래스별 실서식 recall | 표 | 클래스별 recall 편차 < 15pt |
