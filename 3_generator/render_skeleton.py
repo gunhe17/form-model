@@ -495,7 +495,9 @@ class R:
         seq=ROLES.get(self.sk["type"])
         who=seq[self.sig_n%len(seq)] if seq else self.rng.choice(["신청인","보호자","작성자","동의자"])
         self.sig_n+=1
-        if c=="sig_name": return f'<p class="sigline">{who} 성명 : {GP("text",110)} <span data-f="signature" style="vertical-align:middle;display:inline-block">(인)</span></p>'
+        SIG=lambda t: (f'<span data-f="signature" style="font-size:14px;line-height:1.2">{t}</span>' if self.rng.random()<0.5   # 글줄 속 소형 문구(높이 ≤20)
+                       else f'<span data-f="signature" style="vertical-align:middle;display:inline-block">{t}</span>')
+        if c=="sig_name": return f'<p class="sigline">{who} 성명 : {GP("text",110)} {SIG("(인)")}</p>'
         if c=="sig_ul":   return f'<p class="sigline">{UL("text",100)}<span data-f="signature" style="vertical-align:middle;display:inline-block">(인)</span></p>'
         OO='<span data-f="text" style="display:inline-block;width:44px;text-align:center">○○</span>'
         if c=="stamp_box":   # 도장칸 (실서식 2편 14호)
@@ -507,7 +509,7 @@ class R:
             return f'<p class="sigline">{OO} 시장·군수·구청장 &nbsp;{box}</p>'
         if c=="sig_stamp": return f'<p class="sigline">{OO} 시장·군수·구청장 <span data-f="signature" style="vertical-align:middle;display:inline-block;border:2.2px solid #B02B25;color:#B02B25;padding:6px 10px">직인</span></p>'
         if c=="sig_stamp_paren": return f'<p class="sigline">{OO} 시장·군수·구청장 &nbsp; <span data-f="signature" style="vertical-align:middle;display:inline-block">(직인)</span></p>'
-        return f'<p class="sigline">{who} : {GP("text",110)}<span data-f="signature" style="vertical-align:middle;display:inline-block">(서명 또는 인)</span></p>'
+        return f'<p class="sigline">{who} : {GP("text",110)}{SIG("(서명 또는 인)")}</p>'
     def b_수신줄(self,b):
         return ROW(GP("text",150),"&nbsp;<b>귀하</b>",style="margin-top:12px")
     def b_동의문단(self,b):
@@ -562,10 +564,10 @@ class R:
             head=rng.choice(["진 술 내 용","확 약 사 항","확인 사항"])
             lines="".join(f'<p class="ln" style="margin:6px 0">{i+1}. {s()}</p>' for i,s in enumerate(SENT[:rng.randint(3,6)]))
             return f'<p class="ln"><b>{head}</b></p>{lines}'
-        m={"text_colon":ROW(f"{lb} :",GP("text",180),style="margin:6px 0"),
+        m={"text_colon":ROW(f"{lb} :",GP("text",rng.choice([180,260,340,460])),style="margin:6px 0"),   # 폭 400 초과 문장 빈칸 포함
            "text_ul":ROW(f"{lb} :",UL("text",120),",",UL("text",120),style="margin:6px 0"),
            "text_paren":ROW(f"({lb} :",GP("text",100),")",style="margin:6px 0;gap:2px"),
-           "text_prose":ROW("위 사람은",GP("text",150),"과정을 이수하였음을 확인합니다.",style="margin:6px 0"),
+           "text_prose":ROW("위 사람은",GP("text",rng.choice([150,220,320,420])),"과정을 이수하였음을 확인합니다.",style="margin:6px 0"),
            "ta_outline":(f'<p class="ln">□ {lb}</p>'
             f'<div class="indent1" style="display:flex;align-items:flex-start">○&nbsp;'
             f'<div data-f="textarea" style="flex:1;height:40px"></div></div>')}
