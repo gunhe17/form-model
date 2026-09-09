@@ -43,6 +43,7 @@ class Tally:
         self.conf = np.zeros((BG+1, BG+1), int)      # 행 GT · 열 예측 · 마지막이 background
         self.n_gt = self.n_pred = self.n_match = self.n_iou50 = self.n_cls_ok = self.n_iou50_cls_ok = 0
         self.per = {t: dict(gt=0, hit=0, m=0, cls_ok=0) for t in TYPES}
+        self.types = TYPES
         self.pages = []
 
     def add(self, stem, g, gc, p, pc):
@@ -119,6 +120,8 @@ def main():
 
     from ultralytics import YOLO
     model = YOLO(a.model)
+    global TYPES, BG
+    TYPES = [model.names[i] for i in range(len(model.names))]; BG = len(TYPES)   # 11종·8종 모두 모델의 클래스명을 따름
     imgs = sorted(glob.glob(f"{a.images}/*.png"))
     assert imgs, f"이미지 없음: {a.images}"
     T = Tally(a.match_iou)

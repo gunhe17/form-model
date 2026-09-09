@@ -31,6 +31,7 @@ def main():
 
     from ultralytics import YOLO
     model = YOLO(a.model)
+    global TYPES; TYPES = [model.names[i] for i in range(len(model.names))]
     imgs = sorted(glob.glob(f"{a.images}/*.png"))
 
     miss_cls = collections.Counter(); miss_size = collections.Counter(); miss_kind = collections.Counter()
