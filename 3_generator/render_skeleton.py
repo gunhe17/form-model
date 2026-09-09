@@ -340,7 +340,7 @@ class R:
                 body+=f"<tr>{ps}</tr><tr>{cs}</tr>"
             return f"<table>{body}</table>"
         if c=="sig_grid":   # 참석자 서명부: 행마다 서명 문구 (표 안 소형 signature)
-            n=rng.randint(6,14); comb4=rng.random()<0.35
+            n=max(6,min(12,b.get("rows",9))); comb4=rng.random()<0.35   # 행 수는 골격을 따름(밀도 상한)
             cw=["7%","20%","31%","22%","20%"]
             hs2=["연번","성명","소속(기관)",
                  "연락처"+('<br><span class="note">(뒤 4자리)</span>' if comb4 else ""),"서명"]
@@ -364,7 +364,7 @@ class R:
             cg2="<colgroup>"+"".join(f'<col style="width:{w}">' for w in cw)+"</colgroup>"
             return f'<table>{cg2}<tr>'+"".join(f"<th>{x}</th>" for x in hs2)+f"</tr>{body}</table>"
         if c=="pf_grid":   # 작성례 표: 셀마다 마스킹된 예시값이 회색 소자로 인쇄
-            prows=rng.randint(5,8); pcols=rng.randint(4,6)
+            prows=max(4,min(6,b.get("rows",5))); pcols=rng.randint(4,6)
             hs=(rng.choice(GRID_THEMES)+[h for h in ("담당","확인","결과","점검") if h not in theme])[:pcols]
             EX={"number":["00","0","12","3","00"],"date":["20○○.○○.○○","20○○-○○-○○","○○.○○.○○"],
                 "phone":["010-○○○○-○○○○","○○○-○○○-○○○○"],"time":["○○:○○~○○:○○","09:00~10:00"],
@@ -519,6 +519,14 @@ class R:
     def b_수신줄(self,b):
         return ROW(GP("text",150),"&nbsp;<b>귀하</b>",style="margin-top:12px")
     def b_동의문단(self,b):
+        if b["card"]=="consent_pair":   # 절마다 "□ 동의 □ 미동의" 쌍 (택일 → radio). 실서식 1_2호·3호·2편 7호
+            ch=self.marker(); rng=self.rng
+            SECS=["개인정보의 수집·이용","고유식별정보의 처리","민감정보의 처리","개인정보의 제3자 제공","홍보·안내 목적의 연락"]
+            out=[]
+            for t in rng.sample(SECS, rng.randint(4,5)):
+                out.append(f'<p class="ln note" style="margin:8px 0 2px">□ {t} 내역<br>귀하는 위와 같은 {t}에 대해 동의를 거부할 수 있으며, 거부 시 서비스 이용이 제한될 수 있습니다.</p>'
+                           +ROW(f"위와 같이 {t}에 동의하십니까?",MK(ch,"radio"),"동의",MK(ch,"radio"),"미동의",j="r",style="gap:6px;margin:2px 0 6px"))
+            return "".join(out)
         if b["card"]=="consent_check":
             ch=self.marker()
             return ('<table><tr><th class="tl" style="padding-left:10px">내 용</th>'
