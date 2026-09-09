@@ -1,0 +1,1 @@
+{"id": "기록지_15328", "type": "기록지", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "date_split"}, {"block": "격자", "card": "date_slash", "rows": 7, "cols": 3}, {"block": "금액", "card": "num_bracket"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1074424321}

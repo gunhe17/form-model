@@ -1,0 +1,1 @@
+{"id": "계획서_19261", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "격자", "card": "grid_diag", "rows": 2, "cols": 5}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 1281781213}

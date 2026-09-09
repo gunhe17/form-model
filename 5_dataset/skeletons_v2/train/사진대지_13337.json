@@ -1,0 +1,1 @@
+{"id": "사진대지_13337", "type": "사진대지", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_sample"}, {"target": 2, "kind": "pf_year20"}], "decoys": [], "seed": 1813424662}

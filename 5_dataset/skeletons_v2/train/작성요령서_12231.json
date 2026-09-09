@@ -1,0 +1,1 @@
+{"id": "작성요령서_12231", "type": "작성요령서", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "고지표", "card": "text_cell"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 1026605621}

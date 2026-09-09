@@ -1,0 +1,1 @@
+{"id": "점검평가_09323", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "text_cell"}, {"block": "격자", "card": "num_cell", "rows": 5, "cols": 4}, {"block": "서술", "card": "ta_below"}], "prefill": [], "decoys": ["인쇄 상수 셀", "점선 절취선"], "seed": 449253484}

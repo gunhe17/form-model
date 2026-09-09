@@ -1,0 +1,1 @@
+{"id": "안내문_09862", "type": "안내문", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "고지표", "card": "text_cell"}], "prefill": [], "decoys": [], "seed": 770268100}

@@ -1,0 +1,1 @@
+{"id": "사진대지_17420", "type": "사진대지", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "photo_grid", "rows": 3, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_italic"}, {"target": 1, "kind": "pf_note"}], "decoys": [], "seed": 1543552036}

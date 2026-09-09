@@ -1,0 +1,1 @@
+{"id": "점검평가_03498", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "radio_word"}, {"block": "격자", "card": "num_denom", "rows": 6, "cols": 6}, {"block": "서술", "card": "ta_cell"}, {"block": "서술", "card": "ta_below"}], "prefill": [], "decoys": ["인쇄 상수 셀", "(단위:) 캡션"], "seed": 1415437627}

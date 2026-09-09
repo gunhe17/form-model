@@ -1,0 +1,1 @@
+{"id": "작성례_13575", "type": "작성례", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "text_cell"}, {"block": "격자", "card": "pf_grid", "rows": 5, "cols": 3}], "prefill": [{"target": 2, "kind": "pf_sample"}], "decoys": ["처리절차 플로차트", "(단위:) 캡션"], "seed": 2074161064}

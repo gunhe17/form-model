@@ -1,0 +1,1 @@
+{"id": "서명부_19411", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "dbx_cell"}, {"block": "격자", "card": "sig_grid", "rows": 12, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_sample"}], "decoys": ["인쇄 상수 셀", "점선 절취선", "(단위:) 캡션"], "seed": 452051111}

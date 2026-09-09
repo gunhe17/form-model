@@ -1,0 +1,1 @@
+{"id": "사진대지_05889", "type": "사진대지", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "comb_slot"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 571532809}

@@ -1,0 +1,1 @@
+{"id": "사진대지_15367", "type": "사진대지", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_filled"}], "decoys": ["인쇄 상수 셀"], "seed": 101092741}

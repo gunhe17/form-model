@@ -1,0 +1,1 @@
+{"id": "서명부_09479", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 12, "cols": 2}, {"block": "날짜줄", "card": "pf_year20"}], "prefill": [], "decoys": ["인쇄 상수 셀", "인쇄 수신처 열거"], "seed": 217387026}

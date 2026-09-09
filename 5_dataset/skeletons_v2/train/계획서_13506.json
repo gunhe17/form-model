@@ -1,0 +1,1 @@
+{"id": "계획서_13506", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "격자", "card": "stub_input", "rows": 5, "cols": 3}, {"block": "금액", "card": "num_affix"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 1122764926}

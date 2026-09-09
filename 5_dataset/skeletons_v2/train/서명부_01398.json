@@ -1,0 +1,1 @@
+{"id": "서명부_01398", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "text_cell"}, {"block": "격자", "card": "sig_grid", "rows": 14, "cols": 2}, {"block": "날짜줄", "card": "pf_year20"}], "prefill": [{"target": 3, "kind": "pf_label"}], "decoys": ["점선 절취선"], "seed": 1151588739}

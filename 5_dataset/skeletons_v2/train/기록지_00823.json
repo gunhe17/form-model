@@ -1,0 +1,1 @@
+{"id": "기록지_00823", "type": "기록지", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "inset_label_full"}, {"block": "격자", "card": "cal_grid", "rows": 4, "cols": 4}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 95507462}

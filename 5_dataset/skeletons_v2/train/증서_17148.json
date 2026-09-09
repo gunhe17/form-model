@@ -1,0 +1,1 @@
+{"id": "증서_17148", "type": "증서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "dot_split"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_split"}, {"block": "서명줄", "card": "sig_name"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 741565103}

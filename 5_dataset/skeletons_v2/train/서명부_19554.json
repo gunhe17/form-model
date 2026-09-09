@@ -1,0 +1,1 @@
+{"id": "서명부_19554", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "comb_slot"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}], "prefill": [], "decoys": ["처리절차 플로차트", "인쇄 수신처 열거"], "seed": 1722753890}

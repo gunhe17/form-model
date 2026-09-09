@@ -1,0 +1,1 @@
+{"id": "서명부_06304", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_example"}], "decoys": ["처리절차 플로차트", "점선 절취선", "(단위:) 캡션"], "seed": 940673669}

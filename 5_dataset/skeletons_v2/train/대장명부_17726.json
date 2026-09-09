@@ -1,0 +1,1 @@
+{"id": "대장명부_17726", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 3}], "prefill": [{"target": 1, "kind": "pf_year20"}], "decoys": ["인쇄 상수 셀"], "seed": 913205766}

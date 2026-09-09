@@ -1,0 +1,1 @@
+{"id": "서명부_16021", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "date_split"}, {"block": "격자", "card": "sig_grid", "rows": 9, "cols": 2}, {"block": "날짜줄", "card": "date_inline"}], "prefill": [{"target": 0, "kind": "pf_filled"}], "decoys": ["(단위:) 캡션"], "seed": 489078851}

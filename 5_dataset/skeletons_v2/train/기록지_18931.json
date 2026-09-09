@@ -1,0 +1,1 @@
+{"id": "기록지_18931", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_multi"}, {"block": "격자", "card": "sig_grid", "rows": 10, "cols": 2}, {"block": "서명줄", "card": "sig_name"}], "prefill": [], "decoys": [], "seed": 718883081}

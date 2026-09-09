@@ -1,0 +1,1 @@
+{"id": "사진대지_07343", "type": "사진대지", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_filled"}, {"target": 1, "kind": "pf_note"}], "decoys": ["(단위:) 캡션", "인쇄 상수 셀", "인쇄 수신처 열거"], "seed": 10871496}

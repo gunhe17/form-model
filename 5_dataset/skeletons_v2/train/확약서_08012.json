@@ -1,0 +1,1 @@
+{"id": "확약서_08012", "type": "확약서", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "날짜줄", "card": "date_dots"}, {"block": "서명줄", "card": "sig_bold"}], "prefill": [], "decoys": [], "seed": 1577223718}

@@ -1,0 +1,1 @@
+{"id": "기록지_08574", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "num_unit"}, {"block": "격자", "card": "cb_matrix", "rows": 2, "cols": 5}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [{"target": 0, "kind": "pf_italic"}], "decoys": [], "seed": 1807607046}

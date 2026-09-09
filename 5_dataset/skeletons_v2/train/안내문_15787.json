@@ -1,0 +1,1 @@
+{"id": "안내문_15787", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "글머리서술", "card": "text_ul"}], "prefill": [{"target": 3, "kind": "pf_note"}], "decoys": [], "seed": 598874495}

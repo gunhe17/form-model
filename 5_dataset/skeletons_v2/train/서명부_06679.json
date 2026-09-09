@@ -1,0 +1,1 @@
+{"id": "서명부_06679", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "comb_jumin"}, {"block": "격자", "card": "sig_grid", "rows": 9, "cols": 2}, {"block": "날짜줄", "card": "date_inline"}], "prefill": [{"target": 1, "kind": "pf_italic"}], "decoys": ["처리절차 플로차트"], "seed": 648818479}

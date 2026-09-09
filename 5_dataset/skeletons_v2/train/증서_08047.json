@@ -1,0 +1,1 @@
+{"id": "증서_08047", "type": "증서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "text_cell"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_split"}, {"block": "서명줄", "card": "stamp_box"}], "prefill": [{"target": 1, "kind": "pf_mask"}], "decoys": [], "seed": 237604114}

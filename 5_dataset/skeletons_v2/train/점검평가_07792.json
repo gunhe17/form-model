@@ -1,0 +1,1 @@
+{"id": "점검평가_07792", "type": "점검평가", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "gp_cell"}, {"block": "격자", "card": "num_denom", "rows": 2, "cols": 7}, {"block": "서술", "card": "ta_cell"}, {"block": "서술", "card": "ta_cell"}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 585413853}

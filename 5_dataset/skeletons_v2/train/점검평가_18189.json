@@ -1,0 +1,1 @@
+{"id": "점검평가_18189", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_multi"}, {"block": "격자", "card": "stub_input", "rows": 5, "cols": 5}, {"block": "서술", "card": "ta_outline"}], "prefill": [{"target": 3, "kind": "pf_note"}], "decoys": ["인쇄 수신처 열거", "처리절차 플로차트"], "seed": 1704987555}

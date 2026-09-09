@@ -1,0 +1,1 @@
+{"id": "점검평가_03906", "type": "점검평가", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "mix_cell"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}, {"block": "서술", "card": "ta_free"}], "prefill": [], "decoys": [], "seed": 46674274}

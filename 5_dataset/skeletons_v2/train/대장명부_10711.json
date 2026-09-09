@@ -1,0 +1,1 @@
+{"id": "대장명부_10711", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "date_cell", "rows": 6, "cols": 4}, {"block": "격자", "card": "grid_diag", "rows": 4, "cols": 3}], "prefill": [{"target": 1, "kind": "pf_mask"}, {"target": 2, "kind": "pf_filled"}], "decoys": ["(단위:) 캡션"], "seed": 1825323938}

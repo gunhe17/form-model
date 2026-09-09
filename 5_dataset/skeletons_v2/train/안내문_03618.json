@@ -1,0 +1,1 @@
+{"id": "안내문_03618", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["(단위:) 캡션", "인쇄 상수 셀", "인쇄 수신처 열거"], "seed": 954483549}

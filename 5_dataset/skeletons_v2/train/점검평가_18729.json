@@ -1,0 +1,1 @@
+{"id": "점검평가_18729", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "dbx_cell"}, {"block": "격자", "card": "grid_diag", "rows": 4, "cols": 3}, {"block": "서술", "card": "ta_cell"}], "prefill": [], "decoys": ["인쇄 상수 셀", "(단위:) 캡션", "점선 절취선"], "seed": 757606394}

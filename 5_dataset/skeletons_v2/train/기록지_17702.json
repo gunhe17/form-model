@@ -1,0 +1,1 @@
+{"id": "기록지_17702", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "em_cell"}, {"block": "격자", "card": "num_cell", "rows": 6, "cols": 5}, {"block": "시각", "card": "time_cell"}, {"block": "서명줄", "card": "stamp_box"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 2135173407}

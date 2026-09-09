@@ -1,0 +1,1 @@
+{"id": "서명부_16249", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 9, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_italic"}], "decoys": ["(단위:) 캡션", "인쇄 상수 셀", "인쇄 수신처 열거"], "seed": 1957105187}

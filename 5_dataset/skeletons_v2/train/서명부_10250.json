@@ -1,0 +1,1 @@
+{"id": "서명부_10250", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "dbx_cell"}, {"block": "격자", "card": "sig_grid", "rows": 11, "cols": 2}, {"block": "날짜줄", "card": "date_split"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 1790394235}

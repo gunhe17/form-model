@@ -1,0 +1,1 @@
+{"id": "통지회신_17038", "type": "통지회신", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "dot_box"}, {"block": "선택군", "card": "cb_row", "n_options": 3}, {"block": "날짜줄", "card": "date_dots"}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [], "decoys": ["점선 절취선"], "seed": 1998355917}

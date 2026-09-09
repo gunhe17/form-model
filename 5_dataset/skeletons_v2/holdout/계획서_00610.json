@@ -1,0 +1,1 @@
+{"id": "계획서_00610", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "격자", "card": "stub_input", "rows": 2, "cols": 4}], "prefill": [], "decoys": ["인쇄 수신처 열거", "인쇄 상수 셀"], "seed": 302215940}

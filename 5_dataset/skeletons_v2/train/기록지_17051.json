@@ -1,0 +1,1 @@
+{"id": "기록지_17051", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ul_cell"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 5}, {"block": "서명줄", "card": "sig_name"}], "prefill": [{"target": 3, "kind": "pf_label"}], "decoys": ["처리절차 플로차트", "점선 절취선"], "seed": 1224426281}

@@ -1,0 +1,1 @@
+{"id": "사진대지_08464", "type": "사진대지", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "ph_lines"}, {"block": "격자", "card": "photo_grid", "rows": 3, "cols": 2}], "prefill": [{"target": 1, "kind": "pf_label"}], "decoys": [], "seed": 260243320}

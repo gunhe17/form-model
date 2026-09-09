@@ -1,0 +1,1 @@
+{"id": "점검평가_19287", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "inset_label_full"}, {"block": "격자", "card": "scale_anchor", "rows": 3, "cols": 7}, {"block": "서술", "card": "ta_outline"}], "prefill": [{"target": 2, "kind": "pf_filled"}], "decoys": ["점선 절취선"], "seed": 1406301671}

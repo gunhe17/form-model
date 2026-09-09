@@ -1,0 +1,1 @@
+{"id": "보고서_16343", "type": "보고서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "date_cell", "rows": 3, "cols": 7}, {"block": "격자", "card": "date_cell", "rows": 2, "cols": 5}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 722299230}

@@ -1,0 +1,1 @@
+{"id": "대장명부_13899", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 5, "cols": 7}], "prefill": [{"target": 0, "kind": "pf_year20"}], "decoys": ["인쇄 상수 셀"], "seed": 916880903}

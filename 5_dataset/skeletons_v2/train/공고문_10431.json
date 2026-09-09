@@ -1,0 +1,1 @@
+{"id": "공고문_10431", "type": "공고문", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "고지표", "card": "text_cell"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 1062261888}

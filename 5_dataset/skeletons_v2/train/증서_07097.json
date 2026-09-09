@@ -1,0 +1,1 @@
+{"id": "증서_07097", "type": "증서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "dot_split"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "date_dots"}, {"block": "서명줄", "card": "sig_name"}], "prefill": [], "decoys": ["처리절차 플로차트", "인쇄 상수 셀", "인쇄 수신처 열거"], "seed": 294180829}

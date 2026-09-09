@@ -1,0 +1,1 @@
+{"id": "보고서_04275", "type": "보고서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "grid_diag", "rows": 4, "cols": 5}, {"block": "격자", "card": "grid_diag", "rows": 2, "cols": 3}, {"block": "격자", "card": "num_cell", "rows": 5, "cols": 4}], "prefill": [], "decoys": ["점선 절취선"], "seed": 1857156662}

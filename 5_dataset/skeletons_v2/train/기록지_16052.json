@@ -1,0 +1,1 @@
+{"id": "기록지_16052", "type": "기록지", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "mix_cell"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}, {"block": "시각", "card": "time_cell"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [], "decoys": [], "seed": 1971497445}

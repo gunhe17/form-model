@@ -1,0 +1,1 @@
+{"id": "보고서_11616", "type": "보고서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 5, "cols": 5}, {"block": "격자", "card": "stub_input", "rows": 5, "cols": 4}], "prefill": [{"target": 2, "kind": "pf_year20"}], "decoys": ["인쇄 수신처 열거"], "seed": 1874137141}

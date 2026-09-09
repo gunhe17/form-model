@@ -1,0 +1,1 @@
+{"id": "서명부_17124", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "sig_grid", "rows": 11, "cols": 2}, {"block": "날짜줄", "card": "date_split"}], "prefill": [{"target": 1, "kind": "pf_filled"}, {"target": 2, "kind": "pf_italic"}], "decoys": ["(단위:) 캡션", "처리절차 플로차트"], "seed": 765575899}

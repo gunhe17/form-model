@@ -1,0 +1,1 @@
+{"id": "작성례_03432", "type": "작성례", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "text_suffix"}, {"block": "격자", "card": "pf_grid", "rows": 3, "cols": 5}], "prefill": [{"target": 2, "kind": "pf_filled"}], "decoys": ["인쇄 수신처 열거"], "seed": 1819183763}

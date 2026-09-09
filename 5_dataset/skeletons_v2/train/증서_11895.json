@@ -1,0 +1,1 @@
+{"id": "증서_11895", "type": "증서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "ph_multi"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "pf_year20"}, {"block": "서명줄", "card": "sig_name"}], "prefill": [{"target": 3, "kind": "pf_year20"}], "decoys": [], "seed": 710132875}

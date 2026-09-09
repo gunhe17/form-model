@@ -1,0 +1,1 @@
+{"id": "공고문_08872", "type": "공고문", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "고지표", "card": "text_cell"}], "prefill": [], "decoys": ["(단위:) 캡션", "인쇄 수신처 열거", "점선 절취선"], "seed": 2050459050}

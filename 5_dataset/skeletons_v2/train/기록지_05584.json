@@ -1,0 +1,1 @@
+{"id": "기록지_05584", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "em_cell"}, {"block": "격자", "card": "sig_grid", "rows": 11, "cols": 2}, {"block": "서명줄", "card": "stamp_box"}], "prefill": [{"target": 1, "kind": "pf_label"}], "decoys": ["(단위:) 캡션"], "seed": 1105824717}

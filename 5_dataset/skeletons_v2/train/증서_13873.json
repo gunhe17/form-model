@@ -1,0 +1,1 @@
+{"id": "증서_13873", "type": "증서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "text_cell"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "comb_date"}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [], "decoys": ["(단위:) 캡션", "점선 절취선"], "seed": 393165360}

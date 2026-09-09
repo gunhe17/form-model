@@ -1,0 +1,1 @@
+{"id": "점검평가_07747", "type": "점검평가", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_pict"}, {"block": "격자", "card": "radio_likert", "rows": 3, "cols": 7}, {"block": "서술", "card": "ta_free"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 976720356}

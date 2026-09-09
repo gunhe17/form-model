@@ -1,0 +1,1 @@
+{"id": "서명부_07035", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "sig_grid", "rows": 11, "cols": 2}], "prefill": [], "decoys": ["처리절차 플로차트", "점선 절취선"], "seed": 634994311}

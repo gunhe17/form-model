@@ -1,0 +1,1 @@
+{"id": "안내문_18662", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "ul_lines"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 3}], "prefill": [], "decoys": [], "seed": 1410134070}

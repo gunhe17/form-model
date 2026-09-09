@@ -1,0 +1,1 @@
+{"id": "서명부_15402", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 10, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_sample"}], "decoys": [], "seed": 1919095797}

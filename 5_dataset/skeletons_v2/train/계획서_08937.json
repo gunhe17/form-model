@@ -1,0 +1,1 @@
+{"id": "계획서_08937", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "ul_lines"}, {"block": "격자", "card": "grid_diag", "rows": 6, "cols": 6}], "prefill": [], "decoys": ["처리절차 플로차트", "(단위:) 캡션"], "seed": 969593650}

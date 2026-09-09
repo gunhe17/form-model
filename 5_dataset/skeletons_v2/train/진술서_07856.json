@@ -1,0 +1,1 @@
+{"id": "진술서_07856", "type": "진술서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "comb_jumin"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "날짜줄", "card": "date_inline"}, {"block": "서명줄", "card": "sig_bold"}], "prefill": [], "decoys": [], "seed": 513157037}

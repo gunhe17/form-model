@@ -1,0 +1,1 @@
+{"id": "증서_06194", "type": "증서", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "comb_jumin"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "comb_date"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [{"target": 1, "kind": "pf_mask"}], "decoys": [], "seed": 1009743592}

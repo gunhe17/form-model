@@ -1,0 +1,1 @@
+{"id": "작성례_03087", "type": "작성례", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "inset_label"}, {"block": "격자", "card": "pf_grid", "rows": 5, "cols": 4}], "prefill": [{"target": 0, "kind": "pf_filled"}, {"target": 1, "kind": "pf_note"}], "decoys": ["점선 절취선", "인쇄 수신처 열거"], "seed": 56626876}

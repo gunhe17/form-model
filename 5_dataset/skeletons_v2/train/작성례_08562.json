@@ -1,0 +1,1 @@
+{"id": "작성례_08562", "type": "작성례", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "date_cell"}, {"block": "격자", "card": "pf_grid", "rows": 3, "cols": 3}], "prefill": [{"target": 2, "kind": "pf_year20"}], "decoys": ["(단위:) 캡션"], "seed": 356155646}

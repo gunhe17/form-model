@@ -1,0 +1,1 @@
+{"id": "안내문_09786", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "text_colon"}], "prefill": [], "decoys": ["(단위:) 캡션", "인쇄 수신처 열거"], "seed": 621546854}

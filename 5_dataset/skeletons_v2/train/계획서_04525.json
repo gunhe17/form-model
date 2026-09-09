@@ -1,0 +1,1 @@
+{"id": "계획서_04525", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "ul_lines"}, {"block": "격자", "card": "stub_input", "rows": 3, "cols": 6}, {"block": "금액", "card": "paren_unit"}], "prefill": [], "decoys": [], "seed": 53609178}

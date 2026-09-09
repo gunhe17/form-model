@@ -1,0 +1,1 @@
+{"id": "서명부_12827", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "sig_grid", "rows": 12, "cols": 2}], "prefill": [], "decoys": ["인쇄 수신처 열거", "처리절차 플로차트"], "seed": 619329161}

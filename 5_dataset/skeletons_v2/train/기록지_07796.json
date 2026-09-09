@@ -1,0 +1,1 @@
+{"id": "기록지_07796", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "sig_cell"}, {"block": "격자", "card": "cal_grid", "rows": 2, "cols": 3}, {"block": "서명줄", "card": "stamp_box"}], "prefill": [], "decoys": ["인쇄 수신처 열거", "인쇄 상수 셀"], "seed": 580222618}

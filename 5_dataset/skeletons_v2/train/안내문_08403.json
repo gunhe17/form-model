@@ -1,0 +1,1 @@
+{"id": "안내문_08403", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "legal_prose"}], "prefill": [{"target": 0, "kind": "pf_example"}], "decoys": ["처리절차 플로차트", "(단위:) 캡션"], "seed": 1705790434}

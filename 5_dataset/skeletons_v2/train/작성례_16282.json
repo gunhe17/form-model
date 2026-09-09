@@ -1,0 +1,1 @@
+{"id": "작성례_16282", "type": "작성례", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "dbx_cell"}, {"block": "격자", "card": "pf_grid", "rows": 3, "cols": 4}], "prefill": [{"target": 0, "kind": "pf_example"}, {"target": 2, "kind": "pf_sample"}], "decoys": ["점선 절취선"], "seed": 250710897}

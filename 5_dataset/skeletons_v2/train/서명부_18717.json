@@ -1,0 +1,1 @@
+{"id": "서명부_18717", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "radio_word"}, {"block": "격자", "card": "sig_grid", "rows": 6, "cols": 2}, {"block": "날짜줄", "card": "date_split"}], "prefill": [{"target": 3, "kind": "pf_mask"}], "decoys": ["처리절차 플로차트"], "seed": 962954109}

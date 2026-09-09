@@ -1,0 +1,1 @@
+{"id": "서명부_13016", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "sig_grid", "rows": 10, "cols": 2}], "prefill": [], "decoys": ["(단위:) 캡션", "인쇄 수신처 열거", "점선 절취선"], "seed": 1971062455}
