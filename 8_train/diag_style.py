@@ -1,8 +1,9 @@
 """HTML 스타일 클래스별 recall — 생성기 분포와 실서식 분포의 어긋남을 잰다.
 
 검출 실패가 '못 본 구성'인지 '아는 구성인데 치수가 다른 것'인지 가른다. GT json 은
-querySelectorAll('[data-f]') 순서로 만들어졌고 to_yolo.py 가 순서를 보존하므로,
-라벨 i 번째 줄 = HTML 의 i 번째 [data-f] 요소다(길이 불일치 페이지는 건너뛰고 보고).
+querySelectorAll('[data-f]') 순서이고 to_yolo.py 가 그 순서를 보존하되 **일부 요소를 버린다**
+(퇴화 박스 w·h≤0, 그리고 --stage1 이면 word·area). 그래서 HTML 의 i 번째 [data-f] 가
+라벨의 i 번째 줄이라고 볼 수 없다 — to_yolo 와 같은 규칙으로 걸러낸 뒤 맞춘다.
 
 사용:
   python 8_train/diag_style.py --model best.pt --html-dir 4_replica/html \
@@ -36,6 +37,31 @@ class Fields(HTMLParser):
         d = dict(attrs)
         if "data-f" in d: self.out.append(d.get("class", "").strip())
 
+def aligned_styles(stem, styles, gt_dir, html_dir, n_labels):
+    """to_yolo 와 같은 규칙으로 [data-f] 를 걸러 라벨 줄과 1:1 로 맞춘다.
+    퇴화 박스(w·h≤0)를 먼저 버리고, 그래도 개수가 안 맞으면 word·area 를 더 버린다(--stage1 라벨).
+    맞출 수 없으면 None."""
+    gt = f"{gt_dir}/{stem}_gt.json"
+    if not os.path.exists(gt):
+        return styles if len(styles) == n_labels else None
+    boxes = json.load(open(gt, encoding="utf-8"))
+    if len(boxes) != len(styles):
+        return None
+    keep = [i for i, b in enumerate(boxes) if b["w"] > 0 and b["h"] > 0]
+    if len(keep) == n_labels:
+        return [styles[i] for i in keep]
+    try:
+        from label_stage1 import fields_from_html, classify_page, CLASSES
+    except Exception:
+        return None
+    hp = f"{html_dir}/{stem}.html"
+    fields = fields_from_html(open(hp, encoding="utf-8").read()) if os.path.exists(hp) else None
+    if fields is None or len(fields) != len(boxes):
+        return None
+    cls = classify_page(fields, boxes)
+    keep = [i for i in keep if cls[i] in CLASSES]
+    return [styles[i] for i in keep] if len(keep) == n_labels else None
+
 def measure(a):
     from ultralytics import YOLO
     cls_of = {}
@@ -44,6 +70,7 @@ def measure(a):
         p = Fields(); p.feed(open(f, encoding="utf-8").read()); cls_of[s] = p.out
     imgs = [f"{a.images}/{s}.png" for s in sorted(cls_of) if os.path.exists(f"{a.images}/{s}.png")]
     assert imgs, f"이미지 없음: {a.images}"
+    gt_dir = a.gt_dir or a.html_dir
 
     model = YOLO(a.model)
     raw = collections.defaultdict(lambda: dict(gt=0, hit=0, w=[], h=[]))
@@ -52,8 +79,9 @@ def measure(a):
         for r in model.predict(imgs[k:k+a.chunk], imgsz=a.imgsz, conf=a.conf, iou=a.nms_iou,
                                device=a.device, stream=True, verbose=False):
             H, W = r.orig_shape; stem = os.path.basename(r.path)[:-4]
-            g, _ = gt_boxes(f"{a.labels}/{stem}.txt", W, H); cl = cls_of.get(stem, [])
-            if len(cl) != len(g): skipped.append(stem); continue
+            g, _ = gt_boxes(f"{a.labels}/{stem}.txt", W, H)
+            cl = aligned_styles(stem, cls_of.get(stem, []), gt_dir, a.html_dir, len(g))
+            if cl is None: skipped.append(stem); continue
             p = r.boxes.xyxy.cpu().numpy()
             M = iou_matrix(g, p)
             gi, pi = linear_sum_assignment(-M) if M.size else (np.zeros(0, int), np.zeros(0, int))
@@ -108,6 +136,7 @@ def main():
     ap.add_argument("--compare", nargs=2, metavar=("A.json", "B.json"))
     ap.add_argument("--model"); ap.add_argument("--html-dir"); ap.add_argument("--images"); ap.add_argument("--labels")
     ap.add_argument("--name", default="style"); ap.add_argument("--out")
+    ap.add_argument("--gt-dir", help="*_gt.json 위치. 기본은 --html-dir (복제본은 4_replica/render)")
     ap.add_argument("--imgsz", type=int, default=1600); ap.add_argument("--conf", type=float, default=0.25)
     ap.add_argument("--nms-iou", type=float, default=0.7); ap.add_argument("--device", default="cpu")
     ap.add_argument("--match-iou", type=float, default=0.10)
