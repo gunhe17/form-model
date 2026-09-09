@@ -1,1 +1,1 @@
-{"id": "서명부_17624", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 7, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_sample"}, {"target": 1, "kind": "pf_mask"}], "decoys": ["(단위:) 캡션"], "seed": 495876009}
+{"id": "서명부_17624", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1471423493}

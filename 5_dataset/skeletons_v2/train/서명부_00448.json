@@ -1,1 +1,1 @@
-{"id": "서명부_00448", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 12, "cols": 2}], "prefill": [], "decoys": ["(단위:) 캡션", "처리절차 플로차트", "인쇄 수신처 열거"], "seed": 1172143462}
+{"id": "서명부_00448", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 229438750}

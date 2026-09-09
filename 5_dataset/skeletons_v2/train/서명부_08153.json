@@ -1,1 +1,0 @@
-{"id": "서명부_08153", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "sig_grid", "rows": 6, "cols": 2}], "prefill": [], "decoys": ["인쇄 상수 셀", "(단위:) 캡션"], "seed": 876618947}

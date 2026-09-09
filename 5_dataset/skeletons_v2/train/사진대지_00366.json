@@ -1,1 +1,1 @@
-{"id": "사진대지_00366", "type": "사진대지", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}], "prefill": [], "decoys": ["(단위:) 캡션", "점선 절취선", "인쇄 상수 셀"], "seed": 2942066}
+{"id": "사진대지_00366", "type": "사진대지", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}, {"block": "서명줄", "card": "sig_name"}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 1765178708}

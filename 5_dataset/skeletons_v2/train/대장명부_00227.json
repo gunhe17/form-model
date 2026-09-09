@@ -1,1 +1,1 @@
-{"id": "대장명부_00227", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "grid_diag", "rows": 4, "cols": 6}], "prefill": [{"target": 1, "kind": "pf_sample"}], "decoys": ["(단위:) 캡션"], "seed": 1198967665}
+{"id": "대장명부_00227", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "date_cell", "rows": 6, "cols": 5}], "prefill": [], "decoys": ["인쇄 수신처 열거", "(단위:) 캡션"], "seed": 1400984087}

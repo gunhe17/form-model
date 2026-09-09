@@ -1,1 +1,0 @@
-{"id": "대장명부_03229", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "stub_input", "rows": 7, "cols": 5}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1337579458}

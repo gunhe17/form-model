@@ -1,0 +1,1 @@
+{"id": "통지회신_00210", "type": "통지회신", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "cell_sublabel"}, {"block": "선택군", "card": "cb_row", "n_options": 15}, {"block": "날짜줄", "card": "date_range"}, {"block": "서명줄", "card": "stamp_box"}], "prefill": [], "decoys": [], "seed": 1498304316}

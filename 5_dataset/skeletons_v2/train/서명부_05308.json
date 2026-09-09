@@ -1,1 +1,1 @@
-{"id": "서명부_05308", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 14, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_sample"}], "decoys": [], "seed": 1054279954}
+{"id": "서명부_05308", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "sig_grid", "rows": 10, "cols": 2}, {"block": "날짜줄", "card": "date_dots"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 1153150016}

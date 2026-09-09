@@ -1,1 +1,1 @@
-{"id": "대장명부_19663", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "stub_input", "rows": 6, "cols": 7}], "prefill": [], "decoys": [], "seed": 1328022403}
+{"id": "대장명부_19663", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "stub_input", "rows": 2, "cols": 5}], "prefill": [{"target": 0, "kind": "pf_year20"}], "decoys": ["인쇄 상수 셀", "인쇄 수신처 열거"], "seed": 71687007}

@@ -1,1 +1,1 @@
-{"id": "서명부_18128", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "sig_grid", "rows": 13, "cols": 2}], "prefill": [], "decoys": [], "seed": 1462701135}
+{"id": "서명부_18128", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "text_cell"}, {"block": "격자", "card": "sig_grid", "rows": 12, "cols": 2}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 748647200}

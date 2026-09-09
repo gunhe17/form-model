@@ -1,1 +1,1 @@
-{"id": "공고문_03089", "type": "공고문", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["인쇄 상수 셀", "점선 절취선"], "seed": 1816836428}
+{"id": "공고문_03089", "type": "공고문", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "고지표", "card": "text_cell"}], "prefill": [], "decoys": ["점선 절취선", "인쇄 상수 셀"], "seed": 1882666214}

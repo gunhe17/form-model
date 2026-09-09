@@ -1,1 +1,1 @@
-{"id": "안내문_07015", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "text_paren"}], "prefill": [{"target": 0, "kind": "pf_note"}], "decoys": ["인쇄 수신처 열거", "점선 절취선"], "seed": 55965777}
+{"id": "안내문_07015", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": [], "seed": 654836950}

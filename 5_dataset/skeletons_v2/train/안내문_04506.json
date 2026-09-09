@@ -1,1 +1,1 @@
-{"id": "안내문_04506", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": [], "seed": 1336695330}
+{"id": "안내문_04506", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "text_prose"}], "prefill": [], "decoys": ["처리절차 플로차트", "(단위:) 캡션"], "seed": 1067263911}

@@ -1,0 +1,1 @@
+{"id": "작성례_07546", "type": "작성례", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "inset_label_full"}, {"block": "격자", "card": "pf_grid", "rows": 4, "cols": 3}, {"block": "격자", "card": "pf_grid", "rows": 5, "cols": 5}], "prefill": [{"target": 1, "kind": "pf_note"}], "decoys": ["인쇄 상수 셀"], "seed": 260856619}

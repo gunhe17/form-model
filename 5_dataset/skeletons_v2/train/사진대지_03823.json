@@ -1,0 +1,1 @@
+{"id": "사진대지_03823", "type": "사진대지", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}, {"block": "날짜줄", "card": "pf_year20"}, {"block": "서명줄", "card": "stamp_box"}], "prefill": [{"target": 0, "kind": "pf_note"}], "decoys": [], "seed": 1639064064}

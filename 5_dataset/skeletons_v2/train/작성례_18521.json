@@ -1,1 +1,0 @@
-{"id": "작성례_18521", "type": "작성례", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "split_hyphen"}, {"block": "격자", "card": "pf_grid", "rows": 3, "cols": 3}], "prefill": [{"target": 0, "kind": "pf_note"}, {"target": 1, "kind": "pf_sample"}], "decoys": [], "seed": 2039984682}

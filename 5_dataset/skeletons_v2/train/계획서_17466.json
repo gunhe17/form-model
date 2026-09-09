@@ -1,1 +1,0 @@
-{"id": "계획서_17466", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "격자", "card": "grid_diag", "rows": 2, "cols": 5}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 2112972666}

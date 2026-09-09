@@ -1,1 +1,0 @@
-{"id": "서명부_03653", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}], "prefill": [], "decoys": ["처리절차 플로차트", "인쇄 수신처 열거", "(단위:) 캡션"], "seed": 1951692467}

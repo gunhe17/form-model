@@ -1,0 +1,1 @@
+{"id": "작성례_04008", "type": "작성례", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "em_cell"}, {"block": "격자", "card": "pf_grid", "rows": 5, "cols": 5}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 197767144}

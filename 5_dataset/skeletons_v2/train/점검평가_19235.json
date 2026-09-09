@@ -1,1 +1,0 @@
-{"id": "점검평가_19235", "type": "점검평가", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "dot_box"}, {"block": "격자", "card": "stub_input", "rows": 7, "cols": 3}, {"block": "서술", "card": "ta_outline"}], "prefill": [], "decoys": [], "seed": 1583987133}

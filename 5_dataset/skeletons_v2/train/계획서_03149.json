@@ -1,0 +1,1 @@
+{"id": "계획서_03149", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "격자", "card": "stub_input", "rows": 3, "cols": 4}, {"block": "격자", "card": "num_cell", "rows": 2, "cols": 5}], "prefill": [{"target": 1, "kind": "pf_label"}], "decoys": [], "seed": 1102286212}

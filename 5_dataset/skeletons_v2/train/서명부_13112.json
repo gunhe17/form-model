@@ -1,1 +1,1 @@
-{"id": "서명부_13112", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 7, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_example"}], "decoys": ["처리절차 플로차트"], "seed": 1389043980}
+{"id": "서명부_13112", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "sig_grid", "rows": 9, "cols": 2}, {"block": "날짜줄", "card": "date_split"}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 624725052}

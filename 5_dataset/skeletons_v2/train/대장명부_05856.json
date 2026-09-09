@@ -1,1 +1,1 @@
-{"id": "대장명부_05856", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "date_cell", "rows": 4, "cols": 5}, {"block": "격자", "card": "num_cell", "rows": 5, "cols": 5}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1402620581}
+{"id": "대장명부_05856", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "num_cell", "rows": 6, "cols": 6}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 1329515028}

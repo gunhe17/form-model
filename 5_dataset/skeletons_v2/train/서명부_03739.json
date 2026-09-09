@@ -1,1 +1,1 @@
-{"id": "서명부_03739", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 9, "cols": 2}], "prefill": [{"target": 1, "kind": "pf_note"}], "decoys": ["인쇄 상수 셀"], "seed": 945060005}
+{"id": "서명부_03739", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "date_cell"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}], "prefill": [], "decoys": [], "seed": 1196845093}

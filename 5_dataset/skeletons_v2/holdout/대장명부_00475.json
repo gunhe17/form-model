@@ -1,1 +1,1 @@
-{"id": "대장명부_00475", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "stub_input", "rows": 3, "cols": 5}], "prefill": [], "decoys": [], "seed": 374223017}
+{"id": "대장명부_00475", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "grid_diag", "rows": 6, "cols": 6}], "prefill": [{"target": 0, "kind": "pf_filled"}], "decoys": ["점선 절취선"], "seed": 1070462677}

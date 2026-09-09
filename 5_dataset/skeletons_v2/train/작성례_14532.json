@@ -1,0 +1,1 @@
+{"id": "작성례_14532", "type": "작성례", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "mix_cell"}, {"block": "격자", "card": "pf_grid", "rows": 5, "cols": 3}], "prefill": [{"target": 2, "kind": "pf_note"}], "decoys": ["인쇄 수신처 열거"], "seed": 966318988}

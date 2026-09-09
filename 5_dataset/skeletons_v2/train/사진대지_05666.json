@@ -1,1 +1,0 @@
-{"id": "사진대지_05666", "type": "사진대지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "photo_grid", "rows": 3, "cols": 2}, {"block": "격자", "card": "photo_grid", "rows": 3, "cols": 2}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 1670649271}

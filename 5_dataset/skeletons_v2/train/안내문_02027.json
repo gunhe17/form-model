@@ -1,1 +1,1 @@
-{"id": "안내문_02027", "type": "안내문", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "글머리서술", "card": "ul_lines"}, {"block": "글머리서술", "card": "text_colon"}], "prefill": [{"target": 1, "kind": "pf_label"}], "decoys": [], "seed": 1636195943}
+{"id": "안내문_02027", "type": "안내문", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 1749977281}

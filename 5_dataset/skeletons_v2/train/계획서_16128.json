@@ -1,0 +1,1 @@
+{"id": "계획서_16128", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 5}], "prefill": [{"target": 3, "kind": "pf_sample"}], "decoys": [], "seed": 941132804}

@@ -1,1 +1,1 @@
-{"id": "대장명부_10707", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "stub_input", "rows": 7, "cols": 5}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1594214793}
+{"id": "대장명부_10707", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "stub_input", "rows": 6, "cols": 5}], "prefill": [], "decoys": ["인쇄 수신처 열거", "점선 절취선"], "seed": 139312232}

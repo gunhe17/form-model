@@ -1,1 +1,0 @@
-{"id": "작성례_17287", "type": "작성례", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "mix_cell"}, {"block": "격자", "card": "pf_grid", "rows": 4, "cols": 3}], "prefill": [{"target": 1, "kind": "pf_note"}, {"target": 2, "kind": "pf_sample"}], "decoys": ["처리절차 플로차트"], "seed": 1292779373}

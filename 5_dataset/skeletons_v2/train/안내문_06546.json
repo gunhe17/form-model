@@ -1,0 +1,1 @@
+{"id": "안내문_06546", "type": "안내문", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "글머리서술", "card": "text_prose"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1478260335}

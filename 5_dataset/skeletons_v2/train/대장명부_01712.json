@@ -1,1 +1,1 @@
-{"id": "대장명부_01712", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "num_cell", "rows": 2, "cols": 7}], "prefill": [{"target": 1, "kind": "pf_example"}], "decoys": [], "seed": 820213253}
+{"id": "대장명부_01712", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "grid_diag", "rows": 6, "cols": 5}], "prefill": [], "decoys": [], "seed": 1384834970}

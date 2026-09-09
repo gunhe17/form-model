@@ -1,1 +1,1 @@
-{"id": "서명부_02052", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "ul_cell"}, {"block": "격자", "card": "sig_grid", "rows": 7, "cols": 2}], "prefill": [], "decoys": ["(단위:) 캡션", "인쇄 상수 셀", "점선 절취선"], "seed": 757369627}
+{"id": "서명부_02052", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 10, "cols": 2}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 981215538}

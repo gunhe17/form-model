@@ -1,1 +1,0 @@
-{"id": "기록지_06245", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "split_hyphen"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}, {"block": "시각", "card": "time_split"}, {"block": "서명줄", "card": "sig_phrase"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 1707982319}

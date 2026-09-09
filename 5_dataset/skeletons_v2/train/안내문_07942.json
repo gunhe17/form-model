@@ -1,1 +1,0 @@
-{"id": "안내문_07942", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "글머리서술", "card": "ul_lines"}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 760175890}

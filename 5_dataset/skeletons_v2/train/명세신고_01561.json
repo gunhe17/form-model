@@ -1,0 +1,1 @@
+{"id": "명세신고_01561", "type": "명세신고", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "num_cell", "rows": 4, "cols": 5}, {"block": "격자", "card": "grid_diag", "rows": 4, "cols": 6}], "prefill": [], "decoys": ["(단위:) 캡션", "인쇄 수신처 열거"], "seed": 1696518376}

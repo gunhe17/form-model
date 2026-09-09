@@ -1,1 +1,0 @@
-{"id": "작성례_07362", "type": "작성례", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "img_cell"}, {"block": "격자", "card": "pf_grid", "rows": 6, "cols": 4}], "prefill": [{"target": 0, "kind": "pf_label"}], "decoys": ["인쇄 수신처 열거"], "seed": 1376778168}

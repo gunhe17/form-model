@@ -1,1 +1,0 @@
-{"id": "대장명부_12778", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 4}, {"block": "격자", "card": "stub_input", "rows": 4, "cols": 7}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 2111998843}

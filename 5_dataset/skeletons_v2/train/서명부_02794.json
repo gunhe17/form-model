@@ -1,1 +1,1 @@
-{"id": "서명부_02794", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 6, "cols": 2}, {"block": "날짜줄", "card": "pf_year20"}], "prefill": [], "decoys": [], "seed": 320988002}
+{"id": "서명부_02794", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 11, "cols": 2}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 184039857}

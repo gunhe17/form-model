@@ -1,1 +1,1 @@
-{"id": "작성요령서_17208", "type": "작성요령서", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["(단위:) 캡션", "인쇄 수신처 열거"], "seed": 1870306597}
+{"id": "작성요령서_17208", "type": "작성요령서", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "고지표", "card": "text_cell"}], "prefill": [], "decoys": [], "seed": 1971982142}

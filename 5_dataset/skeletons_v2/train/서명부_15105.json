@@ -1,0 +1,1 @@
+{"id": "서명부_15105", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "gp_cell"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}, {"block": "날짜줄", "card": "date_dots"}], "prefill": [{"target": 1, "kind": "pf_sample"}], "decoys": [], "seed": 1197842745}

@@ -1,0 +1,1 @@
+{"id": "서명부_16166", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "radio_word"}, {"block": "격자", "card": "sig_grid", "rows": 11, "cols": 2}, {"block": "날짜줄", "card": "date_range"}], "prefill": [{"target": 0, "kind": "pf_year20"}], "decoys": [], "seed": 931554263}
