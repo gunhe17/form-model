@@ -79,4 +79,5 @@
 - 골격 `5_dataset/skeletons_v3/{train 20000, holdout 999}` 시드 20260904/20260905. 카드 사용: inline_pairs 약 3% 페이지, date_tight 8%, pf_circle 15%.
 - 4차 실행: `forms_s1v3.yaml`, yolo_s1v3 · pool_s1v3 · render_swap_v3, 런 `ffdnet_s1v3`, 규칙 R1~R5 동일, 에폭마다 실서식·stress 채점 + diag_dump 귀속표.
 - 전량 렌더(20,000) 확인: 보이지 않는 박스 0, 점유율 목표 범위 유지(PLAN 9.5 표), 표적 구간 채워짐. 로컬 렌더 명령의 `ls *.json` 이 zsh 에서 인자 한계로 실패 → README 를 `find` 로 정정(bash 컨테이너는 문제 없음).
+- **4차 e1 결과** 실서식 90.43(+6.58). 척도칸 25→1 로 "규약 불일치" 진단이 맞았음이 확인됨. diag_dump 에 G(cg 가로 inset)·S(표 안 소형 서명)·E4(폭 31~45 셀) 버킷 추가 — e1 귀속표에는 없던 항목이라 e2 부터 집계.
 

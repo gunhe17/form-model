@@ -37,6 +37,8 @@ def aligned_fields(stem, html_dir, gt_dir, n_labels):
 def cause(f, b, c, tdtext):
     w, h = b["w"], b["h"]; t = f["text"]
     if c == "cell" and tdtext: return "A 셀: td 인쇄글자 위 선택칸(척도)"
+    if c == "cell" and "cg" in f["cls"].split() and f["intable"]: return "G 셀: 라벨 옆 잔여 입력(cg, 가로 inset)"
+    if c == "signature" and f["intable"] and w <= 40: return "S 서명: 표 셀 안 소형 (인)/(서명)"
     if c == "gap" and w <= 20: return "B1 gap: 폭 ≤20 밀착 슬롯"
     if c == "gap" and h <= 18: return "B2 gap: 높이 ≤18 낮은 줄"
     if c == "gap" and 40 < w <= 60: return "B3 gap: 폭 40~60"
@@ -45,6 +47,7 @@ def cause(f, b, c, tdtext):
     if c == "cell" and h > 100: return "E1 셀: 세로로 긴 (h>100)"
     if c == "cell" and 60 < w <= 90: return "E2 셀: 폭 60~90"
     if c == "cell" and w <= 30: return "E3 셀: 폭 ≤30 (실서식 낱칸형)"
+    if c == "cell" and w <= 45: return "E4 셀: 폭 31~45 (점수·횟수 소형 셀)"
     return f"F 기타 {c}"
 
 def iou(a, b):
