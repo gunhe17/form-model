@@ -78,3 +78,5 @@
 - 실서식 8호 접수증의 radio 38×26 무테두리 span 2개는 gap 으로 라벨돼 있음(괄호 택일 슬롯). 검사는 학습 쪽만 세도록 한정.
 - 골격 `5_dataset/skeletons_v3/{train 20000, holdout 999}` 시드 20260904/20260905. 카드 사용: inline_pairs 약 3% 페이지, date_tight 8%, pf_circle 15%.
 - 4차 실행: `forms_s1v3.yaml`, yolo_s1v3 · pool_s1v3 · render_swap_v3, 런 `ffdnet_s1v3`, 규칙 R1~R5 동일, 에폭마다 실서식·stress 채점 + diag_dump 귀속표.
+- 전량 렌더(20,000) 확인: 보이지 않는 박스 0, 점유율 목표 범위 유지(PLAN 9.5 표), 표적 구간 채워짐. 로컬 렌더 명령의 `ls *.json` 이 zsh 에서 인자 한계로 실패 → README 를 `find` 로 정정(bash 컨테이너는 문제 없음).
+
