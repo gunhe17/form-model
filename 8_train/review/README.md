@@ -12,3 +12,7 @@
 ## results_3rounds.html
 
 1·2·3차 결과 보고 아티팩트 원본(정적 HTML, 빌더 없음 — 수치는 `docs/PLAN.md` 8절·`README.md` 결과표에서 손으로 옮김). PDF는 `docs/3차_학습_보고.pdf`.
+
+## results_round4.html
+
+4차 결과 정밀 보고 원본(정적 HTML, 실서식 크롭 5장 base64 내장). PDF는 `docs/4차_학습_보고.pdf`.
