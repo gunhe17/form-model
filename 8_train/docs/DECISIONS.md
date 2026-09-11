@@ -178,4 +178,5 @@ Ultralytics 는 data yaml 의 train 에 `.txt` 이미지 목록을 받고, 같�
 - **157장 기준 실서식 분포**: cell 72.5 · marker 13.5 · gap 9.2 · comb 1.3 · placeholder 1.3 · signature 1.0 · underline 0.5 · photo 0.1. 44장(cell 33.6 · gap 28.0)과 크게 다르다 — 초기 44장은 "새 패턴이 있을 만한 것" 편향 표집이었고, 코퍼스의 실체는 대형 표(대장·명부·기록지). 생성기 목표 분포(PLAN 2절 cell 35 / gap 22)는 44장에 맞춘 것이므로 5차 이후 **157장 분포로 재설정**해야 한다(단, 희소 클래스 하한은 유지).
 - 규약 이탈 2건(NEW_PATTERNS): ① 한글 작성례 prefill 을 필드 밖에 두고 빈 cgf 로 라벨(placeholder→cell) ② 글머리 ○ 를 ::before 로 그려 L6 회피. 둘 다 lint 의 한계(L2 MASK, L6) 때문 — lint 를 고치고 되돌리는 것이 근본 해결.
 - **v4x2**: 초밀집 기록지(높이 ≤15px 셀) 카드 `dense_log_grid` + 150장 추가. 시행착오: 전역 CSS `td{height:cell_h}` 가 라벨 셀의 최소 높이로 작용해 행이 26px 로 늘어남 → 행의 모든 td 에 inline height 지정.
+- **coverage 지표 결함(2026-09-11)**: 실서식끼리 대조군이 0.042 로 합성(0.040)과 같음 → 96px 정사각 리사이즈(종횡비 소실, cell Vendi 1.14≈한 점)·GAP·고정 k 가 원인. 컨테이너가 수정안(종횡비 보존 letterbox + 여백, k=max(5,√n)·클래스별 표본 균등, 다중 스케일 특징)을 대조군 ≥0.5 기준으로 검증 후 diff 전달 예정. 그 전까지 coverage 수치는 기록만, 해석 금지.
 
