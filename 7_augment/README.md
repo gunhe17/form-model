@@ -69,3 +69,16 @@ nohup python 7_augment/render_swap.py --n 6000 --src 5_dataset/skeletons_v3/trai
 Y=8_train/yolo_s1v3 POOL=7_augment/pool_s1v3 RS=7_augment/render_swap_v3 S1=1 nohup ./7_augment/build_pool.sh > 7_augment/build_pool_s1v3.log 2>&1 &
 ```
 데이터 정의 `8_train/forms_s1v3.yaml`. 3차와 구성 동일, 렌더만 v3.
+
+## 5차(1단계 8종·v4) 실행
+```
+python 4_replica/split_anchor.py                                    # 실서식 서식 단위 2:1 분할 (한 번만)
+python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v4 --train-dir 5_dataset/train_v4 --val-dir 5_dataset/holdout_v4 --replica-split
+nohup python 7_augment/render_swap.py --n 6000 --src 5_dataset/skeletons_v4/train --out 7_augment/render_swap_v4 > 7_augment/render_swap_v4.log 2>&1 &
+Y=8_train/yolo_s1v4 POOL=7_augment/pool_s1v4 RS=7_augment/render_swap_v4 S1=1 nohup ./7_augment/build_pool.sh > 7_augment/build_pool_s1v4.log 2>&1 &
+```
+`build_pool.sh` 는 v3 와 동일 — `Y`·`POOL`·`RS`·`S1` 환경변수만 v4 경로로 바꾼다(스크립트 수정 없음).
+데이터 정의 `8_train/forms_s1v4.yaml`. 4차와 달라진 곳은 **구분 구성이 아니라 val** 이다:
+val 이 합성 홀드아웃에서 **실서식 학습분(`images/replica_train`)** 으로 바뀌었다. Ultralytics 가 best.pt·patience 를
+val fitness 로 고르기 때문에, val 이 합성이면 "합성만 오르고 실서식은 e1 정점" 을 잡을 수 없다
+(6_research/variation/C 5절). test 는 서식 단위로 분리된 `replica_eval` + stress.

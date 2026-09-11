@@ -22,3 +22,8 @@ weights/
 7_augment/pool_s1v3/
 7_augment/render_swap_v3/
 8_train/yolo_s1v3/
+5_dataset/train_v4/
+5_dataset/holdout_v4/
+7_augment/pool_s1v4/
+7_augment/render_swap_v4/
+8_train/yolo_s1v4/

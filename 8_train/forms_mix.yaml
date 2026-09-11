@@ -1,0 +1,17 @@
+# P6-4 (B) 혼합 학습 — 처음부터 합성 + 실서식 오버샘플(실 5~20%).
+# 미세조정(A)과 혼합(B)의 우열은 문헌이 갈린다(Nowruzi 1907.07061 vs Burdorf 2202.00632, 5시드 유의차 없음).
+# 둘 다 돌려 replica_eval 에서 짝지은 부트스트랩(diag_ci.py A B)으로 고른다.
+#
+#   python 8_train/make_mix_list.py --out 8_train/yolo_s1v4/mix_real10.txt --real-frac 0.10 \
+#     --real 8_train/yolo_s1v4/images/replica_train \
+#     --synth 8_train/yolo_s1v4/images/train 7_augment/pool_s1v4/images/swap \
+#             7_augment/pool_s1v4/images/office 7_augment/pool_s1v4/images/office_swap \
+#             7_augment/pool_s1v4/images/degraded 7_augment/pool_s1v4/images/degraded_swap
+# 실 비율 0.05 / 0.10 / 0.20 세 개를 만들어 비교한다(목록 파일명에 비율을 적을 것).
+path: /work
+train: 8_train/yolo_s1v4/mix_real10.txt
+val: 8_train/yolo_s1v4/images/replica_train
+test:
+  - 8_train/yolo_s1v4/images/replica_eval
+  - 7_augment/pool_s1v4/images/stress
+names: {0: marker, 1: comb, 2: cell, 3: gap, 4: underline, 5: placeholder, 6: signature, 7: photo}
