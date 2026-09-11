@@ -64,3 +64,54 @@ recall@IoU0.5, `score.py`. 1·2차 실서식은 conf 0.25·11종(GT 999), 3차�
 도구: `score.py` 3축 채점 · `diag_replica.py` 놓침·유령 해부 · `diag_style.py` 스타일별 recall/치수 · `forms_aug.yaml` 2차 데이터 정의.
 
 - `diag_dump.py` — GT 단위 매칭 덤프 → 놓침 원인 귀속표 (PLAN 9절)
+
+## 5차(P6) 도구와 실행 — 측정 먼저
+
+4차까지의 판정은 전부 **합성 val** 위에서 내려졌고(best.pt·patience·조기 종료), 실서식 수치는 점추정이었다.
+5차는 그 둘을 고친다: 판정 기준을 실서식으로 옮기고, 모든 실서식 수치에 CI 를 붙인다.
+근거는 `6_research/variation/README.md`(교차 검증)와 `docs/PLAN.md` 10절.
+
+| 도구 | 무엇을 재나 | 자가검증 |
+|---|---|---|
+| `score.py --dump` | GT 단위 매칭 덤프(miss_dump_*.json) 산출 — 아래 세 도구의 공통 입력 | `--selftest` |
+| `diag_ci.py` | 페이지 군집 부트스트랩 95% CI, 페이지 평균 recall, 최악 5쪽, 두 덤프면 짝지은 A−B 차 CI | `--selftest` |
+| `diag_conf.py` | conf 히스토그램, 합성 vs 실 AUROC, 검출 ECE, temperature 1개 보정 후 임계 0.05/0.10/0.25 recall·유령 | `--selftest` |
+| `diag_coverage.py` | backbone 크롭 임베딩으로 density/coverage(k=5) · Vendi 를 클래스별·전체 | `--selftest` |
+| `4_replica/split_anchor.py` | 실서식을 **서식 단위** 2:1 로 분할 → `4_replica/split.json` (105 train / 52 eval, 서식 겹침 0) | `--check` |
+| `make_mix_list.py` | 실/합성 혼합 이미지 목록(.txt) — 실 비율에서 반복 등록 횟수를 역산 | `--selftest` |
+
+결과표에 붙일 한 줄은 `diag_ci.py` 가 그대로 찍는다: `90.43 [87.5, 93.1]`.
+
+### 실행 순서 (컨테이너, /work)
+
+```bash
+# 0. 앵커 분할 + YOLO 변환 (v4 렌더·풀은 7_augment/README '5차' 절 참조)
+python 4_replica/split_anchor.py
+python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v4 \
+  --train-dir 5_dataset/train_v4 --val-dir 5_dataset/holdout_v4 --replica-split
+
+# 1. P6-0 측정 — 4차 가중치로 먼저 기준선을 만든다 (GPU 1장, 학습 전)
+python 8_train/score.py --model 8_train/runs/ffdnet_s1v3/weights/last_e1.pt --name v3e1_real --conf 0.05 \
+  --images 8_train/yolo_s1v3/images/replica --labels 8_train/yolo_s1v3/labels/replica \
+  --dump 8_train/runs/score/miss_dump_v3e1_real.json
+python 8_train/score.py --model 8_train/runs/ffdnet_s1v3/weights/last_e1.pt --name v3e1_hold --conf 0.05 \
+  --images 8_train/yolo_s1v3/images/val --labels 8_train/yolo_s1v3/labels/val \
+  --dump 8_train/runs/score/miss_dump_v3e1_hold.json
+python 8_train/diag_ci.py   8_train/runs/score/miss_dump_v3e1_real.json
+python 8_train/diag_conf.py 8_train/runs/score/miss_dump_v3e1_real.json --synth 8_train/runs/score/miss_dump_v3e1_hold.json
+python 8_train/diag_coverage.py --model 8_train/runs/ffdnet_s1v3/weights/last_e1.pt --max-boxes 2000 --chunk 64 \
+  --real  8_train/yolo_s1v3/images/replica:8_train/yolo_s1v3/labels/replica \
+  --fake  8_train/yolo_s1v3/images/train:8_train/yolo_s1v3/labels/train
+
+# 2. P6-3 학습 v4 (3시드, 각 시드 끝에 replica_eval 채점 + CI 자동)
+nohup ./8_train/train_v4.sh > 8_train/train_v4.log 2>&1 &
+
+# 3. P6-4 실데이터 혼합 — (A) 미세조정 head-only/full, (B) 혼합 5/10/20%
+nohup ./8_train/finetune_real.sh > 8_train/finetune_real.log 2>&1 &
+
+# 4. 최종 비교 — 짝지은 페이지 부트스트랩으로 후보 vs v4 기준선
+python 8_train/diag_ci.py 8_train/runs/score/miss_dump_ft_head_eval.json 8_train/runs/score/miss_dump_v4_s0_eval.json
+```
+
+데이터 정의: `forms_s1v4.yaml`(본학습, **val=replica_train**) · `forms_ft_real.yaml`(A) · `forms_mix.yaml`(B).
+학습 스크립트: `train_v4.sh`(3시드) · `finetune_real.sh`(A·B + 채점까지).

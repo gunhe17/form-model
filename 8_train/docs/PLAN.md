@@ -309,11 +309,13 @@ e1 @0.05: hit 중 conf<0.25 가 38개(@0.25 recall 80.76 과 일치). 유령 301
 | 단계 | 작업 | 산출 | 합격 |
 |---|---|---|---|
 | P6-0 측정 | score.py 페이지 군집 부트스트랩 CI(10,000회, 짝지은 A/B 차), 에폭별 합성/실 확신도 AUROC, backbone 크롭 임베딩 PRDC coverage·Vendi(클래스별) | 결과표에 CI 부착, coverage 표 | 4차 e1 의 CI 와 클래스별 coverage 확정 |
-| P6-1 앵커 | 4_replica 44→149 전사(lint 통과), **원천 PDF 단위** 학습 100 / 평가 49 분할 | 4_replica/html 149, split.json | lint 위반 0, 분할에 원천 겹침 0 |
+| P6-1 앵커 | 4_replica 44→157 전사(lint 통과), **서식 단위** 학습 105 / 평가 52 분할 | 4_replica/html 157, split.json | lint 위반 0, 분할에 서식 겹침 0 |
 | P6-2 생성기 v4 | ① 테마축 전부 연속 구간(글꼴 크기 7~14pt, 행 높이, 셀 패딩, 괘선 0.6~2px, 회색 농도, 자간 −0.05~0.1em, 행간 1.0~1.8) ② 글꼴 ≥30(한글 자유 글꼴, 굵기 포함) ③ 라벨·선택지·문장 어휘를 1_corpus OCR 캐시에서 표집(길이 분포 정합) ④ 비대상 방해물(도장·로고·워터마크·안내문·페이지번호) 0~6개 ⑤ DPR/zoom 0.8~1.3, 뷰포트 ±15% ⑥ 카드 간격·열 폭·라벨 열 폭 연속 지터를 실서식 히스토그램에 정렬 ⑦ 음성 페이지 5~10% | 3_generator v4, 렌더 20k, 검수 아티팩트 | 보이지 않는 박스 0, 클래스 점유율 범위, **coverage 상승**, 사용자 검수 |
 | P6-3 학습 v4 | val=실서식 학습분(P6-1 100장) 또는 합성 1:1 혼합, fliplr 0·hsv_h/s 0·hsv_v 0.3, mosaic 0.5·close_mosaic 30%, scale (0.7,1.6), degrees 2·shear 1·translate 0.15·perspective 0.0002, mixup/cutmix 0, freeze 10 + AdamW lr0 1e-3·warmup 1, patience 5, save_period 1, 3시드 | ffdnet_s1v4 | 실서식 평가분(49장) recall + CI, 에폭별 AUROC 곡선 |
 | P6-4 실데이터 혼합 | (A) v4 가중치 → 실 100장 미세조정 head-only vs full lr/10, 합성 리플레이 20~30% (B) 혼합 학습 실 5~20% 오버샘플 + 희소 클래스 합성 오버샘플 | 두 가중치 | 실 49장(원천 분리)에서 짝지은 CI 로 선택 |
 | P6-5 절제 | 축 하나씩 on/off 2k 렌더 → 실 val 변화 | 축별 기여표 | 예산 남을 때 |
 
-Ultralytics 주의: `copy_paste` 는 폴리곤 필요(박스 GT 로 불가 → 7_augment 골격 수준 붙여넣기로 대체), `label_smoothing`·`dropout`·`erasing`·`auto_augment` 는 검출에 미연결/무효.
+Ultralytics 주의(8.4.143 설치본 대조, DECISIONS 16절 표): `copy_paste` 는 폴리곤 필요(박스 GT 로 불가 → 7_augment 골격 수준 붙여넣기로 대체), `label_smoothing` 은 **키 자체가 없어 주면 오류**, `dropout`·`erasing`·`auto_augment` 는 분류 전용. `scale=0.7,1.6` 은 CLI 에서 튜플로 파싱된다. `freeze=N` 은 model.0~model.(N-1) 동결 — YOLO11 은 0~10 backbone·11~22 neck·23 Detect 이므로 head-only 는 `freeze=23`.
+
+쪽수 정정: PLAN 초안의 "149쪽 → 100/49" 는 코퍼스 실제 수와 다르다. `1_corpus/page_manifest.json` 정본은 **157쪽 · 85서식**이고, `4_replica/split_anchor.py`(seed=1) 가 서식 단위로 **105 / 52** 로 가른다(현재 전사된 44장은 29 / 15). 도구는 `8_train/README.md` "5차(P6) 도구와 실행" 절.
 
