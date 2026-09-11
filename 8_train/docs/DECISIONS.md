@@ -180,3 +180,8 @@ Ultralytics 는 data yaml 의 train 에 `.txt` 이미지 목록을 받고, 같�
 - **v4x2**: 초밀집 기록지(높이 ≤15px 셀) 카드 `dense_log_grid` + 150장 추가. 시행착오: 전역 CSS `td{height:cell_h}` 가 라벨 셀의 최소 높이로 작용해 행이 26px 로 늘어남 → 행의 모든 td 에 inline height 지정.
 - **coverage 지표 결함(2026-09-11)**: 실서식끼리 대조군이 0.042 로 합성(0.040)과 같음 → 96px 정사각 리사이즈(종횡비 소실, cell Vendi 1.14≈한 점)·GAP·고정 k 가 원인. 컨테이너가 수정안(종횡비 보존 letterbox + 여백, k=max(5,√n)·클래스별 표본 균등, 다중 스케일 특징)을 대조군 ≥0.5 기준으로 검증 후 diff 전달 예정. 그 전까지 coverage 수치는 기록만, 해석 금지.
 
+## 18. 서버 디스크 정리 (2026-09-11)
+- 여유 82GB(91%)에서 종료 라운드 증강 풀 3벌(32GB)만 삭제하기로 결정(사용자 승인). 학습 결과·가중치·덤프·전사물은 보존, 골격·스크립트로 재생성 가능한 것만 대상.
+- 다른 서비스 영향 0 의 근거: 컨테이너가 쓸 수 있는 호스트 경로는 compose 볼륨 3개(프로젝트 폴더·claude 인증·HF 캐시)뿐이고, 스크립트는 저장소 루트 아래 고정 3경로만 realpath·git check-ignore·디바이스·링크 검사 후 삭제. 호스트 검증: `docker inspect form-model-train-1 --format '{{range .Mounts}}{{.Source}} -> {{.Destination}}{{"\n"}}{{end}}'`.
+- 로컬(맥)에도 `7_augment/pool` 9.4G 가 남아 있음(여유 38GB) — 별도 결정.
+

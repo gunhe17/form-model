@@ -82,3 +82,7 @@ Y=8_train/yolo_s1v4 POOL=7_augment/pool_s1v4 RS=7_augment/render_swap_v4 S1=1 no
 val 이 합성 홀드아웃에서 **실서식 학습분(`images/replica_train`)** 으로 바뀌었다. Ultralytics 가 best.pt·patience 를
 val fitness 로 고르기 때문에, val 이 합성이면 "합성만 오르고 실서식은 e1 정점" 을 잡을 수 없다
 (6_research/variation/C 5절). test 는 서식 단위로 분리된 `replica_eval` + stress.
+
+## 산출물 정리 이력
+- **2026-09-11 (서버 컨테이너, 5차 학습 중)**: 종료된 라운드의 증강 풀 3벌 삭제 — `pool`(1·2차, 9.9G) · `pool_s1`(3차, 11G) · `pool_s1v3`(4차, 11G), 약 32GB. 절차는 `cleanup_pools.sh`(G1~G5 검사 통과 시에만, 지정 3경로만, ionice/nice, --one-file-system). 재생성은 각 라운드 절의 build_pool 명령(각 30~40분). 가중치(`8_train/runs/ffdnet_*`)·기준선 덤프(`runs/score`)·실서식 렌더(`4_replica/render`)·현행 v4 산출물은 대상 아님.
+
