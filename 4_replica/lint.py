@@ -26,7 +26,7 @@ JS = r"""() => {
   const walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); const loose=[]; let n;
   while((n=walker.nextNode())){ const t=n.textContent.replace(/\s+/g,' ').trim(); if(!t) continue;
     if(/^(□|\[\s*\]|○|◯|[①-⑩])$/.test(t) && !n.parentElement.closest('[data-f]')){
-      const p=n.parentElement; const blk=p.closest('div,p,td,li,h1,h2')||p; const pt=(blk.textContent||'').replace(/\s+/g,' ').trim(); loose.push({t, ctx:pt.slice(0,40), ...rect(p)});}
+      const p=n.parentElement; const blk=p.closest('div,p,td,li,h1,h2')||p; const pt=(blk.textContent||'').replace(/\s+/g,' ').trim(); loose.push({t, ctx:pt.slice(0,40), hasField:!!blk.querySelector('[data-f]'), ...rect(p)});}
   }
   // 빈 td 누락: 같은 tr 의 td 중 필드 있는 게 있고, 이 td 는 비어 있고 필드 없음
   const wide=[];
@@ -71,6 +71,7 @@ async def run(files):
             for e in R['wide']: out.append(('L4 낱칸단순화', f"{e['f']} span.{e['cls'] or '-'} @({e['x']:.0f},{e['y']:.0f}) {e['w']:.0f}×{e['h']:.0f}", '주민번호·우편번호 행'))
             if R['TH']: out.append(('L5 th라벨', f"{R['TH']}개", ''))
             for l in R['loose']:
+                if l.get('hasField'): continue   # 글머리 ○/□ 뒤에 입력 요소가 오는 줄(기록 자리)은 마커가 아님 — 2편 22호·NEW_PATTERNS 2
                 if not re.match(r'^(□|○|◯|[①-⑩])\s*\S', l['ctx']) or l['ctx']==l['t']: out.append(('L6 미라벨마커', f"@({l['x']:.0f},{l['y']:.0f})", l['ctx']))
             for t in R['empt']: out.append(('L8 빈셀누락(경고)', f"@({t['x']:.0f},{t['y']:.0f}) {t['w']:.0f}×{t['h']:.0f}", ''))
             hard=[o for o in out if not o[0].endswith('(경고)')]; total+=len(hard)
