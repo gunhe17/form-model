@@ -186,7 +186,7 @@ def main():
     ap.add_argument("--fake", type=pair, help="images_dir:labels_dir (합성)")
     ap.add_argument("--max-boxes", type=int, default=2000, help="각 집합의 박스 표본 상한 (2000 이면 메모리 <1GB)")
     ap.add_argument("--chunk", type=int, default=64, help="backbone forward 배치")
-    ap.add_argument("--device", default="cpu")
+    ap.add_argument("--device", default="cpu", help="cpu · cuda:0 · 0(=cuda:0)")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--selftest", action="store_true")
     a = ap.parse_args()
@@ -201,7 +201,8 @@ def main():
     for tag, (img, lab) in (("real", a.real), ("fake", a.fake)):
         bx = load_boxes(img, lab, a.max_boxes, rng)
         print(f"[{tag}] 박스 {len(bx)} · 페이지 {len(set(b[0] for b in bx))} → 임베딩 중")
-        out[tag] = (embed(a.model, bx, a.chunk, a.device), np.array([b[1] for b in bx]))
+        dev = f"cuda:{a.device}" if str(a.device).isdigit() else a.device   # Ultralytics 식 '0' 허용
+        out[tag] = (embed(a.model, bx, a.chunk, dev), np.array([b[1] for b in bx]))
     print(f"임베딩 차원 {out['real'][0].shape[1]}")
     table(out["real"][0], out["real"][1], out["fake"][0], out["fake"][1], names)
 
