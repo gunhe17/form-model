@@ -355,4 +355,6 @@ Ultralytics 주의(8.4.143 설치본 대조, DECISIONS 16절 표): `copy_paste` 
 - 데이터 63,100(clean 20,550 = v4 20,000 + score_grid 400 + dense_log 150 · swap 6,000 · office 20,550 · office_swap 6,000 · degraded 8,000 · degraded_swap 2,000), **val = replica_train 105**, test = replica_eval 52 + stress 500.
 - 설정: FFDNet-L 초기화, freeze 10, AdamW lr0 1e-3 lrf 0.05 warmup 1 cos, mosaic 0.5 close_mosaic 9, scale 0.7~1.6, translate 0.15 degrees 2 shear 1 perspective 0.0002, fliplr/flipud 0, hsv 0/0/0.3, mixup/cutmix/copy_paste 0, imgsz 1600 batch 4, **시드 0 · epochs 10 · patience 3**(3시드는 결과 보고 결정). iter/epoch 15,775.
 - 판정: replica_eval 52장 recall + 페이지 군집 CI(기준선 92.09 [87.4, 96.1]), 귀속표 --prev 기준선.
+- 시작 확인: freeze 10 으로 에폭당 약 56분(4차 78), GPU 9.4GB(4차 17.8), 4.7 it/s.
+- **5차 규칙(val=실서식)**: R1' eval ≥95 & stress ≥98 종료 · R2' stress <98 → 직전 가중치 · R3' e2 eval <88 중단 · R4' eval 2에폭 연속 +1pt 미만 종료 · R5' 상한 10 · Ultralytics patience 3(val fitness). **가중치 선택은 replica_train(val) 기준**, replica_eval 은 보고용(누수 방지).
 
