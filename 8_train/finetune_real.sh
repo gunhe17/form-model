@@ -15,6 +15,7 @@ ROOT=$(pwd)
 PY=${PY:-yolo}
 W=${W:-$ROOT/8_train/runs/ffdnet_s1v4_s0/weights/best.pt}
 MODE=${MODE:-AB}
+TAG=${TAG:-}   # 런 이름 접미(예: TAG=_v3e1 → ft_head_v3e1) — 베이스를 바꿔 여러 번 돌릴 때 덮어쓰기 방지
 RT=$ROOT/8_train/yolo_s1v4/images/replica_train
 EV=$ROOT/8_train/yolo_s1v4/images/replica_eval
 COMMON="imgsz=1600 batch=4 device=0 epochs=15 patience=5 save_period=1 \
@@ -35,10 +36,10 @@ if [[ $MODE == *A* ]]; then
     --repeat 30 --synth-frac 0.02 --real $RT --synth $SYNTH
   echo "=== A1 head-only (freeze=23, lr0 1e-3) ==="
   $PY detect train model=$W data=$ROOT/8_train/forms_ft_real.yaml $COMMON \
-    freeze=23 lr0=0.001 seed=0 name=ft_head
+    freeze=23 lr0=0.001 seed=0 name=ft_head$TAG
   echo "=== A2 full (freeze 없음, lr0 1e-4) ==="
   $PY detect train model=$W data=$ROOT/8_train/forms_ft_real.yaml $COMMON \
-    lr0=0.0001 seed=0 name=ft_full
+    lr0=0.0001 seed=0 name=ft_full$TAG
 fi
 
 if [[ $MODE == *B* ]]; then
@@ -53,13 +54,13 @@ if [[ $MODE == *B* ]]; then
 fi
 
 # 판정: replica_eval 에서 짝지은 부트스트랩. v4 기준선과 각 변형을 A−B 로 비교한다
-for N in ft_head ft_full mix_real05 mix_real10 mix_real20; do
+for N in ft_head$TAG ft_full$TAG mix_real05 mix_real10 mix_real20; do
   B=$ROOT/8_train/runs/$N/weights/best.pt
   [ -f "$B" ] || continue
   python 8_train/score.py --model $B --name ${N}_eval --images $EV \
     --labels $ROOT/8_train/yolo_s1v4/labels/replica_eval --conf 0.05 \
     --dump $ROOT/8_train/runs/score/miss_dump_${N}_eval.json
   python 8_train/diag_ci.py $ROOT/8_train/runs/score/miss_dump_${N}_eval.json \
-    $ROOT/8_train/runs/score/miss_dump_v4_s0_eval.json
+    $ROOT/8_train/runs/score/miss_dump_s1v4_e1.json   # 5차 e1 replica_eval 덤프(컨테이너 이름 규약)
 done
 echo FINETUNE_DONE
