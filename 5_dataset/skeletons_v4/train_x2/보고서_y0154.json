@@ -1,0 +1,1 @@
+{"id": "보고서_y0154", "type": "보고서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "dense_log_grid", "rows": 5, "cols": 5}, {"block": "격자", "card": "stub_input", "rows": 2, "cols": 3}], "prefill": [{"target": 0, "kind": "pf_sample"}], "decoys": ["처리절차 플로차트", "인쇄 상수 셀"], "seed": 2032451799}

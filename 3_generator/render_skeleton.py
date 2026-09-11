@@ -532,6 +532,24 @@ class R:
                 t="text" if r==rows-1 else items[r%7][1]
                 return TDC(t,hr[r],cls="")
             return grid(rng,rows,min(cols,3),["구분","내용","비고"],cf,disp=[self.L(h,0.4) for h in ["구분","내용","비고"]])
+        if c=="dense_log_grid":   # v4x2: 초밀집 월간 기록지 (실서식 2편 11호: 셀 50×10~15px, 300개+). 장치 픽셀 기준 → dsf 로 나눔
+            dsf=_T("dsf",1.0)
+            ncol=rng.randint(7,12); rh=rng.randint(12,17); cw=rng.randint(40,60)   # 행 높이 12~17 → 박스(인셋 1px) 10~15
+            rhc=max(8,int(round(rh/dsf))); cwc=int(round(cw/dsf)); fs=max(7,int(round(9/dsf)))
+            hs=[rng.choice(["월일","일자","회차","날짜"])]+[rng.choice(["/","월 일","일"]) for _ in range(ncol)]
+            SVC=["언어","청능","미술심리재활","음악재활","행동발달재활","놀이심리","감각발달","운동재활","심리운동","인지발달"]
+            SUB=["시작시간","종료시간","담당재활사","서명","제공시간","비고"]
+            nsvc=rng.randint(3,7); nsub=rng.randint(2,4); rng.shuffle(SVC)
+            cg="<colgroup><col>"+"".join(f'<col style="width:{cwc}px">' for _ in range(ncol))+"</colgroup>"
+            CGD=lambda: f'<span data-f="text" class="cgf" style="top:1px;bottom:1px;left:1px;right:1px"></span>'
+            body=""
+            for si in range(nsvc):
+                for k in range(nsub):
+                    lab=(f'<td class="lb" rowspan="{nsub}" style="font-size:{fs+1}px;line-height:1.1;height:auto;padding:0 2px">{SVC[si]}</td>' if k==0 else "")
+                    body+=(f'<tr style="height:{rhc}px">{lab}<td class="tl" style="font-size:{fs}px;line-height:1.1;padding:0 2px;height:{rhc}px">{SUB[k%len(SUB)]}</td>'
+                           +"".join(f'<td class="vl fillc" style="height:{rhc}px;padding:0">{CGD()}</td>' for _ in range(ncol-1))+"</tr>")
+            head="<tr>"+"".join(f'<th style="font-size:{fs}px;line-height:1.1;padding:0 2px">{x}</th>' for x in hs)+"</tr>"
+            return f'<table style="font-size:{fs}px">{cg}{head}{body}</table>'
         if c=="score_grid":   # v4x: 점수·배점 좁은 열 (실서식 6호 35×45 셀). 장치 픽셀 기준 폭 31~45 → dsf 로 나눠 CSS px
             dsf=_T("dsf",1.0); ins=_T("inset",3)
             ncol=rng.randint(4,8); tw=rng.randint(31,45); th=rng.randint(34,48)

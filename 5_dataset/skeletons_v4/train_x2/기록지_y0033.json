@@ -1,0 +1,1 @@
+{"id": "기록지_y0033", "type": "기록지", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "num_unit"}, {"block": "격자", "card": "dense_log_grid", "rows": 3, "cols": 4}, {"block": "서명줄", "card": "stamp_box"}], "prefill": [], "decoys": ["인쇄 수신처 열거", "점선 절취선"], "seed": 1487659183}

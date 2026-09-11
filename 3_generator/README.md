@@ -97,3 +97,10 @@ E4(cell 폭 31~45px, 실서식 6호 점수 셀)가 v4 에서도 20,000장 환산
 find 5_dataset/skeletons_v4/train_x -name '*.json' | xargs -P 6 -n 80 sh -c 'python3 3_generator/render_skeleton.py "$@" --out 5_dataset/train_v4 > /dev/null' _   # train_v4 png 20,400
 ```
 
+### v4x2 — 초밀집 월간 기록지 격자 (2026-09-11)
+
+157장 기준선에서 평가분 놓침의 절반이 2편 11호(셀 50×10~15px, 333개)였고 생성기에 높이 ≤15px 셀이 0개였다. 카드 `dense_log_grid`(열 7~12, 행 높이 12~17 장치px, 인셋 1px, 글꼴 7~9px) + 강제 골격 150장(`skeletons_v4/train_x2`, 기록지·부품집중·보고서, seed 20260907)을 train_v4 에 추가 렌더. 20장 표본 페이지당 높이 ≤15 셀 약 140개 → 150장 ≈ 2.1만 개(전체 cell 의 약 9%, 실서식 4.8%). 재생성:
+```
+find 5_dataset/skeletons_v4/train_x2 -name '*.json' | xargs -P 6 -n 50 sh -c 'python3 3_generator/render_skeleton.py "$@" --out 5_dataset/train_v4 > /dev/null' _   # train_v4 png 20,550
+```
+

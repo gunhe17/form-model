@@ -177,4 +177,5 @@ Ultralytics 는 data yaml 의 train 에 `.txt` 이미지 목록을 받고, 같�
 - **2편 42 + 3편 15 병합 → 복제본 157장 완료**(GT 6,971, 페이지당 중앙값 21, 음성 앵커 18장). 분할: 학습 50서식/105장 · 평가 35서식/52장, 겹침 0.
 - **157장 기준 실서식 분포**: cell 72.5 · marker 13.5 · gap 9.2 · comb 1.3 · placeholder 1.3 · signature 1.0 · underline 0.5 · photo 0.1. 44장(cell 33.6 · gap 28.0)과 크게 다르다 — 초기 44장은 "새 패턴이 있을 만한 것" 편향 표집이었고, 코퍼스의 실체는 대형 표(대장·명부·기록지). 생성기 목표 분포(PLAN 2절 cell 35 / gap 22)는 44장에 맞춘 것이므로 5차 이후 **157장 분포로 재설정**해야 한다(단, 희소 클래스 하한은 유지).
 - 규약 이탈 2건(NEW_PATTERNS): ① 한글 작성례 prefill 을 필드 밖에 두고 빈 cgf 로 라벨(placeholder→cell) ② 글머리 ○ 를 ::before 로 그려 L6 회피. 둘 다 lint 의 한계(L2 MASK, L6) 때문 — lint 를 고치고 되돌리는 것이 근본 해결.
+- **v4x2**: 초밀집 기록지(높이 ≤15px 셀) 카드 `dense_log_grid` + 150장 추가. 시행착오: 전역 CSS `td{height:cell_h}` 가 라벨 셀의 최소 높이로 작용해 행이 26px 로 늘어남 → 행의 모든 td 에 inline height 지정.
 
