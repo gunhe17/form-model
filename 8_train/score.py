@@ -9,6 +9,7 @@
 
 사용: python 8_train/score.py --model 8_train/runs/ffdnet_1600/weights/best.pt \
         --images 8_train/yolo/images/val --labels 8_train/yolo/labels/val --name val
+덤프:     ... --dump 8_train/runs/score/miss_dump_s1v4_e1.json   (diag_ci·diag_conf·diag_dump 입력)
 자가검증: python 8_train/score.py --selftest
 """
 import argparse, glob, json, os
@@ -45,8 +46,9 @@ class Tally:
         self.per = {t: dict(gt=0, hit=0, m=0, cls_ok=0) for t in TYPES}
         self.types = TYPES
         self.pages = []
+        self.gt_rows, self.ghost_rows = [], []       # --dump 용 GT 단위 매칭 기록
 
-    def add(self, stem, g, gc, p, pc):
+    def add(self, stem, g, gc, p, pc, pconf=None):
         self.n_gt += len(g); self.n_pred += len(p)
         for c in gc: self.per[TYPES[c]]["gt"] += 1
         M = iou_matrix(g, p)
@@ -64,6 +66,19 @@ class Tally:
         for i in set(range(len(g))) - set(gi.tolist()): self.conf[gc[i], BG] += 1     # 놓침
         for j in set(range(len(p))) - set(pi.tolist()): self.conf[BG, pc[j]] += 1     # 유령
         self.pages.append(dict(page=stem, gt=len(g), pred=len(p), matched=int(keep.sum()), iou50=pg_iou50))
+        # GT 단위 덤프 (diag_dump / diag_ci / diag_conf 입력). 매칭 안 된 GT 는 iou 0·pred_cls·conf None
+        m = dict(zip(gi.tolist(), pi.tolist()))
+        box = lambda b: dict(x=float(b[0]), y=float(b[1]), w=float(b[2]-b[0]), h=float(b[3]-b[1]))
+        for i in range(len(g)):
+            j = m.get(i)
+            self.gt_rows.append(dict(page=stem, i=i, cls=TYPES[gc[i]], **box(g[i]),
+                                     hit=bool(j is not None and M[i, j] >= 0.5),
+                                     iou=float(M[i, j]) if j is not None else 0.0,
+                                     pred_cls=TYPES[pc[j]] if j is not None else None,
+                                     conf=float(pconf[j]) if j is not None and pconf is not None else None))
+        for j in set(range(len(p))) - set(pi.tolist()):
+            self.ghost_rows.append(dict(page=stem, cls=TYPES[pc[j]], **box(p[j]),
+                                        conf=float(pconf[j]) if pconf is not None else None))
 
     def summary(self):
         pct = lambda x, y: 100.0 * x / y if y else float("nan")
@@ -72,7 +87,7 @@ class Tally:
                     coord_pass=pct(self.n_iou50, self.n_match), class_acc=pct(self.n_cls_ok, self.n_match),
                     misses=self.n_gt-self.n_match, ghosts=self.n_pred-self.n_match)
 
-def report(T, name, n_imgs, conf_thr, out, model):
+def report(T, name, n_imgs, conf_thr, out, model, dump=None):
     pct = lambda x, y: 100.0 * x / y if y else float("nan")
     S = dict(split=name, model=model, images=n_imgs, conf=conf_thr, match_iou=T.match_iou, **T.summary())
     print(f"\n=== {name} · {n_imgs}장 · GT {S['gt']} · 예측 {S['pred']} (conf={conf_thr}) ===")
@@ -93,16 +108,26 @@ def report(T, name, n_imgs, conf_thr, out, model):
     json.dump(dict(summary=S, per_class=T.per, confusion=T.conf.tolist(), pages=T.pages),
               open(f"{out}/{name}.json","w"), ensure_ascii=False, indent=1)
     print(f"\n→ {out}/{name}.json")
+    if dump:
+        json.dump(dict(meta=dict(names=TYPES, split=name, model=model, conf=conf_thr), gt=T.gt_rows, ghosts=T.ghost_rows),
+                  open(dump, "w"), ensure_ascii=False)
+        print(f"→ {dump}  (diag_dump / diag_ci / diag_conf 입력)")
 
 def selftest():
     """GT 4개(완벽1 / IoU0.33 좌표실패1 / IoU0.9 클래스오답1 / 예측없음1) + 유령 1개."""
     g = np.array([[0,0,10,10],[20,0,30,10],[40,0,50,10],[60,0,70,10]], float); gc = np.array([0,1,2,3])
     p = np.array([[0,0,10,10],[15,0,25,10],[40,0,49,10],[80,0,90,10]], float); pc = np.array([0,1,5,0])
     assert np.allclose(iou_matrix(g[:1], p[:3])[0], [1.0, 0.0, 0.0])
-    T = Tally(0.10); T.add("t", g, gc, p, pc); S = T.summary()
+    T = Tally(0.10); T.add("t", g, gc, p, pc, np.array([.9,.8,.7,.6])); S = T.summary()
     assert (S["matched"], T.n_iou50, T.n_cls_ok) == (3, 2, 2), S
     assert abs(S["recall_iou50"]-50) < 1e-9 and abs(S["coord_pass"]-200/3) < 1e-9 and abs(S["class_acc"]-200/3) < 1e-9
     assert S["misses"] == 1 and S["ghosts"] == 1 and T.conf[2,5] == 1 and T.conf[3,BG] == 1 and T.conf[BG,0] == 1
+    # --dump 형식: GT 4줄(hit 2) + 유령 1줄, 좌표는 픽셀 x,y,w,h
+    assert len(T.gt_rows) == 4 and sum(r["hit"] for r in T.gt_rows) == 2
+    assert T.gt_rows[0] == dict(page="t", i=0, cls=TYPES[0], x=0., y=0., w=10., h=10.,
+                                hit=True, iou=1.0, pred_cls=TYPES[0], conf=0.9), T.gt_rows[0]
+    assert T.gt_rows[3]["conf"] is None and T.gt_rows[3]["iou"] == 0.0     # 예측 없던 GT
+    assert len(T.ghost_rows) == 1 and T.ghost_rows[0]["conf"] == 0.6
     print("selftest OK")
 
 def main():
@@ -114,6 +139,7 @@ def main():
     ap.add_argument("--nms-iou", type=float, default=0.7); ap.add_argument("--device", default="0")
     ap.add_argument("--match-iou", type=float, default=0.10, help="이 값 미만은 매칭으로 치지 않는다(유령/놓침)")
     ap.add_argument("--out", default="8_train/runs/score"); ap.add_argument("--chunk", type=int, default=16)
+    ap.add_argument("--dump", help="GT 단위 매칭 덤프 경로 (miss_dump_*.json) — diag_ci/diag_conf/diag_dump 입력")
     a = ap.parse_args()
     if a.selftest: return selftest()
     assert a.model and a.images and a.labels, "--model --images --labels 필요"
@@ -129,10 +155,10 @@ def main():
         for r in model.predict(imgs[k:k+a.chunk], imgsz=a.imgsz, conf=a.conf, iou=a.nms_iou, device=a.device, stream=True, verbose=False):
             H, W = r.orig_shape; stem = os.path.basename(r.path)[:-4]
             g, gc = gt_boxes(f"{a.labels}/{stem}.txt", W, H)
-            T.add(stem, g, gc, r.boxes.xyxy.cpu().numpy(), r.boxes.cls.cpu().numpy().astype(int))
+            T.add(stem, g, gc, r.boxes.xyxy.cpu().numpy(), r.boxes.cls.cpu().numpy().astype(int), r.boxes.conf.cpu().numpy())
         if a.device != "cpu":
             import torch; torch.cuda.empty_cache()
-    report(T, a.name, len(imgs), a.conf, a.out, a.model)
+    report(T, a.name, len(imgs), a.conf, a.out, a.model, a.dump)
 
 if __name__ == "__main__":
     main()
