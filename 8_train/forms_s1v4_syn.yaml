@@ -1,0 +1,29 @@
+# v4 데이터 + 합성 홀드아웃 val (5차 forms_s1v4.yaml 과 train·test 동일, val 만 합성). PLAN 10.8 베이스 수렴 가설 런용.
+# 5차(1단계 8종, v4 생성기) 학습 — v4 렌더 + 증강 풀(pool_s1v4). path 는 컨테이너 기준.
+#
+# 4차와의 결정적 차이: **val 이 합성 홀드아웃이 아니라 실서식 학습분(replica_train)** 이다.
+# Ultralytics 는 best.pt 와 patience 를 val fitness(0.1·mAP50 + 0.9·mAP50-95)로 고르므로,
+# val 이 합성이면 best.pt 는 정의상 합성 최적점이고 "e1 정점 후 실서식 하락"을 잡을 수 없다
+# (6_research/variation/C 5절, PLAN 10절 P6-3). test 는 서식 단위로 분리된 replica_eval — 최종 1회만 본다.
+#
+# replica_train/replica_eval 은 4_replica/split.json(서식 단위 2:1) 기준:
+#   python 4_replica/split_anchor.py
+#   python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v4 \
+#          --train-dir 5_dataset/train_v4 --val-dir 5_dataset/holdout_v4 --replica-split
+path: /work
+train:
+  - 8_train/yolo_s1v4/images/train           # clean v4     20,000
+  - 7_augment/pool_s1v4/images/swap          # swap          6,000
+  - 7_augment/pool_s1v4/images/office        # office       20,000
+  - 7_augment/pool_s1v4/images/office_swap   # office_swap   6,000
+  - 7_augment/pool_s1v4/images/degraded      # degraded      8,000
+  - 7_augment/pool_s1v4/images/degraded_swap # degraded_swap 2,000
+val: 8_train/yolo_s1v4/images/val          # 합성 홀드아웃 v4 999 — 선택 기준을 합성으로
+# 실서식만으로 fitness 가 흔들리면 아래처럼 합성 홀드아웃과 섞는다(권장 대안, PLAN 10절):
+# val:
+#   - 8_train/yolo_s1v4/images/replica_train
+#   - 8_train/yolo_s1v4/images/val
+test:
+  - 8_train/yolo_s1v4/images/replica_eval    # 실서식 평가분 (서식 단위 분리, 15 → 52쪽)
+  - 7_augment/pool_s1v4/images/stress        # 홀드아웃 v4 열화 500
+names: {0: marker, 1: comb, 2: cell, 3: gap, 4: underline, 5: placeholder, 6: signature, 7: photo}
