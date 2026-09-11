@@ -1,0 +1,1 @@
+{"id": "희소_12650", "type": "희소", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "num_bracket"}, {"block": "시각", "card": "time_cell"}], "prefill": [{"target": 1, "kind": "pf_mask"}, {"target": 2, "kind": "pf_filled"}], "decoys": ["인쇄 수신처 열거"], "seed": 974903690}

@@ -1,0 +1,1 @@
+{"id": "대장명부_00474", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 6}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 6}], "prefill": [], "decoys": ["점선 절취선", "(단위:) 캡션"], "seed": 9242465}

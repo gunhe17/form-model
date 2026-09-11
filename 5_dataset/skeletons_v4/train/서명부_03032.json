@@ -1,0 +1,1 @@
+{"id": "서명부_03032", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "sig_grid", "rows": 9, "cols": 2}, {"block": "날짜줄", "card": "pf_year20"}], "prefill": [{"target": 1, "kind": "pf_circle"}], "decoys": ["(단위:) 캡션"], "seed": 1883338784}

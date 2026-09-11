@@ -1,0 +1,1 @@
+{"id": "증서_00717", "type": "증서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "ph_pict"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "pf_year20"}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 690352160}

@@ -1,0 +1,1 @@
+{"id": "작성례_19468", "type": "작성례", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "em_cell"}, {"block": "격자", "card": "pf_grid", "rows": 4, "cols": 3}], "prefill": [{"target": 0, "kind": "pf_label"}, {"target": 1, "kind": "pf_sample"}], "decoys": ["(단위:) 캡션"], "seed": 1918414994}

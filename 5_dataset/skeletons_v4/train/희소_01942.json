@@ -1,0 +1,1 @@
+{"id": "희소_01942", "type": "희소", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "num_affix"}, {"block": "시각", "card": "time_cell"}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 1091773438}

@@ -1,0 +1,1 @@
+{"id": "계획서_06394", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "격자", "card": "grid_diag", "rows": 2, "cols": 4}], "prefill": [{"target": 1, "kind": "pf_mask"}], "decoys": [], "seed": 1030067070}

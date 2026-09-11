@@ -1,0 +1,1 @@
+{"id": "희소_04390", "type": "희소", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "num_bracket"}, {"block": "시각", "card": "time_cell"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 509857629}

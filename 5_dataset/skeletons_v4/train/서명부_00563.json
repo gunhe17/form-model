@@ -1,0 +1,1 @@
+{"id": "서명부_00563", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "sig_grid", "rows": 12, "cols": 2}, {"block": "날짜줄", "card": "comb_date"}], "prefill": [], "decoys": [], "seed": 1958550386}

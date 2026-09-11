@@ -1,0 +1,1 @@
+{"id": "작성례_11925", "type": "작성례", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "ph_pict"}, {"block": "격자", "card": "pf_grid", "rows": 5, "cols": 3}], "prefill": [{"target": 1, "kind": "pf_year20"}, {"target": 2, "kind": "pf_mask"}], "decoys": ["인쇄 수신처 열거", "점선 절취선"], "seed": 1588917943}

@@ -1,0 +1,1 @@
+{"id": "증서_08126", "type": "증서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "inline_pairs"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "pf_year20"}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 780210521}

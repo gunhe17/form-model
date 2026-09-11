@@ -1,0 +1,1 @@
+{"id": "안내문_19312", "type": "안내문", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "ul_lines"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "격자", "card": "stub_input", "rows": 2, "cols": 3}], "prefill": [], "decoys": ["점선 절취선"], "seed": 557631620}

@@ -1,0 +1,1 @@
+{"id": "서명부_16933", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "comb_slot"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}, {"block": "날짜줄", "card": "comb_date"}], "prefill": [{"target": 0, "kind": "pf_mask"}], "decoys": ["인쇄 수신처 열거", "점선 절취선"], "seed": 1815758874}

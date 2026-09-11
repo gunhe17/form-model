@@ -1,0 +1,1 @@
+{"id": "작성례_16266", "type": "작성례", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "comb_jumin"}, {"block": "격자", "card": "pf_grid", "rows": 4, "cols": 5}], "prefill": [{"target": 1, "kind": "pf_filled"}, {"target": 2, "kind": "pf_sample"}], "decoys": ["인쇄 수신처 열거"], "seed": 649710838}

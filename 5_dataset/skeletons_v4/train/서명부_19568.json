@@ -1,0 +1,1 @@
+{"id": "서명부_19568", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "text_cell"}, {"block": "격자", "card": "sig_grid", "rows": 12, "cols": 2}, {"block": "날짜줄", "card": "date_split"}], "prefill": [{"target": 3, "kind": "pf_italic"}], "decoys": [], "seed": 120746972}

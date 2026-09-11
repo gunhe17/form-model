@@ -6,3 +6,4 @@
 | `variation.json` | 셀 치수·괘선·여백 실측 분포(157쪽 전수, 1545px=A4 180dpi 기준) |
 | `layout.json` | 페이지당 요소 수·세로 분포·타입 동시출현(표본 18) |
 | `generator_spec.json` | 변형 요소별 실측 범위 → 생성 범위 |
+| `lexicon_real.json` | 실서식 어휘(1_corpus OCR 캐시 추출) — 라벨 2,005 · 문장조각 220 · 수량표현 15. 생성기 v4 가 th 라벨·선택지·서술 문구를 길이 맞춰 섞어 쓴다. 재생성 `python3 3_generator/build_lexicon.py` |

@@ -1,0 +1,1 @@
+{"id": "서명부_03169", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "dot_box"}, {"block": "격자", "card": "sig_grid", "rows": 11, "cols": 2}], "prefill": [{"target": 0, "kind": "pf_mask"}], "decoys": [], "seed": 1590015117}

@@ -1,0 +1,1 @@
+{"id": "희소_00486", "type": "희소", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "paren_unit"}], "prefill": [{"target": 0, "kind": "pf_mask"}], "decoys": [], "seed": 1455113717}

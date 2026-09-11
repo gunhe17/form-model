@@ -1,0 +1,1 @@
+{"id": "계획서_03001", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "격자", "card": "grid_diag", "rows": 2, "cols": 3}, {"block": "금액", "card": "num_unit"}], "prefill": [{"target": 1, "kind": "pf_circle"}], "decoys": ["인쇄 상수 셀"], "seed": 1162045543}

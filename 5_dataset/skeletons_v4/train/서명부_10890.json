@@ -1,0 +1,1 @@
+{"id": "서명부_10890", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "split_hyphen"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}, {"block": "날짜줄", "card": "date_inline"}], "prefill": [], "decoys": ["처리절차 플로차트", "점선 절취선"], "seed": 214505862}

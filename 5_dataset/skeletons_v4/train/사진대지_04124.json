@@ -1,0 +1,1 @@
+{"id": "사진대지_04124", "type": "사진대지", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "img_cell"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [{"target": 0, "kind": "pf_circle"}], "decoys": ["처리절차 플로차트"], "seed": 19273362}

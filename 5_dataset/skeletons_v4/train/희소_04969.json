@@ -1,0 +1,1 @@
+{"id": "희소_04969", "type": "희소", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "num_both"}, {"block": "시각", "card": "time_cell"}], "prefill": [{"target": 0, "kind": "pf_filled"}], "decoys": ["처리절차 플로차트", "(단위:) 캡션"], "seed": 1696037035}

@@ -1,0 +1,1 @@
+{"id": "대장명부_00038", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "stub_input", "rows": 6, "cols": 5}], "prefill": [], "decoys": [], "seed": 2000214998}

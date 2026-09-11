@@ -1,0 +1,1 @@
+{"id": "공고문_13978", "type": "공고문", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "동의문단", "card": "consent"}, {"block": "고지표", "card": "text_cell"}, {"block": "동의문단", "card": "consent"}], "prefill": [], "decoys": ["처리절차 플로차트", "(단위:) 캡션"], "seed": 211202586}

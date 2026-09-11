@@ -1,0 +1,1 @@
+{"id": "희소_19504", "type": "희소", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "num_both"}], "prefill": [], "decoys": ["인쇄 수신처 열거", "처리절차 플로차트", "(단위:) 캡션"], "seed": 1045878998}

@@ -1,0 +1,1 @@
+{"id": "희소_15977", "type": "희소", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "paren_unit"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 929397706}

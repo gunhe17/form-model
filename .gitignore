@@ -27,3 +27,14 @@ weights/
 7_augment/pool_s1v4/
 7_augment/render_swap_v4/
 8_train/yolo_s1v4/
+8_train/yolo_s1v4/
+7_augment/pool_s1v4/
+7_augment/render_swap_v4/
+# v4 글꼴 풀: fonts/get_fonts.sh 로 재생성 (기존 5개만 추적)
+fonts/*.ttf
+fonts/*.otf
+!fonts/Hahmlet.ttf
+!fonts/NanumGothic.ttf
+!fonts/NanumGothic-Bold.ttf
+!fonts/NanumMyeongjo.ttf
+!fonts/NanumMyeongjo-Bold.ttf

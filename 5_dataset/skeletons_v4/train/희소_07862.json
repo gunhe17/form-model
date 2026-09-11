@@ -1,0 +1,1 @@
+{"id": "희소_07862", "type": "희소", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "num_affix"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 2033876834}

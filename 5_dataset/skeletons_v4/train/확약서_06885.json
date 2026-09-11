@@ -1,0 +1,1 @@
+{"id": "확약서_06885", "type": "확약서", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "날짜줄", "card": "date_dots"}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 42632536}

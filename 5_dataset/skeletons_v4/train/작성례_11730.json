@@ -1,0 +1,1 @@
+{"id": "작성례_11730", "type": "작성례", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "comb_slot"}, {"block": "격자", "card": "pf_grid", "rows": 4, "cols": 3}], "prefill": [{"target": 0, "kind": "pf_mask"}, {"target": 1, "kind": "pf_italic"}], "decoys": [], "seed": 3748759}

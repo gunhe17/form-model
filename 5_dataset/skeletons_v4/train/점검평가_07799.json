@@ -1,0 +1,1 @@
+{"id": "점검평가_07799", "type": "점검평가", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "ph_lines"}, {"block": "격자", "card": "scale_anchor", "rows": 6, "cols": 6}, {"block": "서술", "card": "ta_cell"}], "prefill": [{"target": 2, "kind": "pf_year20"}], "decoys": [], "seed": 1560769037}

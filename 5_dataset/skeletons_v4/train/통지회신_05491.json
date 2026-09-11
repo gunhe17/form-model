@@ -1,0 +1,1 @@
+{"id": "통지회신_05491", "type": "통지회신", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "inset_label_full"}, {"block": "선택군", "card": "cb_grid", "n_options": 6}, {"block": "날짜줄", "card": "date_tight"}, {"block": "서명줄", "card": "stamp_box"}], "prefill": [], "decoys": ["점선 절취선"], "seed": 2143310359}

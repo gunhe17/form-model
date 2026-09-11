@@ -1,0 +1,1 @@
+{"id": "서명부_09100", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "inline_pairs"}, {"block": "격자", "card": "sig_grid", "rows": 9, "cols": 2}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 1247652691}

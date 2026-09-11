@@ -1,0 +1,1 @@
+{"id": "기록지_03151", "type": "기록지", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "comb_jumin"}, {"block": "격자", "card": "cb_matrix", "rows": 2, "cols": 5}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [], "decoys": ["인쇄 상수 셀", "점선 절취선"], "seed": 599084904}

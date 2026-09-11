@@ -1,0 +1,1 @@
+{"id": "대장명부_17056", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "stub_input", "rows": 5, "cols": 3}, {"block": "격자", "card": "stub_input", "rows": 2, "cols": 3}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 1063594172}

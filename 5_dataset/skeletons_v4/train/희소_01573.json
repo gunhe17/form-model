@@ -1,0 +1,1 @@
+{"id": "희소_01573", "type": "희소", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "num_bracket"}, {"block": "시각", "card": "time_cell"}], "prefill": [{"target": 0, "kind": "pf_example"}], "decoys": ["(단위:) 캡션", "인쇄 수신처 열거"], "seed": 2022433773}

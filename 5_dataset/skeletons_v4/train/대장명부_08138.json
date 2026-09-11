@@ -1,0 +1,1 @@
+{"id": "대장명부_08138", "type": "대장명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "stub_input", "rows": 4, "cols": 4}], "prefill": [{"target": 0, "kind": "pf_example"}], "decoys": ["(단위:) 캡션"], "seed": 806343198}

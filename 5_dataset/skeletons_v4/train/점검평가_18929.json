@@ -1,0 +1,1 @@
+{"id": "점검평가_18929", "type": "점검평가", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_multi"}, {"block": "격자", "card": "radio_grid", "rows": 6, "cols": 5}, {"block": "서술", "card": "ta_cell"}, {"block": "서술", "card": "ta_free"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 1045926123}

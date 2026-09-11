@@ -1,0 +1,1 @@
+{"id": "확약서_11428", "type": "확약서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "글머리서술", "card": "ta_outline"}, {"block": "날짜줄", "card": "date_dots"}, {"block": "서명줄", "card": "sig_ul"}], "prefill": [], "decoys": [], "seed": 536793883}

@@ -1,0 +1,1 @@
+{"id": "서명부_15277", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "inline_pairs"}, {"block": "격자", "card": "sig_grid", "rows": 11, "cols": 2}], "prefill": [], "decoys": ["점선 절취선"], "seed": 87615404}
