@@ -358,3 +358,12 @@ Ultralytics 주의(8.4.143 설치본 대조, DECISIONS 16절 표): `copy_paste` 
 - 시작 확인: freeze 10 으로 에폭당 약 56분(4차 78), GPU 9.4GB(4차 17.8), 4.7 it/s.
 - **5차 규칙(val=실서식)**: R1' eval ≥95 & stress ≥98 종료 · R2' stress <98 → 직전 가중치 · R3' e2 eval <88 중단 · R4' eval 2에폭 연속 +1pt 미만 종료 · R5' 상한 10 · Ultralytics patience 3(val fitness). **가중치 선택은 replica_train(val) 기준**, replica_eval 은 보고용(누수 방지).
 
+### 10.5 5차 진행
+
+| 에폭 | replica_train(선택) [CI] | **replica_eval(보고)** [CI] | 좌표/종류(eval) | stress | 비고 |
+|---|---|---|---|---|---|
+| 기준선(4차 e1) | 91.77 [88.2, 94.9] | 92.09 [87.4, 96.1] | 98.42 / 99.05 | 99.87 | |
+| e1 | **93.62** [90.4, 96.5] | **92.50** [88.0, 96.2] | 98.82 / 99.41 | **94.03** | 54분. stress 미수렴(새 헤드·freeze 10·AdamW) |
+
+- R2' 해석 정정: e1 의 stress 94 는 망각이 아니라 미수렴(실서식은 동시에 상승). **R2' 는 e2 부터 "stress <98 이면서 직전 대비 하락"일 때만 발동**으로 확정(DECISIONS 19).
+

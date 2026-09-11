@@ -185,3 +185,7 @@ Ultralytics 는 data yaml 의 train 에 `.txt` 이미지 목록을 받고, 같�
 - 다른 서비스 영향 0 의 근거: 컨테이너가 쓸 수 있는 호스트 경로는 compose 볼륨 3개(프로젝트 폴더·claude 인증·HF 캐시)뿐이고, 스크립트는 저장소 루트 아래 고정 3경로만 realpath·git check-ignore·디바이스·링크 검사 후 삭제. 호스트 검증: `docker inspect form-model-train-1 --format '{{range .Mounts}}{{.Source}} -> {{.Destination}}{{"\n"}}{{end}}'`.
 - 로컬(맥)에도 `7_augment/pool` 9.4G 가 남아 있음(여유 38GB) — 별도 결정.
 
+## 19. 5차 e1 과 R2' 정정 (2026-09-11)
+- e1: replica_train 93.62(+1.85 vs 기준선), replica_eval 92.50(+0.41, CI 안), stress 94.03(−5.84). 1에폭 만에 실서식 학습분이 기준선을 넘음 — 4차가 3에폭 정체였던 것과 대비. 
+- R2'(stress<98 → 직전 가중치)를 문자 그대로 적용하면 e1 종료인데 되돌릴 가중치가 없고, stress 하락은 새 헤드 미수렴이지 망각이 아님(실서식 동시 상승). **정정: R2' 는 e2 부터, "<98 이면서 직전 대비 하락"일 때만.** 규칙을 만들 때 "첫 에폭엔 직전이 없다"는 4차 R2 의 공백을 또 반복했음.
+
