@@ -1,9 +1,37 @@
 """골격 JSON → HWP 테마 페이지 렌더러 v0.5 + data-f 정답 좌표.
 라벨링 규약 v1.2: 마커=체크 크기만 / 서명줄=이름(text)+문구(signature) 분리.
   python 3_generator/render_skeleton.py <골격.json ...> --out 5_dataset/render_check
+
+v4(2026-09-11, P6-2 "변동 폭"): 테마 축 전부 연속 · 글꼴 풀 50+ · 실코퍼스 어휘 · 비대상 방해물 ·
+배율(device_scale_factor)·뷰포트 폭 · 배치 지터. 라벨 규칙(8_train/label_stage1.py)은 그대로 — 폭만 넓힌다.
 """
 import json, os, sys, random, asyncio
 from hwp_theme import css as hwp_css
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+
+def _load_fonts():
+    """fonts/MANIFEST.json → 계열별 글꼴 목록 (없으면 빈 dict → 기존 5종 기본 테마)"""
+    try: fs = json.load(open(os.path.join(ROOT, "fonts", "MANIFEST.json")))["fonts"]
+    except Exception: return {}
+    by = {}
+    for f in fs:
+        if os.path.exists(os.path.join(ROOT, "fonts", f["file"])): by.setdefault(f["family"], []).append(f)
+    return by
+FONTS = _load_fonts()
+FAM_P = {"본문": {"고딕": .45, "명조": .45, "손글씨": .05, "장식": .05},     # 실서식은 고딕·명조가 사실상 전부,
+         "표":   {"고딕": .60, "명조": .30, "손글씨": .05, "장식": .05},     # 손글씨·장식은 폭 확장용 소수
+         "제목": {"고딕": .30, "명조": .45, "손글씨": .05, "장식": .20}}
+
+def _load_lex():
+    """2_spec/lexicon_real.json → 길이별 라벨 사전 + 문장 조각 (build_lexicon.py 산출)"""
+    try: d = json.load(open(os.path.join(ROOT, "2_spec", "lexicon_real.json")))
+    except Exception: return {}, []
+    by = {}
+    for w, _c in d["labels"]: by.setdefault(len(w), []).append(w)
+    return by, [w for w, _c in d["phrases"]]
+LEX_LEN, LEX_PHRASE = _load_lex()
 
 # ── 라벨 어휘 ─────────────────────────────────────────────────────────
 LEX = {
@@ -60,10 +88,14 @@ GRID_THEMES = [
 
 THEME = {}   # 문서 테마 (R.__init__가 문서마다 샘플, 순차 렌더 전제)
 def _T(k,d): return THEME.get(k,d)
-SLOT = lambda t="date",txt="",w=None: (f'<span data-f="{t}" style="display:inline-flex;width:{w or _T("slot_w",34)}px;height:{_T("slot_h",24)}px;align-items:center;'
-    f'justify-content:center;font-size:14px;letter-spacing:normal">{txt}</span>')
-GP = lambda t,w=64: f'<span data-f="{t}" class="gp" style="width:{w}px"></span>'
-GPT = lambda t,w=16: f'<span data-f="{t}" class="gp" style="width:{w}px;margin:0"></span>'   # v3 밀착 슬롯: 글자 사이 10~20px, 여백 0 (실서식 1편 2호·17호)
+_W = lambda w: max(6, int(round(w*_T("wjit",1.0))))   # v4 폭 지터 (문서 단위 연속 계수)
+def SLOT(t="date",txt="",w=None):
+    # 무클래스 빈 슬롯 = gap 규칙(w≤60). 배율까지 포함해 장치 픽셀 56 이하로 묶는다(label_stage1 R 유지)
+    w=min(_W(w or _T("slot_w",34)), max(12,int(56/_T("dsf",1.0))))
+    return (f'<span data-f="{t}" style="display:inline-flex;width:{w}px;height:{_T("slot_h",24)}px;align-items:center;'
+            f'justify-content:center;font-size:{_T("ph_fs",14)}px;letter-spacing:normal">{txt}</span>')
+GP = lambda t,w=64: f'<span data-f="{t}" class="gp" style="width:{_W(w)}px"></span>'
+GPT = lambda t,w=16: f'<span data-f="{t}" class="gp" style="width:{_W(w)}px;margin:0"></span>'   # v3 밀착 슬롯: 글자 사이 10~20px, 여백 0 (실서식 1편 2호·17호)
 def PH(t,txt,fs=None,w=None):
     """v3 인쇄 자리표: 박스 = 글자 자체(○·○○○). 폭 w 를 주면 실서식처럼 고정폭 inline-flex"""
     fs=fs or _T("ph_fs",14)
@@ -76,12 +108,12 @@ def TDC(t,h,cls="vl",extra=""):
     if h>=41: return f'<td class="{cls} fillc" style="height:{h}px{extra}">{CGF(t)}</td>'
     return f'<td class="{cls}" style="height:{h}px{extra}">{CG(t)}</td>'
 # v3: MKC 보이지 않는 22px 표식 삭제 — 픽셀 근거 없는 박스 2.1만 개가 척도표 25칸 전멸의 원인(PLAN 9절). 표 안 선택칸은 셀 전체 CGF.
-DBX = lambda t,w: (f'<span data-f="{t}" class="dbx" style="display:inline-block;border:1.4px dashed #000;'
-    f'height:{_T("cg_h",26)}px;width:{w}px;vertical-align:middle"></span>')  # 실서식 .dbx 점선 인라인 박스
-UL = lambda t,w=None: f'<span data-f="{t}" class="ul" style="width:{w or _T("ul_w",90)}px"></span>'
-def CBX(t="text"):   # 낱칸(comb) 하나 — 치수·선 스타일은 문서 테마
+DBX = lambda t,w: (f'<span data-f="{t}" class="dbx" style="display:inline-block;border:{_T("rule_th",1.4)}px dashed {_T("rule","#000")};'
+    f'height:{_T("cg_h",26)}px;width:{_W(w)}px;vertical-align:middle"></span>')  # 실서식 .dbx 점선 인라인 박스
+UL = lambda t,w=None: f'<span data-f="{t}" class="ul" style="width:{_W(w or _T("ul_w",90))}px"></span>'
+def CBX(t="text"):   # 낱칸(comb) 하나 — 치수·선 스타일은 문서 테마 (치수는 배율 보정된 장치 픽셀 기준)
     w,h,st=_T("comb",(22,24,"solid"))
-    return f'<span data-f="{t}" style="display:inline-block;width:{w}px;height:{h}px;border:1px {st} #000"></span>'
+    return f'<span data-f="{t}" style="display:inline-block;width:{w}px;height:{h}px;border:{_T("comb_bw",1)}px {st} {_T("rule","#000")}"></span>'
 COMB_DATE=lambda: [CBX("date")]*3+["년"]+[CBX("date")]*2+["월"]+[CBX("date")]*2+["일"]
 def MK(ch, kind="checkbox"):   # 마커 v1.6: 글리프 박스 고정 + kind(택일=radio)
     m=_T("mk",22); w=m+_T("mk_bw",12) if ch.startswith("[") else m   # 대괄호는 가로로 넓음
@@ -117,8 +149,46 @@ def kv_table(rows, hf=None):   # [(라벨,셀html)...] 2열×n, hf() = 행 높�
 
 COLW = {"연번":0.5,"순번":0.5,"구분":0.8,"성명":0.9,"주소":2.2,"비고":0.8,"계":0.6,"확인":0.6,
         "일자":0.9,"금액":1.0,"단가":1.0,"횟수":0.7,"합계":1.0,"연락처":1.3,"교육내용":1.6,"서비스명":1.5}
-def grid(rng, rows, cols, headers, cellfn):
-    hs="".join(f"<th>{h}</th>" for h in headers[:cols])
+def _fam(r,key):
+    fams=[f for f in FAM_P[key] if FONTS.get(f)]
+    return r.choices(fams,[FAM_P[key][f] for f in fams])[0] if fams else None
+
+def sample_theme(r):
+    """v4: 모든 축을 연속 구간에서 샘플 (이산 3~6값 → 균등/절단 분포). 정수 필요한 것만 반올림."""
+    g=lambda v: "#%02x%02x%02x"%(v,v,v)
+    dsf=round(round(r.uniform(0.8,1.3)/0.05)*0.05,2)   # 0.05 단위 양자화: 렌더 시 배율별 컨텍스트 11개로 재사용
+    cw=r.randint(14,29); ch=max(16,min(30,cw+r.randint(-5,7)))   # 낱칸은 "장치 픽셀" 기준으로 뽑고 배율로 나눈다
+    tfs=round(r.uniform(13,16),1)
+    sh=r.randrange(0xD2,0x100) if r.random()<0.82 else 0xFF
+    th={"dsf":dsf,"page_w":int(round(1004*r.uniform(0.85,1.15))),
+        "mk":r.randint(16,30),"slot_w":r.randint(24,56),"slot_h":r.randint(18,30),
+        "cell_h":r.randint(26,48),"lbw":r.randint(84,158),
+        "ul_w":r.randint(52,175),"ul_th":round(r.uniform(0.8,2.0),2),
+        "cg_h":r.randint(20,32),"row_h":r.randint(30,74),
+        "comb":(round(cw/dsf,1),round(ch/dsf,1),r.choice(["solid","solid","solid","dashed","dotted"])),
+        "comb_bw":round(r.uniform(0.8,1.8),2),"mk_bw":r.randint(8,16),
+        "inset":round(r.uniform(1.5,6.5),1),
+        "shade":g(sh),"shade2":g(min(0xFF,sh+r.randrange(3,20))),
+        "outer":round(r.uniform(0.8,2.6),2),"rule_th":round(r.uniform(0.6,2.0),2),
+        "title_ls":round(r.uniform(0.04,0.45),3),"title_fs":r.randint(26,40),
+        "sig_off":r.randint(6,48),"ph_fs":round(r.uniform(11,16),1),
+        "cell_pad":"%dpx %dpx"%(r.randint(1,5),r.randint(3,10)),
+        "col_contrast":0 if r.random()<0.3 else round(r.uniform(0.2,1.2),2),
+        "open":r.random()<0.35,
+        "body_fs":round(r.uniform(15,18),1),"table_fs":tfs,"note_fs":round(tfs-r.uniform(0.5,2.0),1),
+        "ls":round(r.uniform(-0.05,0.10),3),"lh":round(r.uniform(1.3,1.8),2),"tlh":round(r.uniform(1.2,1.6),2),
+        "ink":g(r.randrange(0,0x67)),"rule":g(r.randrange(0,0x67)),"bg":g(r.randrange(0xF2,0x100)),
+        "pad_t":r.randint(40,120),"pad_x":r.randint(40,120),"pad_b":r.randint(30,100),
+        "wjit":round(r.uniform(0.75,1.35),3),"dens":round(r.uniform(0.55,1.7),2)}
+    if FONTS:   # 문서마다 본문·표·제목 글꼴을 계열별 확률로
+        faces={}
+        for slot,key in (("font_body","본문"),("font_table","표"),("font_title","제목")):
+            f=r.choice(FONTS[_fam(r,key)]); th[slot]=f["name"]; faces[(f["name"],f["file"],f["weight"])]=1
+        th["faces"]=[list(k) for k in faces]
+    return th
+
+def grid(rng, rows, cols, headers, cellfn, disp=None):
+    hs="".join(f"<th>{h}</th>" for h in (disp or headers)[:cols])
     k=_T("col_contrast",0)
     if k>0:
         ws=[1+(COLW.get(h,1)-1)*k for h in headers[:cols]]
@@ -135,15 +205,8 @@ class R:
         self.missing=set()
         self.used_labels=set()   # 문서 수준 라벨 중복 방지 (인적표 다중 조합)
         r=self.rng
-        self.theme={"mk":r.choice([18,20,22,24,26]),"slot_w":r.choice([26,30,34,40,46]),
-            "slot_h":r.choice([20,22,24,26,28]),"cell_h":r.choice([30,32,34,38,44]),
-            "lbw":r.choice([92,105,118,132,150]),"ul_w":r.choice([60,90,120,160]),
-            "ul_th":r.choice([1.0,1.2,1.5,1.8]),"cg_h":r.choice([22,26,30]),"row_h":r.choice([34,41,48,56,72]),
-            "comb":r.choice([(22,24,"solid"),(19,26,"dashed"),(26,28,"dashed"),(16,18,"solid"),(20,20,"solid")]),"mk_bw":r.choice([10,11,12,13,14]),
-            "inset":r.choice([2,3,4,6]),"shade":r.choice(["#E2E2E2","#EDEDED","#D8D8D8","#F2F2F2","#FFFFFF","#FFFFFF"]),
-            "outer":r.choice([1,1,1.6,2.2]),"shade2":"#F4F4F4","title_ls":r.choice([0.1,0.18,0.28,0.38]),"title_fs":r.choice([30,32,34]),
-            "sig_off":r.choice([12,24,40]),"ph_fs":r.choice([12,13,14,15]),"cell_pad":r.choice(["3px 7px","2px 5px","4px 9px"]),"col_contrast":r.choice([0,0,0.6,1.0]),"open":r.random()<0.35}
-        if self.theme["shade"]=="#FFFFFF": self.theme["shade2"]="#FFFFFF"
+        self.theme=sample_theme(r)
+        self.lex_rate=r.uniform(0.25,0.75)   # 문서마다 실코퍼스 어휘 치환 비율
         global THEME; THEME=self.theme
         self.doc_marker = self.rng.choice(["□","[&nbsp;&nbsp;]"])   # 문서 단위 규약
         if any(b.get("card") in ("cb_bracket","cb_prose") for b in sk.get("blocks",[])):
@@ -163,6 +226,17 @@ class R:
         if r<0.18: h=int(h*self.rng.choice([1.8,2.2]))
         elif r<0.45: h=self.rng.choice([34,41,48,56,72])
         return h
+    def L(self,s,p=None):
+        """v4 어휘 주입: 실코퍼스 라벨로 치환 — 길이가 비슷한 토큰으로. 뜻이 맞을 필요는 없다(DDR)."""
+        if not LEX_LEN or self.rng.random() >= (self.lex_rate if p is None else p): return s
+        for k in (len(s),len(s)+1,len(s)-1,len(s)+2,len(s)-2):
+            if LEX_LEN.get(k): return self.rng.choice(LEX_LEN[k])
+        return s
+    def P(self,lo=8,hi=30,p=0.5):
+        """실코퍼스 문장 조각 (없거나 확률 미달이면 빈 문자열)"""
+        if not LEX_PHRASE or self.rng.random()>=p: return ""
+        c=[x for x in LEX_PHRASE if lo<=len(x)<=hi]
+        return self.rng.choice(c) if c else ""
     def optset(self,n):
         fits=[p for p in OPTSETS if len(p[1])>=n and p[0] not in self.used_labels]
         if not fits: fits=[p for p in OPTSETS if p[0] not in self.used_labels] or OPTSETS
@@ -235,7 +309,8 @@ class R:
         picks=[p for p in LEX["인적"] if p[0]!=lead and p[0] not in self.used_labels]
         rng.shuffle(picks)
         self.used_labels.add(lead)
-        first=f'<span class="spread">{lead}</span>' if len(lead)==2 else lead
+        dl=self.L(lead)   # v4: 표시 문구만 실코퍼스 어휘로 (타입·중복관리는 원래 라벨 기준)
+        first=f'<span class="spread">{dl}</span>' if len(dl)==2 else dl
         if c=="radio_word":
             a,b2=RADIO_PAIR.get(lead,("여","남"))
             cells["radio_word"]=ROW(WORD(a),WORD(b2),j="c")
@@ -244,7 +319,7 @@ class R:
                       else ROW(DBX("number",rng.randint(60,110)),"–",DBX("text",rng.randint(60,110)),j="c",style="gap:4px"))
         rows.append((first, cells.get(c, CGF("text"))))
         for lb,t in picks[:3]:
-            rows.append((lb, ROW(WORD("여"),WORD("남"),j="c") if t=="radio" else CGF(t)))
+            rows.append((self.L(lb), ROW(WORD("여"),WORD("남"),j="c") if t=="radio" else CGF(t)))
             self.used_labels.add(lb)
         html=kv_table(rows, self.rowh)
         if c=="inset_label":
@@ -281,6 +356,7 @@ class R:
         return html
     def b_선택군(self,b):
         c=b["card"]; rng=self.rng; n=b.get("n_options",4); olb,o=self.optset(n); g=self.g
+        olb=self.L(olb); o=[self.L(x,0.4) for x in o]   # v4 어휘 주입 (표시 문구만)
         ch=self.marker()
         kind="radio" if c in ("cb_row","cb_col","cb_wrap","cb_grid","cb_bracket") and rng.random()<0.5 else "checkbox"
         M=lambda: MK(ch, kind)   # 그룹 안은 전부 같은 kind
@@ -337,7 +413,7 @@ class R:
     def b_서술(self,b):
         c=b["card"]
         cand=[x for x in LEX["서술라벨"] if x not in self.used_labels] or LEX["서술라벨"]
-        lb=self.rng.choice(cand); self.used_labels.add(lb)
+        lb=self.rng.choice(cand); self.used_labels.add(lb); lb=self.L(lb)
         h=self.rowh()*2
         if c=="ta_cell": return f'<table><tr><th style="width:118px">{lb}</th>{TDC("textarea",h,cls="")}</tr></table>'
         if c=="ta_below": return f'<table><tr><td class="tl lb2">{lb} <span class="note">(구체적으로 기술)</span></td></tr><tr>{TDC("textarea",h,cls="")}</tr></table>'
@@ -377,7 +453,7 @@ class R:
                 if sm<0.30: return f'<td class="vl">{CG("signature")}</td>'
                 txt,fs,sw,sh=SIGSZ
                 return (f'<td class="vl"><span data-f="signature" style="display:inline-block;width:{sw}px;'
-                        f'height:{sh}px;line-height:{sh}px;font-size:{fs}px;font-family:NanumDotum;'
+                        f'height:{sh}px;line-height:{sh}px;font-size:{fs}px;'
                         f'white-space:nowrap;overflow:hidden">{txt}</span></td>')
             body=""
             for i in range(n):
@@ -401,7 +477,7 @@ class R:
                 return (f'<td class="vl" style="height:{hr[r]}px"><span data-f="{t}" class="cg" '
                         f'style="line-height:{_T("cg_h",26)}px"><span class="note" '
                         f'style="font-size:{fs}px;color:#666">{v}</span></span></td>')
-            return f'<p class="note" style="margin-bottom:3px">〈작성례〉</p>'+grid(rng,prows,pcols,hs,cf)
+            return f'<p class="note" style="margin-bottom:3px">〈작성례〉</p>'+grid(rng,prows,pcols,hs,cf,disp=[self.L(h,0.4) for h in hs])
         if c=="radio_likert":
             hs=["문 항","매우만족","만족","보통","불만족","매우불만족"]; cols=6
             QS=["서비스 전반에 만족하십니까?","제공 인력은 친절하였습니까?","서비스 시간은 적절하였습니까?","재이용 의향이 있으십니까?"]
@@ -455,7 +531,7 @@ class R:
                     return f'<td class="lb">{ROW("기타(",GP("text",40),")",style="gap:2px")}</td>' if r==rows-1 else f'<td class="lb">{items[r%7][0]}</td>'
                 t="text" if r==rows-1 else items[r%7][1]
                 return TDC(t,hr[r],cls="")
-            return grid(rng,rows,min(cols,3),["구분","내용","비고"],cf)
+            return grid(rng,rows,min(cols,3),["구분","내용","비고"],cf,disp=[self.L(h,0.4) for h in ["구분","내용","비고"]])
         if c=="num_denom":
             return f'<table><tr><th style="width:118px">합 계</th><td class="vl">{GP("number",56)}/100점</td></tr></table>'
         if c=="header_opts":
@@ -472,7 +548,7 @@ class R:
             diag=('<th style="width:110px;background:linear-gradient(to top right,#E2E2E2 49.5%,#000 49.5%,#000 50.5%,#E2E2E2 50.5%)">'
                   '<div style="text-align:right;font-size:12px;line-height:1.1">항목</div>'
                   '<div style="text-align:left;font-size:12px;line-height:1.1">구분</div></th>')
-            hs2="".join(f"<th>{h}</th>" for h in hs[1:cols])
+            hs2="".join(f"<th>{self.L(h,0.4)}</th>" for h in hs[1:cols])
             rlbs=["신규","연속","종결","변경","중단","재개","이관","기타"]
             hr=self.rowhs(rows)
             body="".join('<tr>'+f'<td class="lb">{rlbs[r%8]}</td>'
@@ -486,7 +562,7 @@ class R:
         hr=self.rowhs(rows)
         def cf(r,cn):
             return TDC(HEADER_TYPE.get(hs[cn],"text"),hr[r])
-        return grid(rng,rows,cols,hs,cf)
+        return grid(rng,rows,cols,hs,cf,disp=[self.L(h,0.4) for h in hs])
     def b_금액(self,b):
         c=b["card"]
         m={"num_unit":f'<table><tr><th style="width:130px">월 이용액</th><td class="vl">{ROW(GP("number",90),"원",j="c")}</td></tr></table>',
@@ -543,7 +619,7 @@ class R:
             ch=self.rng.choice(["인","직인",""])
             box=(f'<span data-f="signature" style="display:inline-block;width:{z}px;height:{z}px;'
                  f'border:1.2px solid {col};color:{col};text-align:center;line-height:{z-3}px;'
-                 f'font-family:NanumDotum;font-size:{16 if len(ch)>1 else 20}px">{ch}</span>')
+                 f'font-size:{16 if len(ch)>1 else 20}px">{ch}</span>')
             return f'<p class="sigline">{OO} 시장·군수·구청장 &nbsp;{box}</p>'
         if c=="sig_stamp": return f'<p class="sigline">{OO} 시장·군수·구청장 <span data-f="signature" style="vertical-align:middle;display:inline-block;border:2.2px solid #B02B25;color:#B02B25;padding:6px 10px">직인</span></p>'
         if c=="sig_stamp_paren": return f'<p class="sigline">{OO} 시장·군수·구청장 &nbsp; <span data-f="signature" style="vertical-align:middle;display:inline-block">(직인)</span></p>'
@@ -587,14 +663,14 @@ class R:
     def b_글머리서술(self,b):
         c=b["card"]; rng=self.rng
         cand=[x for x in LEX["서술라벨"] if x not in self.used_labels] or LEX["서술라벨"]
-        lb=rng.choice(cand); self.used_labels.add(lb)
+        lb=rng.choice(cand); self.used_labels.add(lb); lb=self.L(lb)
         LAWS=["장애아동 복지지원법","사회보장급여의 이용·제공 및 수급권자 발굴에 관한 법률","아동복지법","장애인복지법","형의 실효 등에 관한 법률"]
         if c=="legal_prose":
             n=rng.randint(2,4)
             lines="".join(f'<p class="ln" style="padding-left:14px">{"①②③④⑤"[i]} 「{rng.choice(LAWS)}」 제{rng.randint(2,60)}조제{rng.randint(1,8)}항에 따른 {rng.choice(["결격사유에 해당하는 사람","지원 대상자","조회 대상 범죄경력","서비스 제공 기준"])}</p>' for i in range(n))
             return f'<p class="ln"><b>{rng.choice(["결격사유","관련 근거","지원 근거"])}</b></p>{lines}'
         if c=="notice_band":
-            return ('<div style="background:#DDD;font-family:NanumDotum;font-weight:700;text-align:center;padding:5px 0;border-top:2px solid #000">유의사항</div>'
+            return ('<div style="background:#DDD;font-weight:700;text-align:center;padding:5px 0;border-top:2px solid #000">유의사항</div>'
                     f'<div class="note" style="padding:10px 16px;border-bottom:1px solid #000">1. {rng.choice(["본 서식은 사실대로 기재하여야 하며, 허위 기재 시 지원이 제한될 수 있습니다.","기재 내용이 변동된 경우 지체 없이 신고하여야 합니다."])}<br>2. {rng.choice(["담당 공무원 확인에 동의하지 않는 경우 해당 서류를 제출하여야 합니다.","문의는 관할 시·군·구 또는 읍·면·동 주민센터로 하시기 바랍니다."])}</div>')
         if c=="ul_lines":   # 진술·확약 문장: 글줄 문맥 문장마다 밑줄 빈칸 1~3개
             U=lambda t,a,b2: UL(t,rng.randint(a,b2))
@@ -627,6 +703,53 @@ class R:
         if b["card"]=="img_card":
             return '<div style="border:2px solid #000;padding:20px;text-align:center"><div data-f="image" style="border:1.4px solid #000;width:96px;height:118px;margin:0 auto;line-height:118px">사 진</div></div>'
         return '<table><tr><td class="vl" data-f="image" style="width:110px;height:130px">사 진<br><span class="note">(3.5×4.5cm)</span></td></tr></table>'
+    # ── v4 비대상 방해물: data-f 없음 = GT 에 안 들어감. 필드와 부분 겹침 허용(입력 span 안에는 절대 넣지 않는다) ──
+    def _float(self, inner, x, y):
+        """흐름에 영향 없는 절대배치 조각 (height:0 래퍼 → 위/아래 요소와 겹칠 수 있다)"""
+        return f'<div style="position:relative;height:0">{inner.replace("@X",str(x)).replace("@Y",str(y))}</div>'
+    def distractors(self):
+        r=self.rng; out=[]
+        n=r.choices([0,1,2,3,4,5,6],[16,20,20,16,12,9,7])[0]
+        W=self.theme["page_w"]
+        for _ in range(n):
+            k=r.choices(["stamp","logo","watermark","notice","pageno","receipt"],[26,16,10,20,16,12])[0]
+            org=r.choice(["○○시","○○군","○○구청","한국사회보장원","○○복지관","중앙지원단","○○교육원"])
+            if k=="stamp":
+                z=r.randint(52,112); col=r.choice(["#B02B25","#C0392B","#8E1B18","#7a1f1c","#555"])
+                rad="50%" if r.random()<0.6 else f"{r.randint(0,8)}px"
+                txt=r.choice(["직인","인","접수","확인","○○시장","담당"])
+                inner=(f'<span class="dist" style="left:@Xpx;top:@Ypx;width:{z}px;height:{z}px;border:{round(r.uniform(1.6,4),1)}px solid {col};'
+                       f'border-radius:{rad};color:{col};display:flex;align-items:center;justify-content:center;text-align:center;'
+                       f'font-size:{max(11,int(z/(2 if len(txt)>2 else 2.6)))}px;font-weight:700;opacity:{round(r.uniform(.5,.95),2)};'
+                       f'transform:rotate({r.randint(-25,25)}deg)">{txt}</span>')
+                out.append(self._float(inner, r.randint(int(W*.45),max(int(W*.45)+1,W-140)), r.randint(-70,20)))
+            elif k=="logo":
+                z=r.randint(22,46); col=r.choice(["#1F4E79","#2E6B3E","#7a1f1c","#444","#8a6d1f"])
+                sh=r.choice([f'border-radius:50%',f'border-radius:4px',f'transform:rotate(45deg)'])
+                inner=(f'<span class="dist" style="left:@Xpx;top:@Ypx;display:flex;align-items:center;gap:6px">'
+                       f'<span style="width:{z}px;height:{z}px;background:{col};{sh};display:inline-block"></span>'
+                       f'<span style="font-size:{r.randint(12,20)}px;color:{col};font-weight:700">{org}</span></span>')
+                out.append(self._float(inner, r.randint(10,max(11,int(W*.35))), r.randint(-40,10)))
+            elif k=="watermark":
+                fs=r.randint(52,120)
+                inner=(f'<span class="dist" style="left:@Xpx;top:@Ypx;font-size:{fs}px;color:#{r.choice(["c9","d4","dd","bf"])*3};'
+                       f'opacity:{round(r.uniform(.25,.6),2)};white-space:nowrap;letter-spacing:.2em;font-weight:700;'
+                       f'transform:rotate({r.choice([-35,-30,-25,25,30,35])}deg)">{r.choice(["견 본","사 본","SAMPLE","대외비","예 시"])}</span>')
+                out.append(self._float(inner, r.randint(0,max(1,int(W*.35))), r.randint(-120,40)))
+            elif k=="notice":
+                out.append(f'<div class="note" style="border:1px {r.choice(["dotted","dashed","solid"])} #888;padding:{r.randint(4,9)}px {r.randint(6,14)}px;'
+                           f'margin:{r.randint(4,14)}px 0;background:{r.choice(["transparent","#f7f7f7"])}">※ '
+                           +(self.P(8,34,1.0) or "기재 사항이 사실과 다른 경우 지원이 제한될 수 있습니다")+'</div>')
+            elif k=="pageno":
+                out.append(f'<div class="note" style="text-align:{r.choice(["center","right","left"])};margin:{r.randint(4,16)}px 0;color:#444">'
+                           +r.choice([f"- {r.randint(1,9)} -",f"{r.randint(1,9)} / {r.randint(2,12)}",f"({r.randint(1,9)}쪽)"])+'</div>')
+            else:   # 접수인란
+                w=r.randint(70,130); h=r.randint(46,86)
+                inner=(f'<span class="dist" style="left:@Xpx;top:@Ypx;width:{w}px;height:{h}px;border:{round(r.uniform(.8,1.8),1)}px solid #333;'
+                       f'display:flex;align-items:flex-start;justify-content:center;padding-top:3px;font-size:{r.randint(10,13)}px;color:#333">'
+                       +r.choice(["접수인","접수","수 신 인","확인란"])+'</span>')
+                out.append(self._float(inner, r.randint(max(0,W-200),max(1,W-120)), r.randint(-30,10)))
+        return out
     # ── 데코이 ──
     def decoys(self):
         out=[]; D=self.sk["decoys"]
@@ -678,7 +801,7 @@ class R:
                  j="c",style="margin:56px 0 40px;font-size:19px")
         date=ROW(SLOT(),"년",SLOT(),"월",SLOT(),"일",j="c",style="margin:64px 0 40px;font-size:19px")
         issuer=ROW('<span data-f="text" style="display:inline-flex;width:70px;height:30px;align-items:center;justify-content:center;font-size:22px">○○○</span>',
-                   f'<span style="font-size:26px;font-family:NanumMyeongjo;font-weight:700;letter-spacing:.3em">{SET[2]}</span>',
+                   f'<span style="font-size:26px;font-weight:700;letter-spacing:.3em">{SET[2]}</span>',
                    '<span data-f="signature" style="display:inline-flex;border:2.2px solid #B02B25;color:#B02B25;padding:8px 12px;margin-left:14px">직인</span>',
                    j="c",style="margin-top:30px")
         body=(f'<div class="byulji">[별지 제{r.randint(1,29)}호서식]</div>'
@@ -698,7 +821,7 @@ class R:
              "인적표":"본문","선택군":"본문","서술":"본문","격자":"본문","금액":"본문","사진":"본문",
              "고지표":"본문","동의문단":"본문","글머리서술":"본문","시각":"본문",
              "날짜줄":"작성","서명줄":"작성","수신줄":"수신"}
-        dens=self.rng.choice([0.75,1.0,1.0,1.3])   # 밀도 프로파일: 밀집/보통/여유
+        dens=self.theme["dens"]   # v4: 밀도 프로파일 연속 0.55~1.7
         PF_ALLOW={"pf_filled":{"기록지","명세신고","보고서","접수증","작성례"},"pf_note":{"판단서","통지회신","조회요청서","점검평가","작성례"},
                   "pf_example":{"사정조사지","기록지","점검평가","작성례"},"pf_label":{"안내문","신청서","동의서","작성례"},
                   "pf_italic":{"점검평가","기록지","사정조사지","작성례"}}
@@ -717,14 +840,16 @@ class R:
         for frag,act,blk in items:
             is_tbl=frag.lstrip().startswith("<table")
             if prev_act is None: gap=0
-            elif act!=prev_act: gap=int((26 if act=="작성" else 20)*dens)
+            elif act!=prev_act: gap=int(self.rng.uniform(14,32)*dens)   # v4 연속 지터
             elif is_tbl and prev_tbl and blk==prev_blk and self.rng.random()<0.5: gap=-1   # 같은 의미군 표만 괘선 공유
-            else: gap=int(8*dens)
+            else: gap=int(self.rng.uniform(3,16)*dens)
             if blk=="제목" and prev_act is not None and self.sk["type"]=="접수증":   # 2회전 절취선
                 parts.append('<div style="border-top:1.6px dashed #000;margin:22px 0 4px"></div><p class="note center">〈 절취선 〉</p>')
             parts.append(f'<div style="margin-top:{gap}px">{frag}</div>' if gap else frag)
             prev_act, prev_tbl, prev_blk = act, is_tbl, blk
         parts+=self.decoys()
+        for d in self.distractors():   # v4 비대상 방해물: 흐름 곳곳에 섞는다(부분 겹침 허용)
+            parts.insert(self.rng.randint(0,len(parts)), d)
         parts.append('<p class="paper">210mm×297mm[백상지(80g/㎡) 또는 중질지(80g/㎡)]</p>')
         html=f"<!doctype html><meta charset=utf8><style>{hwp_css(self.theme)}</style><body>{''.join(parts)}</body>"
         return html.replace("width:118px", f"width:{self.theme['lbw']}px")
@@ -734,16 +859,27 @@ async def render_all(files, outdir):
     os.makedirs(outdir, exist_ok=True)
     results=[]
     async with async_playwright() as pw:
-        b=await pw.chromium.launch(); pg=await b.new_page(viewport={"width":1004,"height":1400})
+        b=await pw.chromium.launch(); pages={}
         for f in files:
             sk=json.load(open(f)); r=R(sk); html=r.html()
+            # v4 ⑤ 배율·뷰포트: device_scale_factor 는 컨텍스트 옵션이라 배율별로 페이지를 재사용한다
+            dsf=round(r.theme["dsf"],2); vw=r.theme["page_w"]
+            if dsf not in pages:
+                ctx=await b.new_context(device_scale_factor=dsf, viewport={"width":vw,"height":1400})
+                pages[dsf]=await ctx.new_page()
+            pg=pages[dsf]
+            await pg.set_viewport_size({"width":vw,"height":1400})
             hp=os.path.join(outdir, sk["id"]+".html"); open(hp,"w").write(html)
             await pg.goto("file://"+os.path.abspath(hp)); await pg.wait_for_timeout(250)
-            boxes=await pg.evaluate("""() => [...document.querySelectorAll('[data-f]')].map(e=>{
-                const r=e.getBoundingClientRect(); return {t:e.dataset.f,x:r.x,y:r.y,w:r.width,h:r.height}})""")
+            # GT 는 장치 픽셀(=PNG 픽셀). getBoundingClientRect 는 CSS 픽셀이라 devicePixelRatio 를 곱한다.
+            boxes=await pg.evaluate("""() => {const s=window.devicePixelRatio;
+                return [...document.querySelectorAll('[data-f]')].map(e=>{
+                const r=e.getBoundingClientRect();
+                return {t:e.dataset.f,x:r.x*s,y:r.y*s,w:r.width*s,h:r.height*s}})}""")
             png=os.path.join(outdir, sk["id"]+".png")
             await pg.screenshot(path=png, full_page=True)
             json.dump(boxes, open(os.path.join(outdir, sk["id"]+"_gt.json"),"w"))
+            json.dump(r.theme, open(os.path.join(outdir, sk["id"]+"_theme.json"),"w"), ensure_ascii=False)   # v4 사후 분석용
             results.append((sk["id"], len(boxes), sorted(r.missing)))
         await b.close()
     return results
