@@ -412,3 +412,7 @@ Ultralytics 주의(8.4.143 설치본 대조, DECISIONS 16절 표): `copy_paste` 
 - 다음: (B) mix 0.10 한 런(epochs 6 고정·last.pt·에폭마다 채점) → 이후 "v4 stress 수렴 런 + 미세조정" 후보.
 - (B) mix_real10 시작: 실 105×67 = 7,035 + 합성 63,100 = 70,135장/에폭(실 10.0%), 17,534 iter, 에폭 61분, 6에폭 고정·patience 0·save_period 1, **close_mosaic 2**(6에폭에 9 는 처음부터 mosaic 꺼짐 — 컨테이너 지적). 나머지 train_v4 설정. 채점은 CPU(replica_eval 매 에폭, stress 는 시간 여유 따라).
 
+| (B) mix_real10 | replica_eval [CI] | Δ vs ft_full_v3e1 | Δ vs 5차 e1 | stress | 좌표/종류 | 유령 |
+|---|---|---|---|---|---|---|
+| e1 | 93.23 | −1.04 [−2.3, +0.3] | +0.74 [−0.8, +2.7] | 93.22 | 99.21/99.25 | 400 |
+
