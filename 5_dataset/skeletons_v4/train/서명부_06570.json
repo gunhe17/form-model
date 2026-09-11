@@ -1,0 +1,1 @@
+{"id": "서명부_06570", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "sig_grid", "rows": 10, "cols": 2}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 585863413}

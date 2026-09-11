@@ -1,0 +1,1 @@
+{"id": "희소_14050", "type": "희소", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "paren_unit"}], "prefill": [{"target": 0, "kind": "pf_filled"}, {"target": 1, "kind": "pf_note"}], "decoys": ["인쇄 수신처 열거", "점선 절취선"], "seed": 1579603428}

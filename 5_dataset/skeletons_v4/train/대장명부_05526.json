@@ -1,0 +1,1 @@
+{"id": "대장명부_05526", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "date_cell", "rows": 6, "cols": 4}, {"block": "격자", "card": "date_cell", "rows": 2, "cols": 7}], "prefill": [{"target": 2, "kind": "pf_italic"}], "decoys": ["(단위:) 캡션"], "seed": 1476073935}

@@ -1,0 +1,1 @@
+{"id": "대장명부_03901", "type": "대장명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "date_cell", "rows": 4, "cols": 3}, {"block": "격자", "card": "grid_diag", "rows": 5, "cols": 7}], "prefill": [], "decoys": ["인쇄 상수 셀", "처리절차 플로차트"], "seed": 178901642}

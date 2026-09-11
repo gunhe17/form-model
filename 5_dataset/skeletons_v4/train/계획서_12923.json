@@ -1,0 +1,1 @@
+{"id": "계획서_12923", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "legal_prose"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "격자", "card": "date_cell", "rows": 6, "cols": 5}], "prefill": [], "decoys": ["인쇄 상수 셀", "처리절차 플로차트"], "seed": 1008949502}

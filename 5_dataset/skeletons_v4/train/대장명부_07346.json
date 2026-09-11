@@ -1,0 +1,1 @@
+{"id": "대장명부_07346", "type": "대장명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "num_cell", "rows": 6, "cols": 7}], "prefill": [{"target": 1, "kind": "pf_circle"}], "decoys": ["인쇄 수신처 열거"], "seed": 556398305}

@@ -1,0 +1,1 @@
+{"id": "기록지_00052", "type": "기록지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "inset_label"}, {"block": "격자", "card": "num_cell", "rows": 2, "cols": 5}, {"block": "시각", "card": "time_split"}, {"block": "서명줄", "card": "sig_stamp"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 794504477}

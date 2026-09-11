@@ -1,0 +1,1 @@
+{"id": "희소_14514", "type": "희소", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "paren_unit"}], "prefill": [], "decoys": ["처리절차 플로차트", "(단위:) 캡션"], "seed": 2101390341}

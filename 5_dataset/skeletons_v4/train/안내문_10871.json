@@ -1,0 +1,1 @@
+{"id": "안내문_10871", "type": "안내문", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "글머리서술", "card": "text_paren"}, {"block": "글머리서술", "card": "text_prose"}], "prefill": [{"target": 3, "kind": "pf_year20"}], "decoys": [], "seed": 1462978572}

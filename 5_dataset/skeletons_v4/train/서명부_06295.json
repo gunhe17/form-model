@@ -1,0 +1,1 @@
+{"id": "서명부_06295", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "ph_cell"}, {"block": "격자", "card": "sig_grid", "rows": 9, "cols": 2}, {"block": "날짜줄", "card": "date_dots"}], "prefill": [{"target": 1, "kind": "pf_mask"}], "decoys": ["인쇄 상수 셀"], "seed": 466862293}

@@ -1,0 +1,1 @@
+{"id": "희소_18776", "type": "희소", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "num_both"}], "prefill": [{"target": 0, "kind": "pf_filled"}], "decoys": [], "seed": 1013465584}

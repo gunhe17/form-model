@@ -1,0 +1,1 @@
+{"id": "작성례_06180", "type": "작성례", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "dbx_cell"}, {"block": "격자", "card": "pf_grid", "rows": 4, "cols": 3}], "prefill": [{"target": 0, "kind": "pf_mask"}, {"target": 1, "kind": "pf_label"}, {"target": 2, "kind": "pf_circle"}], "decoys": [], "seed": 680625360}

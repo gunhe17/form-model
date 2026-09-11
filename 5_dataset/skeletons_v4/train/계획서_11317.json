@@ -1,0 +1,1 @@
+{"id": "계획서_11317", "type": "계획서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "ul_lines"}, {"block": "글머리서술", "card": "notice_band"}, {"block": "격자", "card": "grid_diag", "rows": 5, "cols": 7}], "prefill": [{"target": 2, "kind": "pf_year20"}], "decoys": ["(단위:) 캡션"], "seed": 144379494}

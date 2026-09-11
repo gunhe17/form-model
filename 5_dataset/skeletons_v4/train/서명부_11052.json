@@ -1,0 +1,1 @@
+{"id": "서명부_11052", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "split_hyphen"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}, {"block": "날짜줄", "card": "comb_date"}], "prefill": [{"target": 1, "kind": "pf_circle"}], "decoys": ["인쇄 수신처 열거"], "seed": 1455022378}

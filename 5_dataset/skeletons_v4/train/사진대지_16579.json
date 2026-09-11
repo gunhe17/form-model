@@ -1,0 +1,1 @@
+{"id": "사진대지_16579", "type": "사진대지", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "photo_grid", "rows": 3, "cols": 2}, {"block": "서명줄", "card": "sig_stamp_paren"}], "prefill": [{"target": 0, "kind": "pf_filled"}, {"target": 2, "kind": "pf_sample"}], "decoys": ["(단위:) 캡션"], "seed": 1936967411}

@@ -1,0 +1,1 @@
+{"id": "희소_08444", "type": "희소", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "paren_unit"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 2020172646}

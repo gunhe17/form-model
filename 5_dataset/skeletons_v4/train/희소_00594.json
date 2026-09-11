@@ -1,0 +1,1 @@
+{"id": "희소_00594", "type": "희소", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "paren_unit"}, {"block": "시각", "card": "time_cell"}], "prefill": [], "decoys": ["처리절차 플로차트", "인쇄 상수 셀"], "seed": 722568923}

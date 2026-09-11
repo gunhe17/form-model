@@ -1,0 +1,1 @@
+{"id": "작성요령서_16635", "type": "작성요령서", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "글머리서술", "card": "ul_lines"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "text_ul"}], "prefill": [], "decoys": ["(단위:) 캡션"], "seed": 709185477}

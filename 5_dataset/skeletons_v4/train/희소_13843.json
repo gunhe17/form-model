@@ -1,0 +1,1 @@
+{"id": "희소_13843", "type": "희소", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "num_affix"}, {"block": "시각", "card": "time_split"}], "prefill": [{"target": 1, "kind": "pf_label"}], "decoys": [], "seed": 606094688}

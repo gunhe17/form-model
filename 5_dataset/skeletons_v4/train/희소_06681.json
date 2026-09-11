@@ -1,0 +1,1 @@
+{"id": "희소_06681", "type": "희소", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "num_unit"}], "prefill": [{"target": 1, "kind": "pf_circle"}], "decoys": ["(단위:) 캡션"], "seed": 1729177927}

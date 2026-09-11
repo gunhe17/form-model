@@ -1,0 +1,1 @@
+{"id": "증서_08342", "type": "증서", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "split_hyphen"}, {"block": "글머리서술", "card": "text_prose"}, {"block": "날짜줄", "card": "comb_date"}, {"block": "서명줄", "card": "sig_name"}], "prefill": [], "decoys": [], "seed": 575921814}

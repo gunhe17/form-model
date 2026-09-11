@@ -1,0 +1,1 @@
+{"id": "계획서_11093", "type": "계획서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "격자", "card": "grid_diag", "rows": 4, "cols": 4}, {"block": "금액", "card": "num_both"}], "prefill": [], "decoys": ["인쇄 수신처 열거"], "seed": 634054498}

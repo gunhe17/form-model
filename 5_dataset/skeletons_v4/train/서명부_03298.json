@@ -1,0 +1,1 @@
+{"id": "서명부_03298", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "inset_label_full"}, {"block": "격자", "card": "sig_grid", "rows": 12, "cols": 2}, {"block": "날짜줄", "card": "pf_year20"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 2024142492}

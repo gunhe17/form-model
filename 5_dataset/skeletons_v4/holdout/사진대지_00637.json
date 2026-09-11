@@ -1,0 +1,1 @@
+{"id": "사진대지_00637", "type": "사진대지", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "inset_label"}, {"block": "격자", "card": "photo_grid", "rows": 2, "cols": 2}, {"block": "서명줄", "card": "sig_stamp"}], "prefill": [{"target": 0, "kind": "pf_mask"}], "decoys": [], "seed": 1929334741}

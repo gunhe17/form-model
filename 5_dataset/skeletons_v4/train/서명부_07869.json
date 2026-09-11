@@ -1,0 +1,1 @@
+{"id": "서명부_07869", "type": "서명부", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "sig_grid", "rows": 10, "cols": 2}, {"block": "날짜줄", "card": "pf_year20"}], "prefill": [{"target": 0, "kind": "pf_year20"}, {"target": 1, "kind": "pf_italic"}], "decoys": [], "seed": 2025733612}

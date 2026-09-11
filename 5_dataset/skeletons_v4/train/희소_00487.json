@@ -1,0 +1,1 @@
+{"id": "희소_00487", "type": "희소", "glyph_rule": "marker_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "num_affix"}, {"block": "시각", "card": "time_split"}], "prefill": [{"target": 0, "kind": "pf_label"}, {"target": 1, "kind": "pf_mask"}], "decoys": ["(단위:) 캡션"], "seed": 344650681}

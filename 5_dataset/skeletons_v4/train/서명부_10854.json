@@ -1,0 +1,1 @@
+{"id": "서명부_10854", "type": "서명부", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "인적표", "card": "img_cell"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}], "prefill": [{"target": 1, "kind": "pf_note"}], "decoys": ["처리절차 플로차트", "인쇄 상수 셀"], "seed": 1202368091}

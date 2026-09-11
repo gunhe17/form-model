@@ -1,0 +1,1 @@
+{"id": "희소_05310", "type": "희소", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "금액", "card": "num_affix"}, {"block": "시각", "card": "time_cell"}], "prefill": [{"target": 0, "kind": "pf_sample"}, {"target": 1, "kind": "pf_note"}, {"target": 2, "kind": "pf_year20"}], "decoys": [], "seed": 323244175}

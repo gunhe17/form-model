@@ -1,0 +1,1 @@
+{"id": "기록지_16821", "type": "기록지", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "인적표", "card": "date_cell"}, {"block": "격자", "card": "sig_grid", "rows": 8, "cols": 2}, {"block": "금액", "card": "num_both"}, {"block": "서명줄", "card": "sig_name"}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 183979441}

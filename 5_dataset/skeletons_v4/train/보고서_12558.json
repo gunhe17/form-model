@@ -1,0 +1,1 @@
+{"id": "보고서_12558", "type": "보고서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 7}, {"block": "격자", "card": "num_cell", "rows": 4, "cols": 7}], "prefill": [{"target": 2, "kind": "pf_filled"}], "decoys": ["점선 절취선"], "seed": 648411336}

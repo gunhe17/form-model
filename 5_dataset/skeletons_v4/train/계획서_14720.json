@@ -1,0 +1,1 @@
+{"id": "계획서_14720", "type": "계획서", "glyph_rule": "mixed", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "text_colon"}, {"block": "글머리서술", "card": "text_ul"}, {"block": "격자", "card": "num_cell", "rows": 5, "cols": 7}, {"block": "금액", "card": "num_affix"}], "prefill": [], "decoys": ["처리절차 플로차트"], "seed": 166317142}

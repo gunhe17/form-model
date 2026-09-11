@@ -1,0 +1,1 @@
+{"id": "서명부_12789", "type": "서명부", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "sig_grid", "rows": 9, "cols": 2}, {"block": "날짜줄", "card": "date_dots"}], "prefill": [{"target": 1, "kind": "pf_label"}, {"target": 2, "kind": "pf_filled"}], "decoys": ["점선 절취선"], "seed": 1946569250}
