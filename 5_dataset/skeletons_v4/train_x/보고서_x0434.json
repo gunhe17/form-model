@@ -1,0 +1,1 @@
+{"id": "보고서_x0434", "type": "보고서", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "score_grid", "rows": 6, "cols": 5}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 6}, {"block": "격자", "card": "grid_diag", "rows": 4, "cols": 3}], "prefill": [], "decoys": ["인쇄 상수 셀"], "seed": 377176817}

@@ -89,3 +89,11 @@ find 5_dataset/skeletons_v4/train   -name '*.json' | xargs -P 6 -n 800 sh -c 'py
 find 5_dataset/skeletons_v4/holdout -name '*.json' | xargs -P 6 -n 400 sh -c 'python3 3_generator/render_skeleton.py "$@" --out 5_dataset/holdout_v4 > /dev/null' _
 python3 8_train/label_stage1.py --train 5_dataset/train_v4 --replica 4_replica --coverage
 ```
+
+### v4x — 점수·배점 좁은 열 격자 추가 (2026-09-11)
+
+E4(cell 폭 31~45px, 실서식 6호 점수 셀)가 v4 에서도 20,000장 환산 약 200개뿐이라 카드 `score_grid` 를 추가하고(폭·높이를 장치 픽셀 31~45 / 34~48 로 잡아 dsf 로 나눔), 격자 블록 하나를 이 카드로 강제한 추가 골격 400장(`5_dataset/skeletons_v4/train_x`, 점검평가·부품집중·보고서·사정조사지, seed 20260906)을 **같은 train_v4 폴더에 추가 렌더**한다. 40장 표본에서 페이지당 폭 31~45 셀 약 40개 → 400장 ≈ 1.6만 개(실서식 비중 6.5% 에 상응). 재생성:
+```
+find 5_dataset/skeletons_v4/train_x -name '*.json' | xargs -P 6 -n 80 sh -c 'python3 3_generator/render_skeleton.py "$@" --out 5_dataset/train_v4 > /dev/null' _   # train_v4 png 20,400
+```
+

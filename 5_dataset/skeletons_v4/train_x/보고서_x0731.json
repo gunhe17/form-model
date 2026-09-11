@@ -1,0 +1,1 @@
+{"id": "보고서_x0731", "type": "보고서", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "score_grid", "rows": 6, "cols": 3}, {"block": "격자", "card": "date_cell", "rows": 4, "cols": 7}], "prefill": [{"target": 1, "kind": "pf_sample"}], "decoys": ["인쇄 상수 셀", "(단위:) 캡션", "인쇄 수신처 열거"], "seed": 479464369}

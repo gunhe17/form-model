@@ -1,0 +1,1 @@
+{"id": "보고서_x0306", "type": "보고서", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "score_grid", "rows": 7, "cols": 3}, {"block": "격자", "card": "date_cell", "rows": 5, "cols": 7}], "prefill": [{"target": 2, "kind": "pf_year20"}], "decoys": ["인쇄 수신처 열거"], "seed": 313045003}

@@ -532,6 +532,17 @@ class R:
                 t="text" if r==rows-1 else items[r%7][1]
                 return TDC(t,hr[r],cls="")
             return grid(rng,rows,min(cols,3),["구분","내용","비고"],cf,disp=[self.L(h,0.4) for h in ["구분","내용","비고"]])
+        if c=="score_grid":   # v4x: 점수·배점 좁은 열 (실서식 6호 35×45 셀). 장치 픽셀 기준 폭 31~45 → dsf 로 나눠 CSS px
+            dsf=_T("dsf",1.0); ins=_T("inset",3)
+            ncol=rng.randint(4,8); tw=rng.randint(31,45); th=rng.randint(34,48)
+            cw=int(round((tw+2*ins+1)/dsf)); hh=int(round(th/dsf))
+            POOL=["배점","점수","1회","2회","3회","4회","5회","상","중","하","계","가중치","평가","확인","회","월","횟수"]
+            hs=[rng.choice(["평가 항목","심사 기준","항목","점검 내용"])]+rng.sample(POOL,ncol)
+            ITEMS=["자격 요건","경력 및 이수 교육","면접 태도","전문성","의사소통","건강 상태","활동 계획","추천서","기타 가점","성실성","협력 태도","기록 관리"]
+            rng.shuffle(ITEMS)
+            cg="<colgroup><col>"+"".join(f'<col style="width:{cw}px">' for _ in range(ncol))+"</colgroup>"
+            body="".join(f'<tr><td class="tl" style="height:{hh}px">{ITEMS[r%len(ITEMS)]}</td>'+"".join(f'<td class="vl fillc">{CGF("number")}</td>' for _ in range(ncol))+"</tr>" for r in range(max(3,min(rows,8))))
+            return f'<table>{cg}<tr>'+"".join(f"<th>{x}</th>" for x in hs)+f"</tr>{body}</table>"
         if c=="num_denom":
             return f'<table><tr><th style="width:118px">합 계</th><td class="vl">{GP("number",56)}/100점</td></tr></table>'
         if c=="header_opts":
