@@ -1,0 +1,100 @@
+<title>변동 폭 방법론 조사</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--paper:#F6F7F5;--ink:#1A1D21;--ink2:#4A525C;--mu:#6F7884;--rule:#C9CFD8;--shade:#EEF1F4;--shade2:#E3E8EE;--acc:#2C4C8C;--acc2:#24407A;--ok:#1F7A4D;--okbg:#E4F2EA;--bad:#B3372E;--badbg:#F8E7E5;--wn:#A8701A;--wnbg:#F7EEDB;--bar:#2C4C8C;--bar2:#9aa7b8}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#15181C;--ink:#E7E9EC;--ink2:#C0C6CE;--mu:#9AA3AF;--rule:#2E343C;--shade:#1D2126;--shade2:#242930;--acc:#7FA2E8;--acc2:#A9C1F0;--ok:#5CC48E;--okbg:#1B3327;--bad:#E06A5F;--badbg:#3A2320;--wn:#D9A24C;--wnbg:#3A2E18;--bar:#7FA2E8;--bar2:#5c6675}}
+:root[data-theme=dark]{--paper:#15181C;--ink:#E7E9EC;--ink2:#C0C6CE;--mu:#9AA3AF;--rule:#2E343C;--shade:#1D2126;--shade2:#242930;--acc:#7FA2E8;--acc2:#A9C1F0;--ok:#5CC48E;--okbg:#1B3327;--bad:#E06A5F;--badbg:#3A2320;--wn:#D9A24C;--wnbg:#3A2E18;--bar:#7FA2E8;--bar2:#5c6675}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;font-size:15px;line-height:1.75}
+.page{max-width:920px;margin:0 auto;padding:48px 28px 96px}
+h1,h2,h3{font-family:"Noto Serif KR",serif;font-weight:700;margin:0;text-wrap:balance;line-height:1.3}h1{font-size:32px}h2{font-size:22px;margin-top:56px;padding-top:14px;border-top:3px double var(--mu)}h3{font-size:16px;margin:26px 0 8px;color:var(--acc2)}
+p{margin:12px 0;max-width:70ch}.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin-bottom:10px}
+.lede{font-size:17px;max-width:66ch}
+.easy{font-size:14px;background:var(--shade);border:1px solid var(--rule);padding:10px 14px;margin:14px 0;max-width:74ch}.easy b{color:var(--acc2);margin-right:6px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:14px 0}th,td{border:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}th{background:var(--shade);font-weight:500;color:var(--ink2);font-size:12.5px}td.n,th.n{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tw{overflow-x:auto}.cite{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--mu)}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11.5px;padding:1px 8px;border-radius:2px;vertical-align:1px}.ok{background:var(--okbg);color:var(--ok)}.miss{background:var(--badbg);color:var(--bad)}.wn{background:var(--wnbg);color:var(--wn)}
+.bars{display:grid;grid-template-columns:190px 1fr 110px;gap:6px 10px;align-items:center;font-size:13px;margin:14px 0}.bars .b{height:14px;background:var(--shade2);position:relative}.bars .b i{position:absolute;left:0;top:0;bottom:0;background:var(--bar);border-radius:0 3px 3px 0}.bars .b i.us{background:var(--bad)}.bars .v{font-family:"IBM Plex Mono",monospace;color:var(--ink2);white-space:nowrap}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.grid4>div{border:1px solid var(--rule);background:var(--shade);padding:10px 12px;font-size:13px}.grid4 b{display:block;font-family:"IBM Plex Mono",monospace;color:var(--acc2);margin-bottom:4px}
+.steps{counter-reset:s;margin:14px 0;padding:0;list-style:none}.steps li{position:relative;padding:8px 0 8px 44px;border-top:1px solid var(--rule);font-size:14px}.steps li:before{counter-increment:s;content:"P6-" counter(s,decimal-leading-zero);position:absolute;left:0;top:9px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--acc2)}
+.steps li b{color:var(--ink)}
+@media(max-width:760px){.grid4{grid-template-columns:1fr 1fr}}
+</style>
+<div class="page">
+<div class="eyebrow">form-model · 6_research/variation · 2026-09-11</div>
+<h1>변동 폭 방법론 조사</h1>
+<p class="lede">"학습 사례가 너무 일관되어 모델이 외웠다"는 진단에 대해, 합성 데이터로 검출기를 학습할 때 <b>변동 폭 자체</b>를 어떻게 넓히는지 문헌을 네 갈래로 조사하고 교차 검증했습니다. 약 80편, 인용은 초록 페이지로 확인된 것만 썼습니다.</p>
+
+<div class="grid4">
+  <div><b>A 도메인 무작위화</b>이론·절제 실험·적응형 폭. 22편</div>
+  <div><b>B 문서·UI 합성기</b>글꼴·어휘·배치 다양성, LLM 변형. 20편</div>
+  <div><b>C 학습 시 증강</b>Ultralytics 설정, 문서 검출 대회 관행. 15편</div>
+  <div><b>D 측정·혼합</b>다양성 지표, 실데이터 혼합, 평가셋 크기. 19편</div>
+</div>
+
+<h2>1. 우리 증상은 문헌의 전형이다</h2>
+<div class="tw"><table>
+<tr><th>연구</th><th class="n">합성 검증</th><th class="n">실 데이터</th><th>결론</th></tr>
+<tr><td>Horváth 2022 산업 부품 검출 <span class="cite">2208.04171</span></td><td class="n">99.8</td><td class="n">86.3 → 10.8</td><td>텍스처·후처리 변이를 빼면 실성능이 무너짐. 합성 검증은 포화</td></tr>
+<tr><td>YOLOv11 합성→실 <span class="cite">2509.15045</span></td><td class="n">0.98~0.99</td><td class="n">0.88~0.95</td><td>"합성 검증 지표는 실성능의 나쁜 예측자"</td></tr>
+<tr><td><b>우리 4차</b></td><td class="n"><b>99.9</b></td><td class="n"><b>90.4</b></td><td>저확신 예측 합성 1.4% vs 실 23.9%, 실서식은 1에폭 정점</td></tr>
+</table></div>
+<div class="easy"><b>쉽게 말하면</b>연습 문제집으로만 채점하면 만점인 학생이 실전에서 흔들리는 것은, 문제집을 외웠기 때문입니다. 문헌은 이럴 때 "실전 시험지로 채점 기준을 바꾸고, 문제집의 변형 폭을 넓히라"고 한목소리로 말합니다.</div>
+
+<h2>2. 넷이 일치하는 여덟 가지</h2>
+<div class="tw"><table>
+<tr><th>#</th><th>결론</th><th>핵심 근거</th><th>우리 상태</th></tr>
+<tr><td>1</td><td><b>판정은 실서식만으로.</b> 체크포인트 선택·조기 종료·폭 조절 모두</td><td>2208.04171 · 2509.15045 · Ultralytics best.pt는 val 기준</td><td><span class="chip miss">합성 val 사용 중</span></td></tr>
+<tr><td>2</td><td><b>폭 &gt; 사실성 &gt; 수량.</b> 이산 3~6값은 "풀 크기 3~6"과 같다</td><td>Tremblay 1804.06516 텍스처 풀 8K→4K −2.2 AP · Alghonaim 2011.07112 · SynthDoG 전 축 연속</td><td><span class="chip miss">이산 축</span></td></tr>
+<tr><td>3</td><td><b>글꼴 가짓수</b>가 합성기 간 가장 일관된 차이</td><td>SynthText 1,200 · SynthTIGER 3,568 · Dessurt 10,000+ · DDR 2105.14931 스타일 불일치 −6~9</td><td><span class="chip miss">3종</span></td></tr>
+<tr><td>4</td><td><b>구조 문법은 옳다.</b> 단 순수 무작위 배치는 무효</td><td>SDR 1810.10093 (25k &gt; 무작위 200k) · DocSynth-300K 2410.12628 (Random 80.5→80.5)</td><td><span class="chip ok">카드 문법 유지</span></td></tr>
+<tr><td>5</td><td><b>비대상 방해물</b>(도장·로고·안내문)을 필드 근처에</td><td>Eversberg 2021 0.653→0.669 · Tremblay −1.1</td><td><span class="chip wn">일부</span></td></tr>
+<tr><td>6</td><td><b>어휘는 실코퍼스에서 주입.</b> 의미의 고충실은 불필요, 분포가 덮으면 된다</td><td>Dessurt 2203.16618 · RIDGE 2504.10659 · DDR</td><td><span class="chip miss">라벨 90종</span></td></tr>
+<tr><td>7</td><td><b>실데이터 소량 미세조정</b>이 가장 재현성 있는 처방</td><td>Nowruzi 1907.07061 실 10% ≈ 실 100% · Burdorf 2202.00632 · TFA 2003.06957</td><td><span class="chip miss">미사용</span></td></tr>
+<tr><td>8</td><td><b>44장으로는 +2pt를 못 잰다.</b> 페이지 군집 CI ±2.7~4.2pt</td><td>Field &amp; Welsh 2007 군집 부트스트랩 · Bouthillier 2103.03098</td><td><span class="chip miss">점추정만</span></td></tr>
+</table></div>
+
+<h3>우리 생성기의 폭, 문헌 대비</h3>
+<div class="bars">
+  <div>글꼴 가짓수</div><div class="b"><i class="us" style="width:0.3%"></i></div><div class="v">우리 3</div>
+  <div></div><div class="b"><i style="width:12%"></i></div><div class="v">SynthText 1,200</div>
+  <div></div><div class="b"><i style="width:36%"></i></div><div class="v">SynthTIGER 3,568</div>
+  <div></div><div class="b"><i style="width:100%"></i></div><div class="v">Dessurt 10,000+</div>
+</div>
+<p>라벨 어휘도 같습니다. 실서식 표 머리 라벨 13종 중 학습에 있는 것은 3종(23%)뿐이고, 1_corpus OCR 캐시에는 고유 한글 토큰이 4천 개 이상 있어 바로 쓸 수 있습니다.</p>
+
+<h2>3. 갈리는 점과 우리 판단</h2>
+<div class="tw"><table>
+<tr><th>쟁점</th><th>한쪽</th><th>다른 쪽</th><th>판단</th></tr>
+<tr><td>스캔·후처리 노이즈의 비중</td><td>A·B: 1순위 (SynthTIGER −5.2, Horváth 86→56)</td><td>C: 우리 열화 시험 99.9로 이미 포화</td><td>우리 실서식 앵커는 깨끗한 렌더라 <b>현재 격차의 원인이 아님</b>. 배포용으로 유지, 우선순위 중간</td></tr>
+<tr><td>백본 동결</td><td>Tremblay: 동결하면 악화</td><td>Hinterstoisser·Ultralytics: 유사 도메인·소량이면 동결</td><td>FFDNet은 같은 문서 도메인 48만 장 백본 → <b>freeze 10을 1안</b>, 전체 미세조정 lr/10을 2안</td></tr>
+<tr><td>미세조정 vs 혼합 학습</td><td>Nowruzi: 미세조정 우세</td><td>Burdorf: 5시드 유의차 없음</td><td>둘 다 실행, 원천 분리된 실 평가로 선택</td></tr>
+<tr><td>LLM이 쓰는 HTML</td><td>DocDjinn·WebSight: 유효</td><td>WebCode2M: "깨끗하지만 단순"으로 수렴</td><td>렌더·GT는 우리 부품 함수가, LLM은 <b>어휘·순서·부품 변종</b>만. lint 통과분만</td></tr>
+</table></div>
+
+<h2>4. 학습 설정에서 바로 고칠 것</h2>
+<p>Ultralytics 기본값 중 서식에 무의미하거나 해로운 것이 확인됐습니다. 비용 0입니다.</p>
+<div class="tw"><table>
+<tr><th>설정</th><th class="n">기본</th><th class="n">권고</th><th>이유</th></tr>
+<tr><td>fliplr</td><td class="n">0.5</td><td class="n">0</td><td>거울상 서식은 없음. ICDAR'23 DocLayNet 1위 팀도 제거 <span class="cite">2305.06553</span></td></tr>
+<tr><td>hsv_h / hsv_s</td><td class="n">.015 / .7</td><td class="n">0 / 0</td><td>회색조에서 색상·채도 변동은 수학적으로 무효</td></tr>
+<tr><td>mosaic · close_mosaic</td><td class="n">1.0 · 10</td><td class="n">0.5 · 30%</td><td>batch 4의 BN 안정성은 살리고 낱칸·셀 절단은 줄임 <span class="cite">2004.10934 · 2406.05412</span></td></tr>
+<tr><td>scale</td><td class="n">0.5</td><td class="n">(0.7, 1.6)</td><td>확대는 넓게, 축소는 8px 객체 소실 방지 <span class="cite">2012.07177</span></td></tr>
+<tr><td>degrees · shear · translate</td><td class="n">0 · 0 · .1</td><td class="n">2 · 1 · .15</td><td>학습된 검출 증강 정책의 핵심 연산 <span class="cite">1906.11172</span></td></tr>
+<tr><td>val · patience</td><td class="n">합성 · 100</td><td class="n">실서식 · 5</td><td>best.pt와 조기 종료가 실서식을 보게</td></tr>
+<tr><td>freeze · optimizer</td><td class="n">— · auto</td><td class="n">10 · AdamW 1e-3</td><td>문서 도메인 백본 보존, neck·head만 적응</td></tr>
+</table></div>
+<p>copy_paste는 폴리곤 라벨이 필요해 박스 GT로는 켤 수 없고, label_smoothing·dropout·erasing·auto_augment는 검출에 연결돼 있지 않습니다. 골격 수준 붙여넣기는 7_augment에서 직접 구현해야 합니다.</p>
+
+<h2>5. 계획 P6 — 순서가 핵심</h2>
+<p>원칙은 <b>재는 도구 → 재는 대상 → 넓히기 → 학습 → 실데이터 혼합</b>입니다. 넓히기부터 하면 효과를 잴 수 없습니다.</p>
+<ol class="steps">
+  <li><b>측정 도구.</b> 페이지 군집 부트스트랩 CI, 에폭별 합성/실 확신도 AUROC, 백본 임베딩 coverage(클래스별). GPU 불필요.</li>
+  <li><b>앵커 44→149.</b> 원천 PDF 단위로 학습 100 / 평가 49 분할. 이것이 없으면 이후 개선을 잴 수 없고, 미세조정도 못 합니다.</li>
+  <li><b>생성기 v4 "폭".</b> 모든 테마 축 연속화, 글꼴 ≥30, OCR 어휘 주입, 방해물, DPR/zoom, 배치 지터를 실서식 히스토그램에 정렬, 음성 페이지.</li>
+  <li><b>학습 v4.</b> 위 4절 설정, val=실서식, 3시드. 결과는 CI와 함께.</li>
+  <li><b>실데이터 혼합.</b> 실 100장 미세조정(head-only vs full lr/10, 합성 리플레이 20~30%) 대 혼합 학습(실 5~20% 오버샘플). 원천 분리된 49장에서 짝지은 CI로 선택.</li>
+  <li><b>축 절제.</b> 축 하나씩 켜고 끈 2k 렌더로 기여도. 예산이 남을 때.</li>
+</ol>
+<div class="easy"><b>기대</b>문헌 수치를 우리에 대입하면 실 10% 미세조정만으로 실 100% 학습에 근접한 사례(Nowruzi)가 있어, P6-4까지 가면 95 목표는 현실적입니다. 다만 그 판정은 CI를 붙인 149장 평가에서만 의미가 있습니다.</div>
+<p>원문 네 보고서와 교차 검증은 저장소 6_research/variation에, 계획은 8_train/docs/PLAN.md 10절에 있습니다.</p>
+</div>

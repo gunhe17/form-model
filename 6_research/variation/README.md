@@ -8,6 +8,7 @@
 | `B_document_synthesis.md` | 문서·텍스트·UI 합성기의 다양성 확보 방식, LLM 주도 변형, 서식 특화 | 20 |
 | `C_train_augmentation.md` | 검출기 학습 시 증강·정규화, Ultralytics 설정, 문서 검출 대회 관행 | 15 |
 | `D_measurement_and_mixing.md` | 다양성·격차 측정, 실데이터 혼합 비율, 소규모 평가셋 안정성 | 19 |
+| `report.html` · `변동폭_조사_보고.pdf` | 종합 보고(아티팩트 원본 + PDF) | — |
 
 ## 넷이 일치하는 결론
 
