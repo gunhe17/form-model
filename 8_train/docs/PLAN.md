@@ -382,4 +382,6 @@ Ultralytics 주의(8.4.143 설치본 대조, DECISIONS 16절 표): `copy_paste` 
 - 귀속: e1→e3 에서 marker −23 · E2 −13 · G −10 · A −4 — 학습이 길어질수록 4차가 잡던 군을 잃는 방향(e2·e3 일관).
 - 가중치 `runs/ffdnet_s1v4_s0/weights/best.pt`(=epoch0.pt), e2·e3 보존.
 - **다음 = P6-4 실데이터 혼합**(문헌상 최대 단일 이득): 5차 e1 과 4차 e1 두 베이스 × (A) head-only / (B) full lr/10 미세조정(replica_train + 합성 리플레이 20~30%) → replica_eval 짝지은 CI. 학습 시간 각 수십 분.
+- 5차 e1 Ultralytics val(split 별): replica_train P .776 R .791 mAP50 .734 mAP50-95 .496 · replica_eval .800/.726/.773/.477 · stress .917/.907/.947/.697. 실서식은 stress 보다 mAP50 −0.17~0.21, 무너지는 축은 R(찾기) — score.py 축과 일치.
+- P6-4 시작: 혼합 목록 실 105장×30 + 합성 822(office 383 + clean 439) = 실 79.3% / 합성 리플레이 20.7%. 런 ft_{head,full}_{v4e1,v3e1}, 에폭 약 2.4분(993 iter), 15에폭·patience 5.
 
