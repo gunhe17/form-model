@@ -38,7 +38,8 @@ for t in $TARGETS; do
     lt=$(readlink -f "$l"); case "$lt" in "$ROOT"/*) ;; *) echo "  G4 밖을 가리키는 링크: $l -> $lt"; bad=1;; esac
   done
   [ "$bad" -eq 0 ] || fail "G4 $t 안에 루트 밖 링크"
-  grep -q "$(basename "$t")/" "$ROOT/8_train/forms_s1v4.yaml" && fail "G5 $t 를 현재 학습 yaml 이 참조"
+  YAML="$ROOT/8_train/forms_s1v4.yaml"; [ -f "$YAML" ] || fail "G5 학습 yaml 없음: $YAML"
+  grep -q "$(basename "$t")/" "$YAML" && fail "G5 $t 를 현재 학습 yaml 이 참조"
   echo "  $t: OK  $(du -sh "$rp" 2>/dev/null | cut -f1)  파일 $(find "$rp" -type f | wc -l)"
 done
 echo "== 여유(전)"; df -h "$ROOT" | tail -1
@@ -46,7 +47,8 @@ if [ "$YES" != "--yes" ]; then echo "dry-run — 삭제하지 않음. 실제 삭
 echo "== 삭제"
 for t in $TARGETS; do
   p="$ROOT/$t"; [ -d "$p" ] || continue
-  ionice -c3 nice -n19 rm -rf --one-file-system "$p" && echo "  삭제됨: $t"
+  if command -v ionice >/dev/null 2>&1; then ionice -c3 nice -n19 rm -rf --one-file-system "$p"; else nice -n19 rm -rf --one-file-system "$p"; fi
+  [ -e "$p" ] && echo "  경고: $t 가 남아 있음(일부 삭제?)" || echo "  삭제됨: $t"
 done
 echo "== 여유(후)"; df -h "$ROOT" | tail -1
 echo "== 추적 파일 무손실 확인 (비어 있어야 함)"; (cd "$ROOT" && git status --short | grep -v '^??' || true)
