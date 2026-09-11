@@ -21,7 +21,6 @@ LIST='
 고딕|IBMPlexSansKR|400|ibmplexsanskr/IBMPlexSansKR-Regular.ttf
 고딕|IBMPlexSansKR-Bold|700|ibmplexsanskr/IBMPlexSansKR-Bold.ttf
 고딕|NanumGothicGF|400|nanumgothic/NanumGothic-Regular.ttf
-고딕|NanumGothicGF-Bold|700|nanumgothic/NanumGothic-Bold.ttf
 고딕|NanumGothicCoding|400|nanumgothiccoding/NanumGothicCoding-Regular.ttf
 고딕|Sunflower-Light|300|sunflower/Sunflower-Light.ttf
 고딕|Sunflower|500|sunflower/Sunflower-Medium.ttf
@@ -29,7 +28,6 @@ LIST='
 고딕|GowunDodum|400|gowundodum/GowunDodum-Regular.ttf
 명조|NotoSerifKR|100 900|notoserifkr/NotoSerifKR[wght].ttf
 명조|NanumMyeongjoGF|400|nanummyeongjo/NanumMyeongjo-Regular.ttf
-명조|NanumMyeongjoGF-Bold|700|nanummyeongjo/NanumMyeongjo-Bold.ttf
 명조|SongMyung|400|songmyung/SongMyung-Regular.ttf
 명조|GowunBatang|400|gowunbatang/GowunBatang-Regular.ttf
 명조|GowunBatang-Bold|700|gowunbatang/GowunBatang-Bold.ttf
