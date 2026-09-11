@@ -351,3 +351,8 @@ Ultralytics 주의(8.4.143 설치본 대조, DECISIONS 16절 표): `copy_paste` 
 - **coverage 지표 수정 후(얕은/깊은 층 [GAP,GMP] L2·크기 2차원·k=max(5,√n)·클래스별 표본 균등, MIN_N 30 — 정정: 이 수치는 letterbox 가 호출되지 않은 상태의 값, letterbox 포함 재측정은 아래)**: 대조군(실↔실) **0.616** ≥ 0.5 합격, v3 0.474 · v4 0.478 로 대조군보다 낮음(지표 작동). 클래스별 대조군/v3/v4: cell 0.621/0.478/**0.414** · gap 0.940/0.822/**0.557** · marker 0.217/0.087/0.172 · placeholder 0.472/0.472/0.306. **v4 가 v3 보다 낮다** — 배율·글꼴 다양화가 합성 분산(Vendi cell 1.11→1.37)은 키웠지만 실서식 방향이 아니었다는 첫 관측. 5차 학습 결과와 함께 재확인.
 - **coverage 최종(letterbox 포함)**: 대조군 **0.713** · v3 0.639 · v4 0.599(cell 0.728/0.623/0.614 · gap 1.000/0.725/0.672 · marker 0.313/0.228/0.219). letterbox 의 실효는 Vendi_real 회복(전체 1.81→3.32, cell 1.14→2.25 — 정사각 리사이즈가 실서식 cell 을 한 점으로 뭉개던 것 해소). v4 < v3 는 두 설정에서 일관 — **v4 의 배율·글꼴 다양화는 실서식 방향이 아니었다**는 관측(5차 결과와 함께 재확인). 채택: letterbox 포함.
 
+### 10.4 5차 학습 시작 (2026-09-11, ffdnet_s1v4_s0)
+- 데이터 63,100(clean 20,550 = v4 20,000 + score_grid 400 + dense_log 150 · swap 6,000 · office 20,550 · office_swap 6,000 · degraded 8,000 · degraded_swap 2,000), **val = replica_train 105**, test = replica_eval 52 + stress 500.
+- 설정: FFDNet-L 초기화, freeze 10, AdamW lr0 1e-3 lrf 0.05 warmup 1 cos, mosaic 0.5 close_mosaic 9, scale 0.7~1.6, translate 0.15 degrees 2 shear 1 perspective 0.0002, fliplr/flipud 0, hsv 0/0/0.3, mixup/cutmix/copy_paste 0, imgsz 1600 batch 4, **시드 0 · epochs 10 · patience 3**(3시드는 결과 보고 결정). iter/epoch 15,775.
+- 판정: replica_eval 52장 recall + 페이지 군집 CI(기준선 92.09 [87.4, 96.1]), 귀속표 --prev 기준선.
+
