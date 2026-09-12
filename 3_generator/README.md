@@ -120,3 +120,11 @@ find 5_dataset/skeletons_v4/train_x4 -name '*.json' | xargs -P 6 -n 50 sh -c 'py
 python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v4x4 --train-dir 5_dataset/train_v4x4 --val-dir 5_dataset/holdout_v4
 ```
 
+### v4x5 — 척도 블록 앞 이질 행 + 표 안 라벨·빈칸 행 (2026-09-12)
+
+x34 남은 56 중 A(척도 선택칸) 6 은 1편 17호 **첫 문항 행만 전멸**(문항 2~5 는 100%) — 척도 블록이 구조가 다른 행(전화번호·서비스이용형태 □) 직후에 시작하는 배치가 생성기에 없었음. scale_words 에 50% 확률로 그 혼합 행을 표 첫 행으로 삽입. B2(표 안 낮은 gap 을 cell 로 오인) 8 → 카드 `mixed_kv_rows`(같은 표 안에 셀 전체 입력 행과 라벨 옆 gp 행이 번갈아). 강제 골격 200장(`skeletons_v4/train_x5`, 점검평가·사정조사지·신청서·조회요청서, seed 20260910). 렌더 폴더 `5_dataset/train_v4x5`.
+```
+find 5_dataset/skeletons_v4/train_x5 -name '*.json' | xargs -P 6 -n 50 sh -c 'python3 3_generator/render_skeleton.py "$@" --out 5_dataset/train_v4x5 > /dev/null' _
+python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v4x5 --train-dir 5_dataset/train_v4x5 --val-dir 5_dataset/holdout_v4
+```
+

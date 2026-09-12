@@ -18,7 +18,7 @@ CARDS = {  # P1 재가중: cell 계열↓ / gap·marker·comb·underline·placeh
  "인적표":{"text_cell":12,"cell_sublabel":3,"dot_box":2,"split_hyphen":8,"comb_slot":6,
           "ph_cell":4,"em_cell":2,"text_suffix":5,"mix_cell":6,"img_cell":6,"num_unit":7,
           "date_split":6,"date_cell":4,"ph_multi":5,"radio_word":3,"ph_pict":4,"dot_split":2,"inset_label":2,
-          "ph_lines":6,"gp_cell":6,"ul_cell":5,"sig_cell":8,"comb_jumin":6,"dbx_cell":3,"inset_label_full":4,"inline_pairs":8},   # v3 inline_pairs
+          "ph_lines":6,"gp_cell":6,"ul_cell":5,"sig_cell":8,"comb_jumin":6,"dbx_cell":3,"inset_label_full":4,"inline_pairs":8,"mixed_kv_rows":6},   # v4x5   # v3 inline_pairs
  "선택군":{"cb_row":22,"cb_wrap":10,"cb_col":8,"cb_grid":8,"cb_bracket":10,"radio_yn":10,
           "radio_word":3,"radio_paren":5,"radio_circled":5,"cb_sub":5,"cb_dep":8,
           "cb_inline_parent":5,"cb_parent":5,"cb_prose":4,"header_opts":1},

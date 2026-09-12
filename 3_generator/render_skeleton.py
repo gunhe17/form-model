@@ -338,6 +338,17 @@ class R:
             if rng.random()<0.5:
                 return f'<table><tr>{"".join(tds[:2])}</tr><tr>{"".join(tds[2:])}</tr></table>'
             return f'<table><tr>{"".join(tds)}</tr></table>'
+        if c=="mixed_kv_rows":   # v4x5: 같은 표 안에 "셀 전체 입력" 행과 "라벨 옆 빈칸(gp)" 행이 번갈아 (실서식 5_1·5_2·17·3·4_1호의 B2)
+            items=[p for p in picks if p[1]!="radio"][:6]
+            for lb,_t in items: self.used_labels.add(lb)
+            fs=rng.choice([13,14,15]); rows_html=""
+            for k,(lb,t) in enumerate(items):
+                if k%2==0: rows_html+=f'<tr><th style="width:118px">{lb}</th><td class="vl fillc">{CGF(t)}</td></tr>'
+                else:
+                    w1=rng.randint(70,330)
+                    rows_html+=(f'<tr><th style="width:118px">{lb}</th><td class="tl" style="font-size:{fs}px">'
+                                +ROW(f'<span style="flex:none">{rng.choice(["번호:","(",lb+" :","성명:"])}</span>',GP(t,w1),f'<span style="flex:none">{rng.choice([")","","호"])}</span>',style="gap:3px")+'</td></tr>')
+            return f'<table>{rows_html}</table>'
         if c=="inline_pairs":   # v3: 한 셀에 라벨·빈칸 쌍 2~4개 나란히, 또는 라벨 + 잔여 전폭 cg (실서식 2편 1_1호·17호)
             items=[p for p in picks if p[1]!="radio"][:rng.randint(2,4)]
             for lb,_t in items: self.used_labels.add(lb)
@@ -499,7 +510,14 @@ class R:
                 lab=hs[cn] if len(hs[cn])<5 or rng.random()<0.4 else hs[cn][:2]+"<br>"+hs[cn][2:]   # 매우<br>불만족
                 return f'<td class="vl fillc" style="font-size:13.5px;line-height:1.3;height:{hh}px">{lab}{CGF("radio")}</td>'   # v3: 글자 인쇄 셀 전체가 선택 박스
             hh=rng.choice([34,38,41,44])
-            return grid(rng,rng.randint(4,6),cols,hs,cf)
+            g=grid(rng,rng.randint(4,6),cols,hs,cf)
+            if rng.random()<0.5:   # v4x5: 척도 블록이 구조가 다른 행 직후에 시작 (실서식 17호 문항 1 행 전멸의 원인)
+                ch=self.marker()
+                pre=(f'<tr><th>전화번호</th><td class="tl" colspan="2">{ROW("자택:",GP("phone",rng.randint(70,110)),style="gap:3px")}{ROW("휴대전화:",GP("phone",rng.randint(70,110)),style="gap:3px")}</td>'
+                     f'<th>서비스이용형태</th><td class="tl" colspan="{cols-4}">{ROW(MK(ch,"radio"),"정기적",MK(ch,"radio"),"비정기적",style="gap:4px")}</td></tr>')
+                g=g.replace("<tr", "<tr", 1)
+                i=g.index("<tr"); g=g[:i]+pre+g[i:]   # 머리글 행 앞이 아니라 표 첫 행으로 삽입 → 척도 머리글이 혼합 행 뒤에 옴
+            return g
         if c=="scale_anchor":
             m=_T("mk",22)+2
             cells="".join(f'<td class="vl" style="width:34px"><span data-f="radio" style="display:inline-flex;width:{m}px;height:{m}px;align-items:center;justify-content:center">{"①②③④⑤⑥⑦⑧⑨⑩"[i]}</span></td>' for i in range(10))
