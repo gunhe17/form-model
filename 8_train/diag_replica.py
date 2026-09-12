@@ -27,6 +27,7 @@ def main():
     ap.add_argument("--labels", required=True); ap.add_argument("--imgsz", type=int, default=1600)
     ap.add_argument("--conf", type=float, default=0.25); ap.add_argument("--nms-iou", type=float, default=0.7)
     ap.add_argument("--device", default="cpu"); ap.add_argument("--match-iou", type=float, default=0.10)
+    ap.add_argument("--max-det", type=int, default=1000)
     a = ap.parse_args()
 
     from ultralytics import YOLO
@@ -39,7 +40,7 @@ def main():
     ghost_kind = collections.Counter(); ghost_cls = collections.Counter()
     n_gt = n_pred = n_match = 0
 
-    for r in model.predict(imgs, imgsz=a.imgsz, conf=a.conf, iou=a.nms_iou,
+    for r in model.predict(imgs, imgsz=a.imgsz, conf=a.conf, iou=a.nms_iou, max_det=a.max_det,
                            device=a.device, stream=True, verbose=False):
         H, W = r.orig_shape
         stem = os.path.basename(r.path)[:-4]

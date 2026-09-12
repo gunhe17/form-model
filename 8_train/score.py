@@ -139,6 +139,7 @@ def main():
     ap.add_argument("--nms-iou", type=float, default=0.7); ap.add_argument("--device", default="0")
     ap.add_argument("--match-iou", type=float, default=0.10, help="이 값 미만은 매칭으로 치지 않는다(유령/놓침)")
     ap.add_argument("--out", default="8_train/runs/score"); ap.add_argument("--chunk", type=int, default=16)
+    ap.add_argument("--max-det", type=int, default=1000, help="페이지당 예측 상한. Ultralytics 기본 300 은 GT 360 페이지(2편 11호)를 잘라 recall 을 과소평가했음(2026-09-12)")
     ap.add_argument("--dump", help="GT 단위 매칭 덤프 경로 (miss_dump_*.json) — diag_ci/diag_conf/diag_dump 입력")
     a = ap.parse_args()
     if a.selftest: return selftest()
@@ -152,7 +153,7 @@ def main():
     assert imgs, f"이미지 없음: {a.images}"
     T = Tally(a.match_iou)
     for k in range(0, len(imgs), a.chunk):   # ponytail: 리스트 통째로 넘기면 GPU 메모리가 쌓여 24GB 에서 OOM
-        for r in model.predict(imgs[k:k+a.chunk], imgsz=a.imgsz, conf=a.conf, iou=a.nms_iou, device=a.device, stream=True, verbose=False):
+        for r in model.predict(imgs[k:k+a.chunk], imgsz=a.imgsz, conf=a.conf, iou=a.nms_iou, device=a.device, max_det=a.max_det, stream=True, verbose=False):
             H, W = r.orig_shape; stem = os.path.basename(r.path)[:-4]
             g, gc = gt_boxes(f"{a.labels}/{stem}.txt", W, H)
             T.add(stem, g, gc, r.boxes.xyxy.cpu().numpy(), r.boxes.cls.cpu().numpy().astype(int), r.boxes.conf.cpu().numpy())

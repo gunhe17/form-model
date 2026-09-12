@@ -76,7 +76,7 @@ def measure(a):
     raw = collections.defaultdict(lambda: dict(gt=0, hit=0, w=[], h=[]))
     skipped = []
     for k in range(0, len(imgs), a.chunk):
-        for r in model.predict(imgs[k:k+a.chunk], imgsz=a.imgsz, conf=a.conf, iou=a.nms_iou,
+        for r in model.predict(imgs[k:k+a.chunk], imgsz=a.imgsz, conf=a.conf, iou=a.nms_iou, max_det=a.max_det,
                                device=a.device, stream=True, verbose=False):
             H, W = r.orig_shape; stem = os.path.basename(r.path)[:-4]
             g, _ = gt_boxes(f"{a.labels}/{stem}.txt", W, H)
@@ -141,6 +141,7 @@ def main():
     ap.add_argument("--nms-iou", type=float, default=0.7); ap.add_argument("--device", default="cpu")
     ap.add_argument("--match-iou", type=float, default=0.10)
     ap.add_argument("--chunk", type=int, default=16, help="동시 상주 이미지 수 — 메모리 상한")
+    ap.add_argument("--max-det", type=int, default=1000, help="페이지당 예측 상한(기본 300 은 밀집 페이지를 자름)")
     a = ap.parse_args()
     if a.compare: return compare(*a.compare)
     for r in ("model", "html_dir", "images", "labels"):
