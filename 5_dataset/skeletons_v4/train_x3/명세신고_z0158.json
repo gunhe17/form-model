@@ -1,0 +1,1 @@
+{"id": "명세신고_z0158", "type": "명세신고", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "격자", "card": "hrule_table", "rows": 6, "cols": 3}, {"block": "격자", "card": "hrule_table", "rows": 5, "cols": 7}], "prefill": [{"target": 0, "kind": "pf_sample"}], "decoys": ["인쇄 수신처 열거", "인쇄 상수 셀"], "seed": 1139421598}

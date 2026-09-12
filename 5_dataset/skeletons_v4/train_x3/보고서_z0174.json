@@ -1,0 +1,1 @@
+{"id": "보고서_z0174", "type": "보고서", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "hrule_table", "rows": 4, "cols": 4}, {"block": "격자", "card": "num_cell", "rows": 4, "cols": 4}, {"block": "격자", "card": "hrule_table", "rows": 4, "cols": 5}], "prefill": [], "decoys": ["점선 절취선"], "seed": 2039352249}

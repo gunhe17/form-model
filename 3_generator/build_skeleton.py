@@ -25,7 +25,7 @@ CARDS = {  # P1 재가중: cell 계열↓ / gap·marker·comb·underline·placeh
  "서술":{"ta_cell":8,"ta_free":5,"ta_below":4,"ta_outline":5},
  "격자":{"num_cell":10,"date_cell":5,"grid_diag":3,"cb_matrix":5,"radio_likert":6,
         "radio_grid":3,"cal_grid":2,"date_slash":4,"scale_anchor":5,"scale_words":4,"header_opts":2,
-        "stub_input":3,"num_denom":2,"photo_grid":3,"sig_grid":3,"pf_grid":3,"score_grid":4,"dense_log_grid":3},   # v4x score_grid (E4 소형 셀) · v4x2 dense_log_grid (초밀집 기록지)
+        "stub_input":3,"num_denom":2,"photo_grid":3,"sig_grid":3,"pf_grid":3,"score_grid":4,"dense_log_grid":3,"hrule_table":3},   # v4x score_grid (E4 소형 셀) · v4x2 dense_log_grid (초밀집 기록지)
  "금액":{"num_unit":10,"num_both":7,"num_bracket":4,"paren_unit":5,"num_affix":3},
  "날짜줄":{"date_split":10,"date_inline":6,"date_dots":5,"date_range":6,"pf_year20":8,"comb_date":5,"date_tight":7},   # v3 date_tight
  "시각":{"time_split":5,"time_cell":4},
@@ -83,17 +83,17 @@ NO_INPUT = {"안내문","작성요령서","백지","공고문"}  # 음성·희�
 GRID_ALLOW = {  # 격자 카드 의미 게이팅 (미기재 유형은 범용 세트만)
  "점검평가":{"radio_likert","scale_anchor","scale_words","num_denom","radio_grid","cb_matrix","num_cell","grid_diag","stub_input","photo_grid","score_grid"},
  "사정조사지":{"radio_likert","radio_grid","cb_matrix","header_opts","scale_anchor","scale_words","num_cell","stub_input","score_grid"},
- "부품집중":{"radio_likert","cb_matrix","scale_anchor","scale_words","date_slash","num_cell","date_cell","stub_input","score_grid","dense_log_grid"},
+ "부품집중":{"radio_likert","cb_matrix","scale_anchor","scale_words","date_slash","num_cell","date_cell","stub_input","score_grid","dense_log_grid","hrule_table"},
  "기록지":{"cal_grid","date_slash","num_cell","date_cell","cb_matrix","sig_grid","photo_grid","dense_log_grid"},
- "보고서":{"num_cell","date_cell","grid_diag","stub_input","score_grid","dense_log_grid"},
+ "보고서":{"num_cell","date_cell","grid_diag","stub_input","score_grid","dense_log_grid","hrule_table"},
  "대장명부":{"num_cell","date_cell","grid_diag","stub_input"},
  "등록카드":{"num_cell","date_cell","stub_input","sig_grid"},
  "접수증":{"num_cell","date_cell","stub_input","sig_grid"},
  "사진대지":{"photo_grid"},"서명부":{"sig_grid"},"작성례":{"pf_grid"},
  "계획서":{"num_cell","date_cell","grid_diag","stub_input"},
- "명세신고":{"num_cell","date_cell","grid_diag"},
- "통지회신":{"num_cell","date_cell","stub_input"},
- "신청서":{"num_cell","stub_input"},
+ "명세신고":{"num_cell","date_cell","grid_diag","hrule_table"},
+ "통지회신":{"num_cell","date_cell","stub_input","hrule_table"},
+ "신청서":{"num_cell","stub_input","hrule_table"},
  "안내문":{"num_cell","stub_input"},
 }
 GENERIC_GRID = {"num_cell","date_cell","grid_diag","stub_input"}

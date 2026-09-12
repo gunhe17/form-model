@@ -1,0 +1,1 @@
+{"id": "명세신고_z0148", "type": "명세신고", "glyph_rule": "bullet_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "cb_title"}, {"block": "격자", "card": "hrule_table", "rows": 3, "cols": 7}, {"block": "격자", "card": "num_cell", "rows": 3, "cols": 7}], "prefill": [{"target": 1, "kind": "pf_circle"}], "decoys": [], "seed": 250138019}

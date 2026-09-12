@@ -104,3 +104,11 @@ find 5_dataset/skeletons_v4/train_x -name '*.json' | xargs -P 6 -n 80 sh -c 'pyt
 find 5_dataset/skeletons_v4/train_x2 -name '*.json' | xargs -P 6 -n 50 sh -c 'python3 3_generator/render_skeleton.py "$@" --out 5_dataset/train_v4 > /dev/null' _   # train_v4 png 20,550
 ```
 
+### v4x3 — 세로 괘선 없는 표 (2026-09-12)
+
+채택본(ft_full_v4syn) 평가분 놓침의 1/4 이 2편 28호 한 장(recall 17%)이었고, 원인은 **세로 괘선이 없는 표**(라벨·칸 사이, 격자 열 사이에 세로선 없이 가로줄·머리글만). 카드 `hrule_table`(라벨·입력 2열 kv 70% + 머리글 격자, td border-left/right none) + 강제 골격 200장(`skeletons_v4/train_x3`, 신청서·통지회신·보고서·명세신고, seed 20260908). **별도 폴더** `5_dataset/train_v4x3` 로 렌더해 미세조정 리플레이에 섞는 실험용(본학습 재렌더 없이 효과 확인). 재생성:
+```
+find 5_dataset/skeletons_v4/train_x3 -name '*.json' | xargs -P 6 -n 50 sh -c 'python3 3_generator/render_skeleton.py "$@" --out 5_dataset/train_v4x3 > /dev/null' _
+python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v4x3 --train-dir 5_dataset/train_v4x3 --val-dir 5_dataset/holdout_v4
+```
+

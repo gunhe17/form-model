@@ -532,6 +532,20 @@ class R:
                 t="text" if r==rows-1 else items[r%7][1]
                 return TDC(t,hr[r],cls="")
             return grid(rng,rows,min(cols,3),["구분","내용","비고"],cf,disp=[self.L(h,0.4) for h in ["구분","내용","비고"]])
+        if c=="hrule_table":   # v4x3: 세로 괘선 없는 표 (실서식 2편 28호) — 가로줄·머리글만으로 칸이 정해짐
+            ncol=rng.randint(4,7); nrow=max(3,min(rows,6)); rh=rng.randint(34,48)
+            hs=rng.sample(["순번","승인번호","이용자","재심사 신청 금액","재심사 신청사유","첨부서류","금액","일자","성명","비고","확인","내용"],ncol)
+            ws=[rng.randint(50,90) if h in ("순번","확인") else rng.randint(90,220) for h in hs]; tot=sum(ws)
+            cg="<colgroup>"+"".join(f'<col style="width:{round(100*w/tot,1)}%">' for w in ws)+"</colgroup>"
+            NB="border-left:none;border-right:none"
+            head="<tr>"+"".join(f'<th style="{NB};background:none">{h}</th>' for h in hs)+"</tr>"
+            body="".join(f'<tr style="height:{rh}px">'+"".join(f'<td class="vl fillc" style="{NB};height:{rh}px">{CGF(HEADER_TYPE.get(h,"text"))}</td>' for h in hs)+"</tr>" for _ in range(nrow))
+            kv=""
+            if rng.random()<0.7:   # 위쪽 라벨·입력 쌍 2열 (라벨과 칸 사이에도 세로선 없음)
+                items=[p for p in LEX["인적"] if p[0] not in self.used_labels][:4]
+                for lb,_t in items: self.used_labels.add(lb)
+                kv="".join(f'<tr style="height:{rh}px">'+"".join(f'<td class="vl" style="{NB};width:22%">{lb}</td><td class="vl fillc" style="{NB}">{CGF(t)}</td>' for lb,t in items[i:i+2])+"</tr>" for i in range(0,len(items),2))
+            return f'<table style="border-left:none;border-right:none">{kv}{cg if not kv else ""}{head}{body}</table>' if not kv else f'<table style="border-left:none;border-right:none">{kv}</table><table style="border-left:none;border-right:none;margin-top:-1px">{cg}{head}{body}</table>'
         if c=="dense_log_grid":   # v4x2: 초밀집 월간 기록지 (실서식 2편 11호: 셀 50×10~15px, 300개+). 장치 픽셀 기준 → dsf 로 나눔
             dsf=_T("dsf",1.0)
             ncol=rng.randint(7,12); rh=rng.randint(12,17); cw=rng.randint(40,60)   # 행 높이 12~17 → 박스(인셋 1px) 10~15

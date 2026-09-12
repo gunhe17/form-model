@@ -1,0 +1,1 @@
+{"id": "명세신고_z0027", "type": "명세신고", "glyph_rule": "marker_only", "five_act_variant": false, "blocks": [{"block": "제목", "card": "title_paren"}, {"block": "격자", "card": "hrule_table", "rows": 5, "cols": 4}, {"block": "격자", "card": "hrule_table", "rows": 2, "cols": 3}], "prefill": [], "decoys": ["인쇄 상수 셀", "(단위:) 캡션", "점선 절취선"], "seed": 333417203}
