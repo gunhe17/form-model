@@ -35,7 +35,7 @@ CARDS = {  # P1 재가중: cell 계열↓ / gap·marker·comb·underline·placeh
  "제목":{"평제목":20,"cb_title":6,"title_paren":8},
  "고지표":{"text_cell":10,"cell_sublabel":2},
  "접수밴드":{"text_paren":6,"text_cell":4},
- "글머리서술":{"ta_outline":5,"text_prose":8,"text_colon":9,"text_ul":9,"text_paren":6,"legal_prose":4,"notice_band":3,"ul_lines":6},
+ "글머리서술":{"ta_outline":5,"text_prose":8,"text_colon":9,"text_ul":9,"text_paren":6,"legal_prose":4,"notice_band":3,"ul_lines":6,"contract_lines":5},   # v4x4
  "사진":{"img_cell":6,"img_card":3,"img_circle":3},
 }
 DECOY = ["처리절차 플로차트","인쇄 수신처 열거","점선 절취선","(단위:) 캡션","인쇄 상수 셀"]  # 렌더 구현 5종만(골격↔렌더 일치)

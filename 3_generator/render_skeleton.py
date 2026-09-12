@@ -729,6 +729,18 @@ class R:
             head=rng.choice(["진 술 내 용","확 약 사 항","확인 사항"])
             lines="".join(f'<p class="ln" style="margin:6px 0">{i+1}. {s()}</p>' for i,s in enumerate(SENT[:rng.randint(3,6)]))
             return f'<p class="ln"><b>{head}</b></p>{lines}'
+        if c=="contract_lines":   # v4x4: 계약서 조항 속 초장문 빈칸 (실서식 2·3편 6호: w 500~520 × h 19.5, 줄마다 1~2개)
+            fs=rng.choice([14,15,16,17]); n=rng.randint(3,6)
+            GPX=lambda t,w: f'<span data-f="{t}" class="gp" style="width:{int(round(w/_T("dsf",1.0)))}px"></span>'   # 장치 픽셀 기준 폭
+            HEAD=["제1조(목적)","제2조(서비스 내용)","제3조(계약기간)","제4조(비용)","제5조(의무)","제6조(해지)","제7조(기타)"]
+            SENT=[lambda: ROW("① 갑은 을에게",GPX("text",rng.randint(480,560)),style=f"font-size:{fs}px;margin:4px 0"),
+                  lambda: ROW("② 서비스 제공 장소:",GPX("text",rng.randint(440,540)),style=f"font-size:{fs}px;margin:4px 0"),
+                  lambda: ROW("③ 계약기간은",GP("date",rng.randint(56,72)),"부터",GP("date",rng.randint(56,72)),"까지로 한다.",style=f"font-size:{fs}px;margin:4px 0;gap:3px"),
+                  lambda: ROW("④",GPX("text",rng.randint(500,560)),style=f"font-size:{fs}px;margin:4px 0"),
+                  lambda: ROW("⑤ 월 이용료는 금",GP("number",rng.randint(90,140)),"원(",GP("number",rng.randint(56,80)),"회)으로 한다.",style=f"font-size:{fs}px;margin:4px 0;gap:3px"),
+                  lambda: ROW("⑥ 특약사항:",GPX("text",rng.randint(460,540)),style=f"font-size:{fs}px;margin:4px 0")]
+            rng.shuffle(SENT)
+            return f'<p class="ln" style="font-size:{fs}px"><b>{rng.choice(HEAD)}</b></p>'+"".join(f() for f in SENT[:n])
         fs=rng.choice([17,17,15,14])   # v3: 문장 글꼴 축 → gap 높이 16~19.5 (실서식 h≤18 44%)
         m={"text_colon":ROW(f"{lb} :",GP("text",rng.choice([180,260,340,460])),style=f"margin:6px 0;font-size:{fs}px"),   # 폭 400 초과 문장 빈칸 포함
            "text_ul":ROW(f"{lb} :",UL("text",120),",",UL("text",120),style="margin:6px 0"),
@@ -809,12 +821,14 @@ class R:
         n='<span class="note">'
         m={"pf_example":f'<table><tr><td class="tl lb2">관찰 내용 {n}(예시를 참고하여 기재)</span></td></tr>'
              f'<tr><td style="height:56px"><span data-f="textarea" class="cg" style="height:48px">{n}예) 아동이 먼저 인사말을 건네고 착석하였습니다.</span></span></td></tr></table>',
-           "pf_sample":ROW("담당자 성명 :",PH("text","○○○"),f'{n}(</span>',PH("text","○○○"),'<span class="note">기관)</span>',style="margin:6px 0"),   # v3: 박스 = 글자
+           "pf_sample":ROW("담당자 성명 :",PH("text",self.rng.choice(["○○○","△△△","○○○"])),f'{n}(</span>',PH("text",self.rng.choice(["○○○","△△△","○○기관"])),'<span class="note">기관)</span>',style="margin:6px 0"),   # v3: 박스 = 글자 · v4x4 △△△
            "pf_filled":(lambda tv,mv: f'<table><tr><th style="width:118px">활동시간</th><td class="vl"><span data-f="time" class="cg" style="line-height:26px">{tv}</span></td>'
              f'<th style="width:118px">금액</th><td class="vl"><span data-f="number" class="cg" style="line-height:26px">{mv}</span></td></tr></table>')(
              self.rng.choice(["17:00 ~ 17:50","09:30 ~ 11:20","14:00 ~ 15:40","10:00 ~ 12:00"]),
              self.rng.choice(["27,500원","41,300원","15,000원","33,800원"])),
-           "pf_mask":ROW("20",PH("date","○○"),"년",PH("date","○○"),"월",PH("date","○○"),"일",j="c",style="gap:2px"),
+           "pf_mask":(ROW("20",PH("date","○○"),"년",PH("date","○○"),"월",PH("date","○○"),"일",j="c",style="gap:2px") if self.rng.random()<0.5 else
+                      ROW(self.rng.choice(["신청일 :","작성일 :","공고일 :"]),PH("date",self.rng.choice(["0000. 00. 00","00.00.00","0000년 00월 00일","20○○. ○○. ○○"])),
+                          "&nbsp; 담당 :",PH("text",self.rng.choice(["○○○","△△△","□□□"])),j="c",style="gap:4px")),   # v4x4 기호 자리표
            "pf_circle":(lambda r: ROW(*r.choice([
                ["○ 교육일시 : 20",PH("date","○○"),".",PH("date","○",w=r.randint(22,31)),".",PH("date","○",w=r.randint(22,31)),". &nbsp; 장소 :",PH("text","○○○"),"교육장"],
                ["○ 기간 : 20",PH("date","○○"),"년",PH("date","○",w=r.randint(22,31)),"월 ~ 20",PH("date","○○"),"년",PH("date","○",w=r.randint(22,31)),"월"],

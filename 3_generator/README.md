@@ -112,3 +112,11 @@ find 5_dataset/skeletons_v4/train_x3 -name '*.json' | xargs -P 6 -n 50 sh -c 'py
 python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v4x3 --train-dir 5_dataset/train_v4x3 --val-dir 5_dataset/holdout_v4
 ```
 
+### v4x4 — 계약서 초장문 빈칸 + 기호 자리표 (2026-09-12)
+
+x3 후 남은 실패 61 중 15가 IoU 0.41~0.49 근접 탈락이고 그중 9가 2·3편 6호 계약서의 **w 500~520 × h 19.5 초장문 gap**(학습 풀에 w≥400·h≤22 gap 1.6%뿐). 카드 `contract_lines`(조항 문장 속 폭 440~560 장치px gap, 줄당 1~2개, 3~6줄; 글머리서술 블록) + 기호 자리표(△△△·0000. 00. 00·00.00.00·0000년 00월 00일; pf_mask/pf_sample) + 강제 골격 200장(`skeletons_v4/train_x4`, 계약서·확약서·진술서·공고문, seed 20260909). 20장 표본에서 긴 gap 60개(200장 ≈ 600). 별도 폴더 `5_dataset/train_v4x4` 로 렌더해 리플레이에 섞는다. 시행착오: 처음 카드를 격자 블록에 넣어 렌더되지 않았고(글머리서술 블록으로 이동), 폭은 배율(dsf)로 나눠 장치 픽셀 기준으로.
+```
+find 5_dataset/skeletons_v4/train_x4 -name '*.json' | xargs -P 6 -n 50 sh -c 'python3 3_generator/render_skeleton.py "$@" --out 5_dataset/train_v4x4 > /dev/null' _
+python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v4x4 --train-dir 5_dataset/train_v4x4 --val-dir 5_dataset/holdout_v4
+```
+

@@ -37,3 +37,5 @@ fonts/*.otf
 !fonts/NanumMyeongjo-Bold.ttf
 5_dataset/train_v4x3/
 8_train/yolo_s1v4x3/
+5_dataset/train_v4x4/
+8_train/yolo_s1v4x4/

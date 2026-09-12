@@ -1,0 +1,1 @@
+{"id": "공고문_w0004", "type": "공고문", "glyph_rule": "mixed", "five_act_variant": false, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "글머리서술", "card": "contract_lines"}, {"block": "동의문단", "card": "consent"}, {"block": "고지표", "card": "text_cell"}], "prefill": [{"target": 1, "kind": "pf_mask"}, {"target": 2, "kind": "pf_sample"}], "decoys": [], "seed": 1879158064}
