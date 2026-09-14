@@ -510,6 +510,12 @@ class R:
                 lab=hs[cn] if len(hs[cn])<5 or rng.random()<0.4 else hs[cn][:2]+"<br>"+hs[cn][2:]   # 매우<br>불만족
                 return f'<td class="vl fillc" style="font-size:13.5px;line-height:1.3;height:{hh}px">{lab}{CGF("radio")}</td>'   # v3: 글자 인쇄 셀 전체가 선택 박스
             hh=rng.choice([34,38,41,44])
+            if rng.random()<0.5:   # v4x6: 실서식 17호형 — 선택지 머리글 행 없이 회색 병합 띠 바로 아래에서 문항 행 시작, 번호 열 + 두 줄 문항
+                nq=rng.randint(4,6); band=rng.choice(["항 &nbsp; 목 (서술해 주시거나 동그라미로 체크해 주세요)","평 가 항 목 (해당 칸에 ○표)","문 항 (해당란에 √ 또는 ○ 표시)"])
+                tds=lambda: "".join(f'<td class="vl fillc" style="font-size:13.5px;line-height:1.3;height:{hh}px">{(h[:2]+"<br>"+h[2:]) if len(h)>=4 else h}{CGF("radio")}</td>' for h in hs[1:])
+                body="".join(f'<tr><td class="vl" style="width:34px">{r+1}</td><td class="tl" style="font-size:14px;line-height:1.3">{QS[r%len(QS)]}<br>{rng.choice(["연결이 되었습니까?","양호했습니까?","도움이 되었습니까?",""])}</td>{tds()}</tr>' for r in range(nq))
+                cg="<colgroup><col style=\"width:34px\"><col>"+"".join('<col style="width:9%">' for _ in hs[1:])+"</colgroup>"
+                return f'<table>{cg}<tr><th colspan="{len(hs)+1}" style="text-align:center">{band}</th></tr>{body}</table>'
             g=grid(rng,rng.randint(4,6),cols,hs,cf)
             if rng.random()<0.5:   # v4x5: 척도 블록이 구조가 다른 행 직후에 시작 (실서식 17호 문항 1 행 전멸의 원인)
                 ch=self.marker()

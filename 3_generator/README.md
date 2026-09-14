@@ -128,3 +128,11 @@ find 5_dataset/skeletons_v4/train_x5 -name '*.json' | xargs -P 6 -n 50 sh -c 'py
 python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v4x5 --train-dir 5_dataset/train_v4x5 --val-dir 5_dataset/holdout_v4
 ```
 
+### v4x6 — 17호형 척도표 (2026-09-14)
+
+x5(척도 블록 앞 이질 행)는 효과 없음(17호 87.2→83.0). 렌더를 실서식과 나란히 보니 진짜 차이는 **선택지 머리글 행이 없고 회색 병합 띠("항 목 (서술해 주시거나 동그라미로 체크해 주세요)") 바로 아래에서 문항 행이 시작**하며, 번호 열 + 두 줄 문항, 선택지 글자는 각 행 셀 안에 인쇄. 회색 띠 직하 첫 행을 모델이 머리글로 취급한 것으로 추정. scale_words 에 50% 확률로 이 변형 추가, 강제 골격 200장(`skeletons_v4/train_x6`, 점검평가·사정조사지, seed 20260911). 렌더 폴더 `5_dataset/train_v4x6`.
+```
+find 5_dataset/skeletons_v4/train_x6 -name '*.json' | xargs -P 6 -n 50 sh -c 'python3 3_generator/render_skeleton.py "$@" --out 5_dataset/train_v4x6 > /dev/null' _
+python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v4x6 --train-dir 5_dataset/train_v4x6 --val-dir 5_dataset/holdout_v4
+```
+
