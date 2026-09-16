@@ -5,7 +5,7 @@
 # 에폭 스냅샷은 학습 중간 상태이고 재현 절차(8_train/README '최종 채택 가중치 재현')로 다시 만들 수 있다.
 # 안전장치(하나라도 실패하면 아무것도 지우지 않는다):
 #   G1 저장소 루트 아래 실경로, 심볼릭 링크 아님
-#   G2 git 이 무시하는 경로이고 추적 파일 0
+#   G2 **파일 단위로** gitignore 대상이고 추적되지 않음 (runs 안에 추적 중인 결과 JSON 이 있어 디렉토리 단위 검사는 쓸 수 없음)
 #   G3 루트와 같은 디바이스
 #   G4 파일명이 정확히 epoch<숫자>.pt (last/best/기타는 대상 아님)
 #   G5 학습 프로세스가 돌고 있지 않음
@@ -24,9 +24,6 @@ echo "루트: $ROOT"
 [ -d "$ROOT/.git" ] || fail "저장소 루트가 아님"
 [ -d "$RUNS" ] || { echo "runs 없음 — 할 일 없음"; exit 0; }
 ROOTDEV=$(dev "$ROOT")
-(cd "$ROOT" && git check-ignore -q "8_train/runs") || fail "G2 8_train/runs 가 gitignore 대상이 아님"
-n_tracked=$(cd "$ROOT" && git ls-files "8_train/runs" | wc -l)
-[ "$n_tracked" -eq 0 ] || fail "G2 runs 안에 추적 파일 $n_tracked 개"
 pgrep -f "yolo detect train" >/dev/null 2>&1 && fail "G5 학습 프로세스 실행 중 — 종료 후 실행할 것"
 
 LIST=$(mktemp); TOTAL=0; N=0
@@ -46,6 +43,9 @@ for wd in "$RUNS"/*/weights; do
     rp=$(cd "$(dirname "$f")" && pwd -P)/$b
     case "$rp" in "$RUNS"/*) ;; *) fail "G1 runs 밖: $rp";; esac
     [ "$(dev "$f")" = "$ROOTDEV" ] || fail "G3 디바이스 다름: $f"
+    rel=${f#"$ROOT"/}
+    (cd "$ROOT" && git check-ignore -q "$rel") || fail "G2 gitignore 대상이 아님: $rel"
+    (cd "$ROOT" && git ls-files --error-unmatch "$rel" >/dev/null 2>&1) && fail "G2 추적 중인 파일: $rel"
     echo "$f" >> "$LIST"; cnt=$((cnt+1)); sz=$((sz+$(wc -c < "$f")))
   done
   [ "$cnt" -gt 0 ] && { echo "  $run: epoch*.pt $cnt 개 $((sz/1024/1024)) MB"; N=$((N+cnt)); TOTAL=$((TOTAL+sz)); }
