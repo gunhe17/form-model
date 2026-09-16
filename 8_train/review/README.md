@@ -16,3 +16,7 @@
 ## results_round4.html
 
 4차 결과 정밀 보고 원본(정적 HTML, 실서식 크롭 5장 base64 내장). PDF는 `docs/4차_학습_보고.pdf`.
+
+## final_report.html
+
+전체 실험 기록(1차~최종 ft_v5e) 아티팩트 원본. 실서식 크롭 4장 base64 내장. PDF는 `docs/최종_실험_기록.pdf`.
