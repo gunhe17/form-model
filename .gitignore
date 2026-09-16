@@ -43,3 +43,5 @@ fonts/*.otf
 8_train/yolo_s1v4x5/
 5_dataset/train_v4x6/
 8_train/yolo_s1v4x6/
+5_dataset/train_v4x7/
+8_train/yolo_s1v4x7/

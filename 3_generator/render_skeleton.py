@@ -278,7 +278,8 @@ class R:
          "comb_jumin":ROW(*([CBX("number")]*6+["-"]+[CBX("number")]*7),j="c",style="gap:2px;flex-wrap:wrap;row-gap:2px"),
          "comb_date":ROW(*COMB_DATE(),j="c",style="gap:2px;flex-wrap:wrap;row-gap:2px"),
          "cell_sublabel":ROW('<span class="note">(한글)</span>',GP("text",90),'<span class="note">(한자)</span>',GP("text",70),j="c"),
-         "mix_cell":ROW('<span data-f="text" class="cg" style="flex:1;margin:1px 0"></span>','<span class="note" style="flex:none">(전화번호 :</span>','<span data-f="phone" class="gp" style="width:70px"></span>','<span class="note">)</span>'),
+         "mix_cell":(ROW(f'<span data-f="text" class="gp" style="width:{rng.randint(150,380)}px"></span>','<span class="note" style="flex:none">(전화번호 :</span>',f'<span data-f="phone" class="gp" style="width:{rng.randint(90,170)}px"></span>','<span class="note">)</span>') if rng.random()<0.5   # v4x7: 셀 안 얇은 gp(h≈16) — 실서식 2편 4_1호·5_2호
+                     else ROW('<span data-f="text" class="cg" style="flex:1;margin:1px 0"></span>','<span class="note" style="flex:none">(전화번호 :</span>','<span data-f="phone" class="gp" style="width:70px"></span>','<span class="note">)</span>')),
 
          "text_suffix":ROW(GP("text",70),"의",GP("text",70),j="c"),'ph_multi':ROW("자택:",GP("phone",70),j="c")+ROW("휴대:",GP("phone",70),j="c"),
          "ph_pict":ROW("(☎",GP("phone",80),")",j="c",style="gap:2px"),
@@ -338,6 +339,14 @@ class R:
             if rng.random()<0.5:
                 return f'<table><tr>{"".join(tds[:2])}</tr><tr>{"".join(tds[2:])}</tr></table>'
             return f'<table><tr>{"".join(tds)}</tr></table>'
+        if c=="suffix_cell_row":   # v4x7: 한 행 안에서 한 칸만 얇은 gp + 인쇄 접미문자, 나머지 칸은 셀 전체 (실서식 1편 1호 "[__]의")
+            nrow=max(3,min(b.get("rows",5),6)); hs=["관계","성명","주민등록번호","주소","가구원수","전화번호"][:rng.randint(4,6)]
+            sfx=rng.choice([("의",rng.randint(40,60)),("세",rng.randint(34,56)),("명",rng.randint(40,60)),("호",rng.randint(44,70))])
+            hr=rng.randint(26,34)
+            def cf(r,cn):
+                if cn==0: return f'<td class="vl fillc" style="height:{hr}px">{ROW(GP("text",sfx[1]),sfx[0],j="c",style="gap:1px")}</td>'
+                return f'<td class="vl fillc" style="height:{hr}px">{CGF(HEADER_TYPE.get(hs[cn],"text"))}</td>'
+            return grid(rng,nrow,len(hs),hs,cf)
         if c=="mixed_kv_rows":   # v4x5: 같은 표 안에 "셀 전체 입력" 행과 "라벨 옆 빈칸(gp)" 행이 번갈아 (실서식 5_1·5_2·17·3·4_1호의 B2)
             items=[p for p in picks if p[1]!="radio"][:6]
             for lb,_t in items: self.used_labels.add(lb)
@@ -636,13 +645,14 @@ class R:
            "num_both":ROW("나이 &nbsp; 만",UL("number",60),"세",style="margin:8px 0"),
            "num_bracket":f'<table><tr><th style="width:150px">서비스이용시간</th><td class="vl">{ROW("[",GP("number",56),"] 시간",j="c",style="gap:2px")}</td></tr></table>',
            "paren_unit":ROW("자 격 증 &nbsp; (",GP("text",70),"급 )",style="margin:8px 0"),
-           "num_affix":ROW("제",GP("number",70),"호",style="margin:8px 0;font-size:20px")}
+           "num_affix":ROW(self.rng.choice(["제","공고 제","고시 제"]),GP("number",self.rng.randint(44,76)),"호",style=f"margin:8px 0;font-size:{self.rng.choice([17,19,20,22])}px")}   # v4x7 폭 44~76 (실서식 2편 16호)
         return m.get(c) or m["num_unit"]
     def b_날짜줄(self,b):
         c=b["card"]
         m={"date_split":ROW(GP("date",36),"년",GP("date",28),"월",GP("date",28),"일",j="c",style="margin-top:20px"),
            "date_inline":ROW(GP("date",36),"년 &nbsp;",GP("date",28),"월 &nbsp;",GP("date",28),"일",j="c"),
-           "date_dots":ROW("20",GP("date",30),".",GP("date",24),".",GP("date",24),".",j="c",style="gap:2px"),
+           "date_dots":(ROW(GP("date",self.rng.randint(56,76)),".",GP("date",self.rng.randint(44,60)),".",GP("date",self.rng.randint(44,60)),".",j="c",style="gap:2px;margin-top:16px") if self.rng.random()<0.5   # v4x7: 폭 44~76·20 접두 없음 (실서식 2·3편 6호-3)
+                        else ROW("20",GP("date",30),".",GP("date",24),".",GP("date",24),".",j="c",style="gap:2px")),
            "date_range":ROW("○ "+({"계약서":"계약기간","등록카드":"위촉기간","통지회신":"지원기간"}.get(self.sk["type"],"신청기간"))+" :",GP("date",30),"년",GP("date",24),"월",GP("date",24),"일 ~",GP("date",30),"년",GP("date",24),"월",GP("date",24),"일",style="margin:6px 0"),
            "comb_date":ROW(*COMB_DATE(),j="c",style="margin-top:20px;gap:2px"),
            "date_tight":ROW("20",GPT("date",self.rng.randint(12,20)),"년",GPT("date",self.rng.randint(10,18)),"월",GPT("date",self.rng.randint(10,18)),"일",

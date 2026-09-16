@@ -136,3 +136,17 @@ find 5_dataset/skeletons_v4/train_x6 -name '*.json' | xargs -P 6 -n 50 sh -c 'py
 python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v4x6 --train-dir 5_dataset/train_v4x6 --val-dir 5_dataset/holdout_v4
 ```
 
+### v4x7 — 셀 안 얇은 빈칸(B2) · 본문 날짜·번호 줄(B3) (2026-09-16)
+
+전 런에서 한 번도 줄지 않은 두 군을 **실서식 렌더 대조로 형태 확정**(x6 와 같은 절차):
+- **B2**: 표 셀 안에 든 **얇은 gp**(높이 16~17, 셀은 27~40) — ① "관계 `[__]`의" 처럼 한 행에서 그 칸만 gp+인쇄 접미문자이고 나머지는 셀 전체, ② "주소 `[_____]`(전화 `[__]`)" 처럼 셀 안 넓은 gp + 괄호 문구. 모델은 이를 **td 셀 전체로 흡수**(pred=cell, IoU 0.22~0.41)하거나 놓친다.
+- **B3**: 표 밖 **폭 44~76 빈칸** — "`[__]`.`[__]`.`[__]`." 마침표 날짜 줄(20 접두 없음, 주변이 비어 있음), "공고 제`[__]`호". 행 전체가 전멸한다.
+
+측정: 학습 B2형 0.93% vs 실서식 8.27%(9배 부족) · B3형 3.37% vs 15.29%(4.5배 부족), 폭 60 이상은 학습에 거의 없음.
+
+구현: `mix_cell` 50% 를 cg→gp(폭 150~380)로, 신규 `suffix_cell_row`(한 칸만 gp+접미문자), `date_dots` 50% 를 폭 56~76/44~60·마침표 구분으로, `num_affix` 폭 44~76·"공고 제". 강제 골격 200장(`skeletons_v4/train_x7`, 신청서·조회요청서·동의서·계약서·공고문, seed 20260912). 16장 표본 B2형 18.9% · B3형 11.0%.
+```
+find 5_dataset/skeletons_v4/train_x7 -name '*.json' | xargs -P 6 -n 50 sh -c 'python3 3_generator/render_skeleton.py "$@" --out 5_dataset/train_v4x7 > /dev/null' _
+python 8_train/to_yolo.py --stage1 --out 8_train/yolo_s1v4x7 --train-dir 5_dataset/train_v4x7 --val-dir 5_dataset/holdout_v4
+```
+

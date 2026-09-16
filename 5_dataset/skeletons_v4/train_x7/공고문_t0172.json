@@ -1,0 +1,1 @@
+{"id": "공고문_t0172", "type": "공고문", "glyph_rule": "bullet_only", "five_act_variant": true, "blocks": [{"block": "제목", "card": "평제목"}, {"block": "인적표", "card": "suffix_cell_row", "rows": 5}, {"block": "동의문단", "card": "consent"}, {"block": "동의문단", "card": "consent"}, {"block": "날짜줄", "card": "date_dots"}], "prefill": [], "decoys": ["인쇄 수신처 열거", "점선 절취선"], "seed": 274967465}
