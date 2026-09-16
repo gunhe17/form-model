@@ -120,3 +120,40 @@ python 8_train/diag_ci.py 8_train/runs/score/miss_dump_ft_head_eval.json 8_train
 
 데이터 정의: `forms_s1v4.yaml`(본학습, **val=replica_train**) · `forms_ft_real.yaml`(A) · `forms_mix.yaml`(B).
 학습 스크립트: `train_v4.sh`(3시드) · `finetune_real.sh`(A·B + 채점까지).
+
+## 최종 채택 가중치 재현 (ft_v5e, 2026-09-16)
+
+베이스는 v5syn 재수렴본, 그 위에 실서식 학습분 105장을 full 미세조정한다. 리플레이 목록·yaml 은 생성물(gitignore)이라 아래 절차로 만든다.
+
+**1. 베이스** (v4 렌더 + 카드 x3·x4·x5 600장을 합친 train 64,540, val=합성 홀드아웃)
+```
+# 렌더·풀 준비는 3_generator/README v4~v4x5 절, 7_augment/README 5차 절
+yolo detect train model=weights/FFDNet-L.pt data=8_train/forms_s1v4_syn.yaml   imgsz=1600 batch=4 device=0 epochs=6 patience=0 save_period=1 freeze=0   optimizer=AdamW lr0=0.001 lrf=0.05 warmup_epochs=1 cos_lr=True   mosaic=0.5 close_mosaic=2 scale=0.7,1.6 translate=0.15 degrees=2 shear=1 perspective=0.0002   fliplr=0 flipud=0 mixup=0 cutmix=0 copy_paste=0 hsv_h=0 hsv_s=0 hsv_v=0.3   seed=0 project=8_train/runs name=ffdnet_s1v5_syn        # best.pt(e6) 채택
+```
+
+**2. 리플레이 목록** 5,172줄 = 실 3,150(60.9%) + 리플레이 2,022(39.1%)
+
+| 출처 | 배수 | 줄 | 내용 |
+|---|---|---|---|
+| `yolo_s1v4/images/replica_train` | ×30 | 3,150 | 실서식 학습분 105장 |
+| `yolo_s1v4/images/train` + `pool_s1v4/images/office` | ×1 | 822 | 기존 합성 리플레이(`make_mix_list --synth-frac 0.02`) |
+| `yolo_s1v4x3/images/train` | ×3 | 600 | hrule_table (세로 괘선 없는 표) |
+| `yolo_s1v4x4/images/train` | ×1 | 200 | contract_lines (초장문 gap) |
+| `yolo_s1v4x6/images/train` | ×1 | 200 | 17호형 척도표(머리글 행 없음) |
+| `yolo_s1v4x7/images/train` | ×1 | 200 | suffix_cell_row·date_dots·num_affix |
+
+```
+python 8_train/make_mix_list.py --out 8_train/yolo_s1v4/ft_real.txt --repeat 30 --synth-frac 0.02   --real 8_train/yolo_s1v4/images/replica_train   --synth 7_augment/pool_s1v4/images/office 8_train/yolo_s1v4/images/train
+# 위 822줄에 카드 렌더분을 배수대로 덧붙여 ft_real_v5e.txt 를 만든다(절대경로 정렬 순)
+```
+yaml 은 `forms_ft_real.yaml` 에서 train 만 `ft_real_v5e.txt` 로 바꾼 사본(val=replica_train, test=replica_eval+stress).
+
+**3. 미세조정** (15에폭 고정·last.pt 채택 — val 이 학습분의 부분집합이라 체크포인트 선택 자유도 0)
+```
+yolo detect train model=8_train/runs/ffdnet_s1v5_syn/weights/best.pt   data=8_train/runs/forms_ft_real_v5e.yaml   imgsz=1600 batch=4 device=0 epochs=15 patience=0 save_period=1   optimizer=AdamW lr0=0.0001 lrf=0.05 warmup_epochs=1 cos_lr=True   mosaic=0.5 close_mosaic=5 scale=0.7,1.6 translate=0.15 degrees=2 shear=1 perspective=0.0002   fliplr=0 flipud=0 mixup=0 cutmix=0 copy_paste=0 hsv_h=0 hsv_s=0 hsv_v=0.3   seed=0 project=8_train/runs name=ft_v5e            # weights/last.pt = 최종
+```
+
+**4. 채점** `score.py --max-det 1000`(기본) 로 replica_eval·stress, `diag_ci.py` 로 CI, `diag_dump.py` 로 귀속표.
+
+**보존 대상**: `runs/ft_v5e/weights/last.pt` · `runs/ffdnet_s1v5_syn/weights/best.pt` · `runs/score/{miss_dump_ft_v5e_eval_md1000, ft_v5e_eval_md1000, ft_v5e_stress_md1000}.json`.
+
