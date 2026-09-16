@@ -157,3 +157,7 @@ yolo detect train model=8_train/runs/ffdnet_s1v5_syn/weights/best.pt   data=8_tr
 
 **보존 대상**: `runs/ft_v5e/weights/last.pt` · `runs/ffdnet_s1v5_syn/weights/best.pt` · `runs/score/{miss_dump_ft_v5e_eval_md1000, ft_v5e_eval_md1000, ft_v5e_stress_md1000}.json`.
 
+## 산출물 정리
+- `../7_augment/cleanup_pools.sh` — 종료 라운드의 증강 풀 3경로(pool·pool_s1·pool_s1v3). 2026-09-11 실행, 31GB 회수.
+- `cleanup_epochs.sh` — 학습 런의 에폭 스냅샷(`runs/*/weights/epoch*.pt`)만. **last.pt·best.pt 는 전부 보존**, `ft_v5e`·`ffdnet_s1v5_syn` 두 런은 통째로 제외. 둘 다 G1~G5 검사 통과 시에만 지우고 기본은 dry-run(`--yes` 로 실행).
+
